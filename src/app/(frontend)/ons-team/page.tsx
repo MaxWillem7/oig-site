@@ -28,7 +28,7 @@ const Email = ({ value }: { value: string }) => {
   )
 }
 
-function TeamCard({ lid, generalPhone }: { lid: Lid; generalPhone: string }) {
+function TeamCard({ lid, generalPhone, eager }: { lid: Lid; generalPhone: string; eager?: boolean }) {
   const photo = cmsBeeld(lid.photo, 'portret')
   const phone = lid.phone?.trim() || generalPhone
   const isGeneral = !lid.phone?.trim()
@@ -42,6 +42,8 @@ function TeamCard({ lid, generalPhone }: { lid: Lid; generalPhone: string }) {
             width={photo.width}
             height={photo.height}
             sizes="(min-width: 480px) 120px, 104px"
+            // De eerste portretten staan direct in beeld: meteen laden, de rest pas bij het scrollen
+            priority={eager}
             style={{ objectPosition: photo.focus || '50% 20%' }}
           />
         </div>
@@ -80,7 +82,7 @@ export default async function OnsTeamPage() {
       .map((lid) => ({
         id: lid.id,
         text: `${lid.name} ${lid.role}`,
-        card: <TeamCard lid={lid} generalPhone={contact.phone} />,
+        card: <TeamCard lid={lid} generalPhone={contact.phone} eager={g.value === TEAM_GROUPS[0].value} />,
       })),
   })).filter((g) => g.people.length > 0)
 

@@ -256,7 +256,7 @@ select {
   font-size: clamp(27px, 3vw, 32px);
   line-height: 1.1;
   font-weight: 400;
-  color: var(--oranje-icoon);
+  color: var(--oranje-label);
   padding-bottom: 8px;
 }
 

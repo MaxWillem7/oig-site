@@ -13,7 +13,10 @@
 
   --oranje: #ff8c00;
   --oranje-hover: #e67e00;
-  --oranje-tekst: #b35f00;
+  /* Donker genoeg voor kleine tekst op wit, crème en grijs (contrast 4,7 of meer) */
+  --oranje-tekst: #a85800;
+  /* Handschriftlabel: grote tekst, contrast 3,3 of meer op wit en crème */
+  --oranje-label: #c96f00;
   --oranje-icoon: #e07b00;
   --oranje-licht: #ffddb3;
   --op-oranje: #3a2300;

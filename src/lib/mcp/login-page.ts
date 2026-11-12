@@ -11,7 +11,7 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
 font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 main{width:100%;max-width:460px;background:#fff;border:1px solid #f0e4d2;border-radius:10px;padding:32px 28px}
 img{display:block;height:44px;width:auto;margin-bottom:24px}
-.label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#b35f00;font-weight:600;margin:0 0 6px}
+.label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#a85800;font-weight:600;margin:0 0 6px}
 h1{font-size:28px;line-height:1.2;margin:0 0 12px;font-weight:600}
 p{margin:0 0 14px}
 .zacht{color:#4a4a48;font-size:15px}
