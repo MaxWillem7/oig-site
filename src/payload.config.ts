@@ -20,6 +20,7 @@ import { Users } from './collections/Users'
 import { Vacancies } from './collections/Vacancies'
 import { Whitepapers } from './collections/Whitepapers'
 import { globals } from './globals'
+import { SUPABASE_CA } from './lib/storage/supabase-ca'
 import { oigBlobStorage } from './lib/storage/vercelBlob'
 
 const filename = fileURLToPath(import.meta.url)
@@ -31,6 +32,17 @@ const databaseUrl =
   (process.env.PAYLOAD_DIRECT_DB === '1' ? process.env.POSTGRES_URL_NON_POOLING : undefined) ||
   process.env.POSTGRES_URL ||
   ''
+
+/**
+ * Supabase gebruikt een eigen certificaatketen. We geven het basiscertificaat mee en halen 
+ * uit het adres, anders overschrijft de databasedriver onze instelling.
+ */
+const databasePool = () => {
+  if (!/supabase\.(com|co)/.test(databaseUrl)) return { connectionString: databaseUrl }
+  const url = new URL(databaseUrl)
+  url.searchParams.delete('sslmode')
+  return { connectionString: url.toString(), ssl: { ca: SUPABASE_CA } }
+}
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || '',
@@ -46,7 +58,7 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   db: postgresAdapter({
-    pool: { connectionString: databaseUrl },
+    pool: databasePool(),
     // Lokaal wordt het schema bij de start bijgewerkt; op Vercel lopen migraties bij de build.
     push: process.env.NODE_ENV !== 'production',
     migrationDir: path.resolve(dirname, 'migrations'),
