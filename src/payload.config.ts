@@ -34,11 +34,11 @@ const databaseUrl =
   ''
 
 /**
- * Supabase gebruikt een eigen certificaatketen. We geven het basiscertificaat mee en halen 
- * uit het adres, anders overschrijft de databasedriver onze instelling.
+ * Supabase gebruikt een eigen certificaatketen. We geven het basiscertificaat mee en halen de
+ * ssl-instelling uit het adres, anders overschrijft de databasedriver onze instelling.
  */
 const databasePool = () => {
-  if (!/supabase\.(com|co)/.test(databaseUrl)) return { connectionString: databaseUrl }
+  if (!/supabase\.(com|co)\b/.test(databaseUrl)) return { connectionString: databaseUrl }
   const url = new URL(databaseUrl)
   url.searchParams.delete('sslmode')
   return { connectionString: url.toString(), ssl: { ca: SUPABASE_CA } }
