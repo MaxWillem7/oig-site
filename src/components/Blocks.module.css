@@ -1,0 +1,208 @@
+.crumbs {
+  margin-bottom: 28px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.crumbs li + li::before {
+  content: '/';
+  margin-right: 6px;
+  color: #b8b2a6;
+}
+
+.crumbs a:hover {
+  color: var(--oranje-tekst);
+  text-decoration: underline;
+}
+
+.hero {
+  padding-block: 40px var(--sectie);
+}
+
+@media (min-width: 1000px) {
+  .hero {
+    padding-top: 56px;
+  }
+}
+
+.heroText {
+  --gap: 24px;
+}
+
+.heading {
+  --gap: 18px;
+  margin-bottom: 40px;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.center :global(.kicker) {
+  align-self: center;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  background: var(--blauw-licht);
+  color: var(--blauw);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.cta {
+  background: var(--oranje);
+  padding-block: 56px;
+}
+
+.ctaInner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.ctaText {
+  --gap: 12px;
+  max-width: 760px;
+  color: var(--op-oranje);
+  font-size: 19px;
+  line-height: 30px;
+}
+
+.ctaTitle {
+  color: var(--tekst);
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.ctaActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ctaTel {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--tekst);
+}
+
+.ctaTel:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .cta {
+    padding-block: 72px;
+  }
+
+  .ctaInner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .ctaActions {
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+}
+
+.faq {
+  max-width: calc(900px + 2 * var(--rand));
+}
+
+.faqList {
+  border-top: 1px solid var(--lijn);
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--lijn);
+}
+
+.faqItem summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 2px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem h3 {
+  font-size: clamp(18px, 1.8vw, 20px);
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.faqItem summary svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--oranje-icoon);
+  transition: transform 0.15s;
+}
+
+.faqItem[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.faqItem p {
+  padding: 0 2px 24px;
+  max-width: 72ch;
+  color: var(--tekst-lead);
+  white-space: pre-line;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.contactList li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contactList a:hover {
+  color: var(--oranje-tekst);
+}
+
+.formCard {
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+@media (min-width: 700px) {
+  .formCard {
+    padding: 36px;
+  }
+}

@@ -1,0 +1,54 @@
+/* Huisstijl OIG. Waarden uit de live site en de ontwerpbrief; gebruik alleen deze tokens. */
+:root {
+  --tekst: #1a1a1a;
+  --tekst-zacht: #4a4a48;
+  --tekst-lead: #3a3a38;
+  --lijn: #e6e1d8;
+  --lijn-creme: #f0e4d2;
+  --lijn-footer: #ebd9bf;
+  --wit: #ffffff;
+  --creme: #fff4e5;
+  --grijs: #f7f5f1;
+  --foto: #e2ddd4;
+
+  --oranje: #ff8c00;
+  --oranje-hover: #e67e00;
+  --oranje-tekst: #b35f00;
+  --oranje-icoon: #e07b00;
+  --oranje-licht: #ffddb3;
+  --op-oranje: #3a2300;
+
+  --groen: #006837;
+  --groen-licht: #e3f0e8;
+  --blauw: #312782;
+  --blauw-licht: #eceaf6;
+  --op-blauw: #d6d3ee;
+  --op-blauw-accent: #ffb766;
+
+  --fout: #b3261e;
+
+  --font: var(--font-geist-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-script: var(--font-glitter), 'Brush Script MT', cursive;
+
+  --radius: 10px;
+  --radius-knop: 7px;
+  --radius-groot: 20px;
+
+  --rand: 20px;
+  --sectie: 64px;
+  --max: 1240px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --rand: 40px;
+    --sectie: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --rand: 100px;
+    --sectie: 92px;
+  }
+}

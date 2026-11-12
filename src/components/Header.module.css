@@ -1,0 +1,271 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--wit);
+  border-bottom: 1px solid var(--lijn);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 14px;
+}
+
+.logo img {
+  width: 114px;
+  height: auto;
+}
+
+.nav {
+  display: none;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item {
+  position: relative;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 13px;
+  border: 0;
+  background: none;
+  border-radius: var(--radius-knop);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+}
+
+.link:hover,
+.active {
+  color: var(--oranje-tekst);
+}
+
+.chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.15s;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -12px;
+  min-width: 260px;
+  padding: 12px;
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px -22px rgba(26, 26, 26, 0.35);
+}
+
+.panelBreed {
+  width: 620px;
+}
+
+.panelGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.panelList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.panelLink {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: var(--radius-knop);
+}
+
+.panelLink:hover {
+  background: var(--creme);
+}
+
+.panelLabel {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.panelDesc {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.panelAll {
+  display: block;
+  margin-top: 8px;
+  padding: 12px 12px 4px;
+  border-top: 1px solid var(--lijn);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--oranje-tekst);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.actions .portal,
+.actions .contact {
+  display: none;
+}
+
+.burger {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--oranje);
+  border-radius: var(--radius-knop);
+  background: none;
+  cursor: pointer;
+}
+
+.burgerIcon,
+.burgerIcon::before,
+.burgerIcon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--oranje-tekst);
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+
+.burgerIcon {
+  position: relative;
+}
+
+.burgerIcon::before,
+.burgerIcon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.burgerIcon::before {
+  top: -6px;
+}
+
+.burgerIcon::after {
+  top: 6px;
+}
+
+.burgerOpen {
+  background: transparent;
+}
+
+.burgerOpen::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.burgerOpen::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile {
+  position: fixed;
+  inset: 75px 0 0;
+  overflow-y: auto;
+  background: var(--wit);
+  padding-block: 12px 40px;
+}
+
+.mobileList > li {
+  border-bottom: 1px solid var(--lijn);
+}
+
+.mobileLink,
+.mobileGroup summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 2px;
+  font-size: 19px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.mobileGroup summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobileGroup[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.mobileGroup ul {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 14px;
+}
+
+.mobileGroup a {
+  display: block;
+  padding: 11px 2px 11px 14px;
+  font-size: 17px;
+  color: var(--tekst-lead);
+}
+
+.mobileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+@media (min-width: 560px) {
+  .actions .contact {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1100px) {
+  .bar {
+    padding-block: 20px;
+  }
+
+  .logo img {
+    width: 135px;
+  }
+
+  .nav {
+    display: block;
+  }
+
+  .actions .portal {
+    display: inline-flex;
+  }
+
+  .burger,
+  .mobile {
+    display: none;
+  }
+}
