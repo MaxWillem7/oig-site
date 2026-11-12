@@ -36,3 +36,10 @@ Nodig als omgevingsvariabelen: `DATABASE_URL` (of `POSTGRES_URL`), `BLOB_READ_WR
 `NEXT_PUBLIC_SITE_URL` (exact het adres van de site), `CRON_SECRET`, `SEED_ADMIN_EMAIL` en `SEED_ADMIN_PASSWORD`
 (eerste beheerder), later `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_GTM_ID` en bij livegang `SITE_INDEXABLE=true`.
 Na een wijziging in `src/collections` of `src/globals`: `npm run payload -- migrate:create <naam>`.
+
+CMS-tests (inloggen, teamlid toevoegen en verwijderen, vacature, premietabel, foto) vragen een account en
+draaien na elkaar, niet tegelijk:
+
+```
+CMS_EMAIL=... CMS_PASSWORD=... npx playwright test tests/cms.spec.ts tests/cms-inhoud.spec.ts --project=desktop --workers=1
+```
