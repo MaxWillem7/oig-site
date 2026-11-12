@@ -14,7 +14,6 @@ const nextConfig: NextConfig = {
   redirects: async () => redirects,
   images: {
     localPatterns: [{ pathname: '/api/media/file/**' }, { pathname: '/beeld/**' }],
-    remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
   },
   experimental: {
     // Sollicitaties met cv: hoogstens 4 MB aan bestanden plus de velden

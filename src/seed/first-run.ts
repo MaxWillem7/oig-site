@@ -7,8 +7,8 @@ import { getPayload } from 'payload'
 import { ensureAdmin, runSeed } from './run'
 
 // Zonder Blob-opslag zouden de foto's bij de build op een schijf belanden die daarna verdwijnt.
-if (process.env.VERCEL && !process.env.BLOB_READ_WRITE_TOKEN) {
-  throw new Error('BLOB_READ_WRITE_TOKEN ontbreekt: koppel eerst een Blob-opslag aan het project in Vercel.')
+if (process.env.VERCEL && !process.env.BLOB_READ_WRITE_TOKEN && !process.env.BLOB_STORE_ID) {
+  throw new Error('Geen Blob-opslag gevonden: koppel eerst een Blob-opslag aan het project in Vercel.')
 }
 
 const payload = await getPayload({ config })

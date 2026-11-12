@@ -1,6 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { nl } from '@payloadcms/translations/languages/nl'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -21,6 +20,7 @@ import { Users } from './collections/Users'
 import { Vacancies } from './collections/Vacancies'
 import { Whitepapers } from './collections/Whitepapers'
 import { globals } from './globals'
+import { oigBlobStorage } from './lib/storage/vercelBlob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -52,11 +52,5 @@ export default buildConfig({
     migrationDir: path.resolve(dirname, 'migrations'),
   }),
   sharp,
-  plugins: [
-    vercelBlobStorage({
-      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
-      collections: { media: true, documenten: true, 'cv-bestanden': true },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
-    }),
-  ],
+  plugins: [oigBlobStorage({ media: 'openbaar', documenten: 'openbaar', 'cv-bestanden': 'afgeschermd' })],
 })

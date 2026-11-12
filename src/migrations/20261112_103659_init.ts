@@ -329,6 +329,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"id" serial PRIMARY KEY NOT NULL,
   	"alt" varchar NOT NULL,
   	"focus" varchar,
+  	"prefix" varchar DEFAULT '',
+  	"_objectkey" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"url" varchar,
@@ -363,6 +365,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TABLE "documenten" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"title" varchar NOT NULL,
+  	"prefix" varchar DEFAULT '',
+  	"_objectkey" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"url" varchar,
@@ -403,6 +407,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   CREATE TABLE "cv_bestanden" (
   	"id" serial PRIMARY KEY NOT NULL,
+  	"prefix" varchar DEFAULT '',
+  	"_objectkey" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"url" varchar,

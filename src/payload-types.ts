@@ -183,6 +183,8 @@ export interface Media {
    * Optioneel, bijv. "50% 30%": welk deel van de foto belangrijk is.
    */
   focus?: string | null;
+  prefix?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -403,6 +405,8 @@ export interface Whitepaper {
 export interface Documenten {
   id: number;
   title: string;
+  prefix?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -472,6 +476,8 @@ export interface Inzendingen {
  */
 export interface CvBestanden {
   id: number;
+  prefix?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -848,6 +854,8 @@ export interface PaginasSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   focus?: T;
+  prefix?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -900,6 +908,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface DocumentenSelect<T extends boolean = true> {
   title?: T;
+  prefix?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -937,6 +947,8 @@ export interface InzendingenSelect<T extends boolean = true> {
  * via the `definition` "cv-bestanden_select".
  */
 export interface CvBestandenSelect<T extends boolean = true> {
+  prefix?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
