@@ -1,3 +1,4 @@
 {
+  "framework": "nextjs",
   "crons": [{ "path": "/api/cron/opruimen", "schedule": "0 3 * * *" }]
 }
