@@ -146,6 +146,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * De mensen op de teampagina. Een nieuw teamlid staat op de site zodra u op Publiceren klikt.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "team".
  */

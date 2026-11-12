@@ -12,7 +12,14 @@ export const TEAM_GROUPS = [
 export const Team: CollectionConfig = {
   slug: 'team',
   labels: { singular: 'Teamlid', plural: 'Team' },
-  admin: { useAsTitle: 'name', defaultColumns: ['name', 'role', 'group', 'order', '_status'], group: 'Inhoud' },
+  admin: {
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'role', 'group', 'order', '_status'],
+    group: 'Inhoud',
+    description: 'De mensen op de teampagina. Een nieuw teamlid staat op de site zodra u op Publiceren klikt.',
+    // Het hele team op één pagina
+    pagination: { defaultLimit: 50 },
+  },
   defaultSort: 'order',
   ...editable,
   fields: [

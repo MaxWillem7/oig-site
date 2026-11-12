@@ -1,0 +1,224 @@
+/* Huisstijl van de Onderwijs Inkoop Groep in het CMS: Geist, crème, oranje knoppen, groen voor "gepubliceerd". */
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --style-radius-s: 7px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+
+  --oig-oranje: #ff8c00;
+  --oig-oranje-hover: #e67e00;
+  --oig-oranje-tekst: #b35f00;
+  --oig-creme: #fff4e5;
+  --oig-groen: #006837;
+  --oig-blauw: #312782;
+}
+
+html[data-theme='light'] {
+  --theme-bg: #ffffff;
+  --theme-text: #1a1a1a;
+  --theme-input-bg: #ffffff;
+
+  /* Grijstinten van Payload, verwarmd naar het crème van de site */
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #fffaf2;
+  --theme-elevation-100: #fff4e5;
+  --theme-elevation-150: #f3e6d2;
+  --theme-elevation-200: #eadcc6;
+  --theme-elevation-250: #e0d2bc;
+  --theme-elevation-300: #d2c5b0;
+  --theme-elevation-350: #c2b6a3;
+  --theme-elevation-400: #a89d8c;
+  --theme-elevation-450: #91877a;
+  --theme-elevation-500: #7a7268;
+  --theme-elevation-550: #6b655c;
+  --theme-elevation-600: #5c5750;
+  --theme-elevation-650: #4f4b46;
+  --theme-elevation-700: #4a4a48;
+  --theme-elevation-750: #3a3a38;
+  --theme-elevation-800: #2e2d2b;
+  --theme-elevation-850: #242322;
+  --theme-elevation-900: #1a1a1a;
+  --theme-elevation-950: #111111;
+  --theme-elevation-1000: #000000;
+
+  /* Groen van het logo voor succes en "Gepubliceerd" */
+  --theme-success-50: #f1f8f4;
+  --theme-success-100: #e3f0e8;
+  --theme-success-150: #d3e8db;
+  --theme-success-200: #bfddca;
+  --theme-success-300: #8fc4a5;
+  --theme-success-400: #4f9e75;
+  --theme-success-500: #006837;
+  --theme-success-600: #005c31;
+  --theme-success-650: #00552d;
+  --theme-success-750: #004a27;
+  --theme-success-800: #004423;
+  --theme-success-850: #003b1f;
+  --theme-success-900: #00331a;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+/* Knoppen: oranje primair, oranje rand secundair (zoals op de site) */
+.btn--style-primary {
+  --bg-color: var(--oig-oranje);
+  --color: #ffffff;
+  --hover-bg: var(--oig-oranje-hover);
+  --hover-color: #ffffff;
+  font-weight: 600;
+}
+
+.btn--style-secondary {
+  --color: var(--oig-oranje-tekst);
+  --btn-border: 2px solid var(--oig-oranje);
+  --hover-color: var(--oig-oranje-tekst);
+  --hover-btn-border: 2px solid var(--oig-oranje-hover);
+  --hover-bg: var(--oig-creme);
+  font-weight: 600;
+}
+
+.btn--style-pill {
+  --bg-color: var(--oig-creme);
+  --color: var(--oig-oranje-tekst);
+  --hover-bg: #ffe6c2;
+  --hover-color: var(--oig-oranje-tekst);
+  font-weight: 600;
+}
+
+/* Links in lijsten en tekst */
+.table a,
+.rich-text a,
+.field-description a {
+  color: var(--oig-oranje-tekst);
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline-color: var(--oig-blauw);
+}
+
+/* Zijmenu in crème, met een oranje streep bij de actieve pagina */
+.nav {
+  background: var(--oig-creme);
+  border-right: 1px solid #f0e4d2;
+}
+
+.nav-group__toggle {
+  color: var(--oig-oranje-tekst);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav__link {
+  border-radius: var(--style-radius-s);
+  font-weight: 500;
+}
+
+.nav__link:hover,
+.nav__link.active,
+.nav__link:has(.nav__link-indicator) {
+  color: var(--oig-oranje-tekst);
+}
+
+.nav__link-indicator {
+  background: var(--oig-oranje);
+}
+
+/* Kaarten op het dashboard */
+.dashboard__group .card,
+.dashboard .card {
+  background: #ffffff;
+  border-color: #f0e4d2;
+}
+
+.dashboard .card:hover {
+  border-color: var(--oig-oranje);
+}
+
+.dashboard__label {
+  letter-spacing: -0.015em;
+}
+
+.oig-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.oig-logo {
+  display: block;
+  width: 260px;
+  max-width: 70vw;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* Inlogscherm op crème */
+.template-minimal {
+  background: var(--oig-creme);
+}
+
+.template-minimal__wrap {
+  background: #ffffff;
+  border: 1px solid #f0e4d2;
+  border-radius: var(--style-radius-l);
+  padding: 40px;
+}
+
+/* Welkomstblok boven het dashboard */
+.oig-welcome {
+  margin-bottom: 36px;
+  padding: 28px 32px;
+  background: var(--oig-creme);
+  border: 1px solid #f0e4d2;
+  border-radius: var(--style-radius-m);
+  max-width: 900px;
+}
+
+.oig-welcome__label {
+  margin: 0 0 6px;
+  color: var(--oig-oranje-tekst);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.oig-welcome h1 {
+  margin: 0 0 10px;
+  font-size: 32px;
+  line-height: 1.15;
+}
+
+.oig-welcome p {
+  margin: 0 0 12px;
+  max-width: 68ch;
+}
+
+.oig-welcome ul {
+  margin: 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: 6px;
+}

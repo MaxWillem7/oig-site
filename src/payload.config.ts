@@ -44,11 +44,40 @@ const databasePool = () => {
   return { connectionString: url.toString(), ssl: { ca: SUPABASE_CA } }
 }
 
+/**
+ * Adressen waarvandaan het CMS mag worden gebruikt. Payload weigert een ingelogde actie als het adres in de
+ * browser niet in deze lijst staat ("U mag deze actie niet uitvoeren"). Daarom staan hier naast het
+ * ingestelde siteadres ook de adressen die Vercel zelf aan het project geeft en het domein van OIG.
+ */
+const trustedOrigins = [
+  process.env.NEXT_PUBLIC_SITE_URL,
+  process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`,
+  process.env.VERCEL_BRANCH_URL && `https://${process.env.VERCEL_BRANCH_URL}`,
+  process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
+  'https://oig-site-one.vercel.app',
+  'https://www.onderwijsinkoopgroep.nl',
+  'https://onderwijsinkoopgroep.nl',
+]
+  .filter((o): o is string => Boolean(o))
+  .map((o) => o.replace(/\/$/, ''))
+
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || '',
+  csrf: trustedOrigins,
+  cors: trustedOrigins,
   admin: {
     user: Users.slug,
-    meta: { titleSuffix: ' | OIG CMS' },
+    meta: {
+      titleSuffix: ' | OIG CMS',
+      description: 'Beheer van de website van de Onderwijs Inkoop Groep',
+      icons: [{ rel: 'icon', type: 'image/svg+xml', url: '/favicon.svg' }],
+    },
+    // Eén vaste, lichte weergave in de huisstijl (zie src/app/(payload)/custom.scss)
+    theme: 'light',
+    components: {
+      graphics: { Logo: '/components/admin/Brand#Logo', Icon: '/components/admin/Brand#Icon' },
+      beforeDashboard: ['/components/admin/Welcome#Welcome'],
+    },
     importMap: { baseDir: path.resolve(dirname) },
   },
   i18n: { supportedLanguages: { nl }, fallbackLanguage: 'nl' },
