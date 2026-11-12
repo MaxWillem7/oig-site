@@ -8,7 +8,12 @@ import { isLoggedIn } from '../access'
 export const Applications: CollectionConfig = {
   slug: 'cv-bestanden',
   labels: { singular: 'Sollicitatiebestand', plural: 'Sollicitatiebestanden' },
-  admin: { useAsTitle: 'filename', group: 'Formulieren', description: 'Afgeschermd. Wordt 4 weken na afronding gewist.' },
+  admin: {
+    hideAPIURL: true,
+    useAsTitle: 'filename',
+    group: 'Formulieren',
+    description: 'Afgeschermd. Wordt 4 weken na afronding gewist.',
+  },
   access: { read: isLoggedIn, create: () => false, update: () => false, delete: isLoggedIn },
   fields: [],
   upload: {

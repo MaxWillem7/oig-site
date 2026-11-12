@@ -106,3 +106,34 @@ test('beheerder kan een gebruiker toevoegen en verwijderen', async ({ page }) =>
   const removed = { status: () => result.removed }
   expect(removed.status()).toBe(200)
 })
+
+test('CMS op een telefoon: lijst als kaarten, teamlid openen, opslaan blijft bereikbaar', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true })
+  const page = await context.newPage()
+  await login(page, email!, password!)
+  const overflow = () => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+  expect(await overflow(), 'dashboard past in beeld').toBeLessThanOrEqual(1)
+
+  // Menu openen en naar Team
+  await page.locator('.app-header button:visible').first().click()
+  await page.locator('.nav a', { hasText: 'Team' }).first().click()
+  await expect(page).toHaveURL(/collections\/team/)
+  await expect(page.locator('.table tbody tr').first()).toBeVisible()
+  expect(await overflow(), 'teamlijst past in beeld').toBeLessThanOrEqual(1)
+  // Elke rij is een kaart over de volle breedte, zonder zijwaarts schuiven
+  await page.waitForLoadState('networkidle')
+  const rows = await page.evaluate(() =>
+    Array.from(document.querySelectorAll('.collection-list .table tbody tr')).map((r) => Math.round(r.getBoundingClientRect().width)),
+  )
+  expect(rows.length).toBeGreaterThan(5)
+  expect(Math.min(...rows), 'kaarten over de volle breedte').toBeGreaterThan(300)
+  expect(Math.max(...rows)).toBeLessThanOrEqual(390)
+
+  // Teamlid openen: velden en de knop Publiceren staan in beeld
+  await page.locator('.table tbody tr a').first().click()
+  await expect(page.locator('#field-name')).toBeVisible({ timeout: 20000 })
+  expect(await overflow(), 'bewerkscherm past in beeld').toBeLessThanOrEqual(1)
+  await page.locator('#field-email').scrollIntoViewIfNeeded()
+  await expect(page.locator('#action-save')).toBeInViewport()
+  await context.close()
+})

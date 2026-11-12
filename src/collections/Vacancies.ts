@@ -13,6 +13,7 @@ const bullets = (name: string, label: string, description?: string): Field => ({
       label: 'Punten',
       labels: { singular: 'Punt', plural: 'Punten' },
       type: 'array',
+      admin: { components: { RowLabel: '/components/admin/RowLabel#RowLabel' } },
       fields: [{ name: 'text', label: 'Tekst', type: 'text', required: true }],
     },
   ],
@@ -23,22 +24,34 @@ export const Vacancies: CollectionConfig = {
   slug: 'vacatures',
   labels: { singular: 'Vacature', plural: 'Vacatures' },
   admin: {
+    hideAPIURL: true,
     useAsTitle: 'title',
     defaultColumns: ['title', 'hours', 'location', '_status', 'updatedAt'],
     group: 'Inhoud',
-    description: 'Een gepubliceerde vacature staat op de site en in Google for Jobs. Niet meer actueel? Zet hem terug naar concept.',
+    description:
+      'Een gepubliceerde vacature staat op de site en in Google for Jobs. Niet meer actueel? Zet hem terug naar concept.',
   },
   defaultSort: 'order',
   ...editable,
   fields: [
     { name: 'title', label: 'Functietitel', type: 'text', required: true },
     slugField('title'),
-    { name: 'teaser', label: 'Korte omschrijving (overzicht en Google)', type: 'textarea', required: true },
+    {
+      name: 'teaser',
+      label: 'Korte omschrijving (overzicht en Google)',
+      type: 'textarea',
+      required: true,
+    },
     {
       type: 'row',
       fields: [
         { name: 'hours', label: 'Uren', type: 'text', admin: { description: 'Bijv. 32-40 uur' } },
-        { name: 'education', label: 'Opleiding', type: 'text', admin: { description: 'Bijv. HBO' } },
+        {
+          name: 'education',
+          label: 'Opleiding',
+          type: 'text',
+          admin: { description: 'Bijv. HBO' },
+        },
         { name: 'location', label: 'Plaats', type: 'text', defaultValue: 'Zeewolde' },
       ],
     },
@@ -76,6 +89,12 @@ export const Vacancies: CollectionConfig = {
       type: 'date',
       admin: { position: 'sidebar', date: { displayFormat: 'd MMM yyyy' } },
     },
-    { name: 'order', label: 'Volgorde', type: 'number', defaultValue: 10, admin: { position: 'sidebar' } },
+    {
+      name: 'order',
+      label: 'Volgorde',
+      type: 'number',
+      defaultValue: 10,
+      admin: { position: 'sidebar' },
+    },
   ],
 }

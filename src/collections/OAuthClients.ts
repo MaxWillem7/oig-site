@@ -9,6 +9,7 @@ export const OAuthClients: CollectionConfig = {
   slug: 'oauth-clients',
   labels: { singular: 'Gekoppelde app', plural: 'Claude-koppeling: apps' },
   admin: {
+    hideAPIURL: true,
     useAsTitle: 'clientName',
     defaultColumns: ['clientName', 'createdAt', 'lastUsedAt'],
     group: 'Beheer',
@@ -18,9 +19,34 @@ export const OAuthClients: CollectionConfig = {
   },
   access: { read: isAdmin, create: () => false, update: () => false, delete: isAdmin },
   fields: [
-    { name: 'clientId', label: 'Client-id', type: 'text', required: true, unique: true, index: true, admin: { readOnly: true } },
-    { name: 'clientName', label: 'Naam van de app (zelf opgegeven)', type: 'text', admin: { readOnly: true } },
-    { name: 'redirectUris', label: 'Terugkeeradressen', type: 'json', required: true, admin: { readOnly: true } },
-    { name: 'lastUsedAt', label: 'Laatst gebruikt', type: 'date', index: true, admin: { readOnly: true } },
+    {
+      name: 'clientId',
+      label: 'Client-id',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+      admin: { readOnly: true },
+    },
+    {
+      name: 'clientName',
+      label: 'Naam van de app (zelf opgegeven)',
+      type: 'text',
+      admin: { readOnly: true },
+    },
+    {
+      name: 'redirectUris',
+      label: 'Terugkeeradressen',
+      type: 'json',
+      required: true,
+      admin: { readOnly: true },
+    },
+    {
+      name: 'lastUsedAt',
+      label: 'Laatst gebruikt',
+      type: 'date',
+      index: true,
+      admin: { readOnly: true },
+    },
   ],
 }

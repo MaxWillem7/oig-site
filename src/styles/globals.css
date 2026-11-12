@@ -600,3 +600,25 @@ select {
   text-underline-offset: 3px;
   font-weight: 600;
 }
+
+/*
+ * Telefoon en tablet: tekstlinks, telefoonnummers, mailadressen en de links in de footer krijgen een groter
+ * tikvlak (ongeveer 44px hoog). De ruimte komt uit opvulling met een even grote negatieve marge, zodat de
+ * opmaak zelf niet verschuift.
+ */
+@media (pointer: coarse), (max-width: 700px) {
+  .textlink,
+  :where(main, footer) a:where([href^='tel:'], [href^='mailto:']),
+  main a:where([class*='extern'], [class*='route'], [class*='contactSite']),
+  footer :where(ul a, ul button),
+  main summary {
+    /* !important: dit moet ook winnen van de opvulling in de opmaak van losse pagina's */
+    padding-block: 11px !important;
+    margin-block: -11px !important;
+  }
+
+  /* In lopende tekst alleen het tikvlak vergroten, niet de regelhoogte */
+  :where(p, li, dd, td) > a:where([href^='tel:'], [href^='mailto:']) {
+    margin-block: 0 !important;
+  }
+}

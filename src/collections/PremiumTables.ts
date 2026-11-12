@@ -9,15 +9,23 @@ export const PremiumTables: CollectionConfig = {
   slug: 'premies',
   labels: { singular: 'Premietabel', plural: 'Premietabellen' },
   admin: {
+    hideAPIURL: true,
     useAsTitle: 'title',
     defaultColumns: ['title', 'year', 'insurer', '_status'],
     group: 'Inhoud',
-    description: 'Premies per verzekeraar en jaar. Alleen gepubliceerde tabellen van het actuele jaar staan op de zorgpagina.',
+    description:
+      'Premies per verzekeraar en jaar. Alleen gepubliceerde tabellen van het actuele jaar staan op de zorgpagina.',
   },
   defaultSort: 'order',
   ...editable,
   fields: [
-    { name: 'title', label: 'Titel', type: 'text', required: true, admin: { description: 'Bijv. Zilveren Kruis 2027' } },
+    {
+      name: 'title',
+      label: 'Titel',
+      type: 'text',
+      required: true,
+      admin: { description: 'Bijv. Zilveren Kruis 2027' },
+    },
     {
       type: 'row',
       fields: [
@@ -31,7 +39,11 @@ export const PremiumTables: CollectionConfig = {
       label: 'Kolommen',
       labels: { singular: 'Kolom', plural: 'Kolommen' },
       type: 'array',
-      admin: { description: 'De koppen boven de bedragen, bijv. "Premie per maand" en "Met korting". De eerste kolom (het pakket) hoeft hier niet bij.' },
+      admin: {
+        components: { RowLabel: '/components/admin/RowLabel#RowLabel' },
+        description:
+          'De koppen boven de bedragen, bijv. "Premie per maand" en "Met korting". De eerste kolom (het pakket) hoeft hier niet bij.',
+      },
       fields: [{ name: 'label', label: 'Kop', type: 'text', required: true }],
     },
     {
@@ -39,6 +51,7 @@ export const PremiumTables: CollectionConfig = {
       label: 'Rijen',
       labels: { singular: 'Rij', plural: 'Rijen' },
       type: 'array',
+      admin: { components: { RowLabel: '/components/admin/RowLabel#RowLabel' } },
       fields: [
         { name: 'label', label: 'Pakket of verzekering', type: 'text', required: true },
         {
@@ -46,11 +59,20 @@ export const PremiumTables: CollectionConfig = {
           label: 'Waarden',
           labels: { singular: 'Waarde', plural: 'Waarden' },
           type: 'array',
-          admin: { description: 'Eén waarde per kolom, in dezelfde volgorde.' },
+          admin: {
+            components: { RowLabel: '/components/admin/RowLabel#RowLabel' },
+            description: 'Eén waarde per kolom, in dezelfde volgorde.',
+          },
           fields: [{ name: 'value', label: 'Waarde', type: 'text' }],
         },
       ],
     },
-    { name: 'order', label: 'Volgorde', type: 'number', defaultValue: 10, admin: { position: 'sidebar' } },
+    {
+      name: 'order',
+      label: 'Volgorde',
+      type: 'number',
+      defaultValue: 10,
+      admin: { position: 'sidebar' },
+    },
   ],
 }

@@ -13,10 +13,12 @@ export const Team: CollectionConfig = {
   slug: 'team',
   labels: { singular: 'Teamlid', plural: 'Team' },
   admin: {
+    hideAPIURL: true,
     useAsTitle: 'name',
     defaultColumns: ['name', 'role', 'group', 'order', '_status'],
     group: 'Inhoud',
-    description: 'De mensen op de teampagina. Een nieuw teamlid staat op de site zodra u op Publiceren klikt.',
+    description:
+      'De mensen op de teampagina. Een nieuw teamlid staat op de site zodra u op Publiceren klikt.',
     // Het hele team op één pagina
     pagination: { defaultLimit: 50 },
   },
@@ -54,6 +56,12 @@ export const Team: CollectionConfig = {
       defaultValue: false,
       admin: { position: 'sidebar' },
     },
-    { name: 'order', label: 'Volgorde', type: 'number', defaultValue: 10, admin: { position: 'sidebar' } },
+    {
+      name: 'order',
+      label: 'Volgorde',
+      type: 'number',
+      defaultValue: 10,
+      admin: { position: 'sidebar' },
+    },
   ],
 }

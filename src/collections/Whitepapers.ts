@@ -5,7 +5,12 @@ import { editable } from './shared'
 export const Whitepapers: CollectionConfig = {
   slug: 'whitepapers',
   labels: { singular: 'Whitepaper', plural: 'Whitepapers' },
-  admin: { useAsTitle: 'title', defaultColumns: ['title', 'path', '_status'], group: 'Inhoud' },
+  admin: {
+    hideAPIURL: true,
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'path', '_status'],
+    group: 'Inhoud',
+  },
   defaultSort: 'order',
   ...editable,
   fields: [
@@ -25,8 +30,16 @@ export const Whitepapers: CollectionConfig = {
       label: 'Alleen na het invullen van het formulier',
       type: 'checkbox',
       defaultValue: true,
-      admin: { description: 'Uit = de inhoud staat open op de pagina en de PDF is direct te downloaden.' },
+      admin: {
+        description: 'Uit = de inhoud staat open op de pagina en de PDF is direct te downloaden.',
+      },
     },
-    { name: 'order', label: 'Volgorde', type: 'number', defaultValue: 10, admin: { position: 'sidebar' } },
+    {
+      name: 'order',
+      label: 'Volgorde',
+      type: 'number',
+      defaultValue: 10,
+      admin: { position: 'sidebar' },
+    },
   ],
 }

@@ -5,7 +5,7 @@ import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidat
 export const Media: CollectionConfig = {
   slug: 'media',
   labels: { singular: 'Beeld', plural: 'Beeldbank' },
-  admin: { group: 'Inhoud' },
+  admin: { hideAPIURL: true, group: 'Inhoud' },
   access: { read: () => true, create: isLoggedIn, update: isLoggedIn, delete: isLoggedIn },
   hooks: { afterChange: [revalidateAfterChange], afterDelete: [revalidateAfterDelete] },
   fields: [
@@ -14,7 +14,9 @@ export const Media: CollectionConfig = {
       label: 'Beschrijving (alt-tekst)',
       type: 'text',
       required: true,
-      admin: { description: 'Wat staat er op de foto? Voor blinden en slechtzienden en voor Google.' },
+      admin: {
+        description: 'Wat staat er op de foto? Voor blinden en slechtzienden en voor Google.',
+      },
     },
     {
       name: 'focus',

@@ -222,3 +222,188 @@ h4 {
   display: grid;
   gap: 6px;
 }
+
+/* ---------- Telefoon en kleine tablet ---------- */
+
+/* Status en datum breken af in plaats van uit beeld te lopen */
+.doc-controls__meta,
+.doc-controls__list-item,
+.doc-controls__content {
+  flex-wrap: wrap;
+  white-space: normal;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  /* Lijsten als kaarten onder elkaar: geen zijwaarts schuiven meer */
+  .collection-list .table,
+  .collection-list .table-wrap {
+    overflow: visible;
+  }
+
+  .collection-list .table table,
+  .collection-list .table tbody,
+  .collection-list .table tr,
+  .collection-list .table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .collection-list .table thead {
+    display: none;
+  }
+
+  .collection-list .table tbody tr {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 14px 52px 14px 16px;
+    background: #ffffff;
+    border: 1px solid #f0e4d2;
+    border-radius: var(--style-radius-m);
+  }
+
+  .collection-list .table tbody tr:nth-child(odd),
+  .collection-list .table tbody tr:nth-child(even) {
+    background: #ffffff;
+  }
+
+  .collection-list .table td {
+    padding: 2px 0;
+    font-size: 15px;
+    line-height: 22px;
+    color: var(--theme-elevation-700);
+    overflow-wrap: anywhere;
+  }
+
+  /* De eerste kolom na het vinkje is de titel van de kaart */
+  .collection-list .table td.cell-_select + td {
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 700;
+    color: var(--theme-text);
+    padding-bottom: 4px;
+  }
+
+  .collection-list .table td.cell-_select + td a {
+    display: block;
+    font-weight: 700;
+  }
+
+  /* Vinkje rechtsboven in de kaart */
+  .collection-list .table td.cell-_select {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: auto;
+    padding: 0;
+  }
+
+  /* Kolommen die op een telefoon niets toevoegen */
+  .collection-list .table td.cell-order,
+  .collection-list .table td.cell-id,
+  .collection-list .table td.cell-year {
+    display: none;
+  }
+
+  .collection-list .table td.cell-_status,
+  .collection-list .table td.cell-status {
+    padding-top: 8px;
+    font-weight: 600;
+    color: var(--oig-groen);
+  }
+
+  .collection-list .table td.cell-_status .selected--draft,
+  .collection-list .table td.cell-status .selected--nieuw {
+    color: var(--oig-oranje-tekst);
+  }
+
+  /* Zoeken, kolommen en filters onder elkaar en op volle breedte */
+  .list-controls__wrap,
+  .list-controls__buttons,
+  .list-controls__buttons-wrap {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .list-controls__buttons-wrap > * {
+    flex: 1 1 140px;
+  }
+
+  /* Kop van de lijst: titel en "Nieuw aanmaken" breken netjes af */
+  .list-header,
+  .collection-list__header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Opslaan en publiceren blijven in beeld tijdens het scrollen */
+  .doc-controls {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #ffffff;
+  }
+
+  .doc-controls__controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .doc-controls__controls .btn,
+  .form-submit .btn {
+    min-height: 46px;
+  }
+
+  /* Dashboard: compactere kaarten, minder scrollen */
+  .dashboard .card {
+    min-height: 58px;
+    padding: 14px 16px;
+  }
+
+  .dashboard__group {
+    margin-bottom: 28px;
+  }
+
+  .oig-welcome {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .oig-welcome h1 {
+    font-size: 26px;
+  }
+
+  /* Inlogscherm: minder rand, groter invoerveld (voorkomt inzoomen op iPhone) */
+  .template-minimal__wrap {
+    padding: 28px 20px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Paginering en aantal per pagina onder elkaar */
+  .collection-list__page-controls,
+  .page-controls {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+/* Titel van een rij in een lijst: de tekst zelf, afgekapt op één regel */
+.oig-rowlabel {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.collapsible__header-wrap {
+  min-width: 0;
+}

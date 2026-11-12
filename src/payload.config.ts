@@ -74,6 +74,7 @@ export default buildConfig({
     },
     // Eén vaste, lichte weergave in de huisstijl (zie src/app/(payload)/custom.scss)
     theme: 'light',
+    dateFormat: 'd MMMM yyyy HH:mm',
     components: {
       graphics: { Logo: '/components/admin/Brand#Logo', Icon: '/components/admin/Brand#Icon' },
       beforeDashboard: ['/components/admin/Welcome#Welcome'],

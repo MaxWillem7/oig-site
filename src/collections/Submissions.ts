@@ -6,6 +6,7 @@ export const Submissions: CollectionConfig = {
   slug: 'inzendingen',
   labels: { singular: 'Inzending', plural: 'Inzendingen' },
   admin: {
+    hideAPIURL: true,
     useAsTitle: 'title',
     defaultColumns: ['title', 'formType', 'status', 'createdAt'],
     group: 'Formulieren',
@@ -18,7 +19,8 @@ export const Submissions: CollectionConfig = {
     beforeChange: [
       ({ data, originalDoc }) => {
         // Datum van afronden bijhouden, voor de bewaartermijn
-        if (data.status === 'afgerond' && originalDoc?.status !== 'afgerond') data.afgerondOp = new Date().toISOString()
+        if (data.status === 'afgerond' && originalDoc?.status !== 'afgerond')
+          data.afgerondOp = new Date().toISOString()
         if (data.status && data.status !== 'afgerond') data.afgerondOp = null
         return data
       },
@@ -53,7 +55,8 @@ export const Submissions: CollectionConfig = {
       admin: {
         position: 'sidebar',
         readOnly: true,
-        description: 'Sollicitaties: 4 weken na deze datum worden de bestanden en persoonsgegevens gewist.',
+        description:
+          'Sollicitaties: 4 weken na deze datum worden de bestanden en persoonsgegevens gewist.',
       },
     },
     {
@@ -68,7 +71,12 @@ export const Submissions: CollectionConfig = {
     { name: 'samenvatting', label: 'Inhoud', type: 'textarea', admin: { readOnly: true } },
     { name: 'data', label: 'Alle velden', type: 'json', admin: { readOnly: true } },
     { name: 'pagina', label: 'Verstuurd vanaf', type: 'text', admin: { readOnly: true } },
-    { name: 'mailStatus', label: 'Mailmelding', type: 'text', admin: { readOnly: true, position: 'sidebar' } },
+    {
+      name: 'mailStatus',
+      label: 'Mailmelding',
+      type: 'text',
+      admin: { readOnly: true, position: 'sidebar' },
+    },
     { name: 'notitie', label: 'Interne notitie', type: 'textarea' },
     { name: 'ipHash', type: 'text', index: true, admin: { hidden: true } },
   ],
