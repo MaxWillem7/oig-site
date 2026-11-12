@@ -16,7 +16,7 @@
     "test": "playwright test",
     "test:e2e": "playwright test",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed/index.ts",
-    "vercel-build": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_DIRECT_DB=1 payload migrate && npm run seed:first && npm run build",
+    "vercel-build": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_DIRECT_DB=1 payload run src/seed/pre-migrate.ts && cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_DIRECT_DB=1 payload migrate && npm run seed:first && npm run build",
     "seed:first": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_DIRECT_DB=1 payload run src/seed/first-run.ts"
   },
   "dependencies": {

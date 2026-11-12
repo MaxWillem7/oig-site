@@ -59,8 +59,9 @@ export default buildConfig({
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   db: postgresAdapter({
     pool: databasePool(),
-    // Lokaal wordt het schema bij de start bijgewerkt; op Vercel lopen migraties bij de build.
-    push: process.env.NODE_ENV !== 'production',
+    // Alleen de lokale devserver werkt het schema zelf bij. Op Vercel en in de buildstappen (migreren,
+    // startinhoud) nooit: daar gaan wijzigingen alleen via migraties.
+    push: process.env.NODE_ENV !== 'production' && !process.env.VERCEL && process.env.PAYLOAD_DIRECT_DB !== '1',
     migrationDir: path.resolve(dirname, 'migrations'),
   }),
   sharp,
