@@ -1,0 +1,446 @@
+/* Zorgverzekering (/dienst/verzekeringen/). Maten uit het Paper-ontwerp (1440 en 390), vloeiend gemaakt. */
+
+/* ---------- Hero ---------- */
+
+/* Ontwerp: tekstkolom 720px naast een foto van 460px, zodat "Collectiviteitskorting" op één regel past. */
+@media (min-width: 1000px) {
+  .hero :global(.split--breed-links) {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 60px;
+  }
+
+  .titel {
+    font-size: clamp(40px, 4.5vw, 64px);
+  }
+
+  .titel :global(.wordblock) {
+    white-space: nowrap;
+  }
+}
+
+/* Op smalle schermen breekt het woord op het zachte afbreekstreepje, zoals in het mobiele ontwerp. */
+.titel :global(.wordblock) {
+  max-width: 100%;
+  hyphens: manual;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--lijn-creme);
+  border-radius: var(--radius);
+  background: var(--creme);
+}
+
+:global(.section--creme) .notice {
+  background: var(--wit);
+}
+
+.notice > svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  color: var(--oranje-icoon);
+}
+
+.noticeTitle {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+.noticeText {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-zacht);
+}
+
+.noticeText a {
+  color: var(--oranje-tekst);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Kop met inleiding ernaast ---------- */
+
+.kop {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.kop > div {
+  --gap: 18px;
+}
+
+@media (min-width: 1000px) {
+  .kop {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 60px;
+    align-items: end;
+  }
+}
+
+/* ---------- Stappen ---------- */
+
+.stappen {
+  counter-reset: stap;
+}
+
+.stap {
+  gap: 12px;
+  padding: 30px;
+}
+
+.stapNr {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--oranje-tekst);
+}
+
+.stap h3 {
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.stap p {
+  color: var(--tekst-zacht);
+}
+
+/* ---------- Vergelijking ---------- */
+
+.vergelijkTabel {
+  display: none;
+}
+
+.vergelijkTabel :global(.tabel) th,
+.vergelijkTabel :global(.tabel) td {
+  padding-block: 18px;
+  vertical-align: middle;
+}
+
+.vergelijkTabel :global(.tabel) thead th {
+  padding-block: 14px;
+}
+
+.naam {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.korting {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--groen);
+  white-space: nowrap;
+}
+
+.nummer {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.extern {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--oranje-tekst);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.extern:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.extern svg,
+.contactSite svg {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.geenLink {
+  display: block;
+  max-width: 26ch;
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--tekst-zacht);
+}
+
+.vergelijkKaarten {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 620px) {
+  .vergelijkKaarten {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.kaart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  background: var(--wit);
+}
+
+.kaartKop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kaartRijen {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--lijn);
+}
+
+.kaartRijen > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.kaartRijen dt {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.kaartRijen dd {
+  font-size: 15px;
+  line-height: 20px;
+  text-align: right;
+}
+
+.kaart .geenLink {
+  max-width: none;
+}
+
+@media (min-width: 860px) {
+  .vergelijkTabel {
+    display: block;
+  }
+
+  .vergelijkKaarten {
+    display: none;
+  }
+}
+
+.onderTabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.doc {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--oranje-tekst);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.doc svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.doc:hover span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Premies ---------- */
+
+.premies {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.premieBreed {
+  display: none;
+}
+
+.premieTabel td {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.premieSmal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.premieTitel {
+  font-size: 19px;
+  line-height: 26px;
+}
+
+.premieKaarten {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  background: var(--wit);
+}
+
+.premieKaarten li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px;
+}
+
+.premieKaarten li + li {
+  border-top: 1px solid var(--lijn);
+}
+
+.premiePakket {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+.premieKaarten .kaartRijen {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (min-width: 700px) {
+  .premieBreed {
+    display: block;
+  }
+
+  .premieSmal {
+    display: none;
+  }
+}
+
+.premieNoot {
+  margin-top: 12px;
+  max-width: 80ch;
+  white-space: pre-line;
+}
+
+.geenPremies {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 760px;
+}
+
+.downloads {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.downloads h3 {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.downloads ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---------- Contactkaarten ---------- */
+
+.contact {
+  gap: 12px;
+  padding: 32px;
+}
+
+.contactLijst {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.contactLijst li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.contactLijst li > svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  color: var(--oranje-icoon);
+}
+
+.contactLijst a {
+  min-width: 0;
+  color: var(--oranje-tekst);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.contactLijst a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contactSite {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contactNoot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 6px;
+  padding-top: 16px;
+  border-top: 1px solid var(--lijn);
+}
+
+@media (max-width: 520px) {
+  .stap,
+  .contact {
+    padding: 22px;
+  }
+}

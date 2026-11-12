@@ -1,0 +1,114 @@
+/* Lange woorden in de H1 passen ook op 360px */
+.titel {
+  font-size: min(1em, 9.2vw);
+}
+
+/* Blokje naast de intro */
+.advies {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--grijs);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--tekst-zacht);
+}
+
+.adviesKop {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--tekst);
+}
+
+@media (min-width: 1000px) {
+  .advies {
+    max-width: 320px;
+    margin-left: auto;
+  }
+}
+
+.sectie {
+  padding-top: calc(var(--sectie) * 0.8);
+}
+
+.raster {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 1080px) {
+  .raster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.kaart {
+  position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.cover {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(96px, 26vw, 170px);
+  aspect-ratio: 170 / 230;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--lijn-creme);
+  background: var(--wit);
+}
+
+.tekst {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.omschrijving {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.link {
+  margin-top: 4px;
+  align-self: flex-start;
+}
+
+/* de hele kaart is aanklikbaar via de tekstlink */
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 3px solid var(--blauw);
+  outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+  .cover {
+    width: 88px;
+  }
+
+  .tekst :global(.h3) {
+    font-size: 19px;
+    hyphens: auto;
+  }
+
+  .link {
+    font-size: 15px;
+  }
+}

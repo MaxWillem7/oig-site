@@ -10,25 +10,24 @@ import s from './Header.module.css'
 
 export function Header({ portalUrl }: { portalUrl: string }) {
   const pathname = usePathname()
-  const [open, setOpen] = useState<string | null>(null)
-  const [menu, setMenu] = useState(false)
+  // Open menu's horen bij de pagina waarop ze geopend zijn: na navigeren is alles vanzelf dicht
+  const [state, setState] = useState<{ path: string; open: string | null; menu: boolean }>({
+    path: pathname,
+    open: null,
+    menu: false,
+  })
+  const open = state.path === pathname ? state.open : null
+  const menu = state.path === pathname ? state.menu : false
+  const setOpen = (value: string | null) => setState({ path: pathname, open: value, menu: false })
+  const setMenu = (value: boolean) => setState({ path: pathname, open: null, menu: value })
   const navRef = useRef<HTMLElement>(null)
-
-  // Bij een nieuwe pagina alles dicht
-  useEffect(() => {
-    setOpen(null)
-    setMenu(false)
-  }, [pathname])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setOpen(null)
-        setMenu(false)
-      }
+      if (e.key === 'Escape') setState((prev) => ({ ...prev, open: null, menu: false }))
     }
     const onClick = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpen(null)
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setState((prev) => ({ ...prev, open: null }))
     }
     document.addEventListener('keydown', onKey)
     document.addEventListener('click', onClick)

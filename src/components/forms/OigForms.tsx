@@ -5,12 +5,12 @@ import { FILE_RULES } from '@/lib/forms/definitions'
 import { Checkbox, FieldRow, FileField, TextArea, TextField } from './Fields'
 import { Form } from './Form'
 
-const Privacy = ({ je }: { je?: boolean }) => (
+const Privacy = () => (
   <Checkbox
     name="akkoord"
     label={
       <>
-        {je ? 'Ik ga akkoord met de ' : 'Ik ga akkoord met de '}
+        Ik ga akkoord met de{' '}
         <Link href="/juridisch/privacy-beleid/" target="_blank">
           privacyverklaring
         </Link>
@@ -46,6 +46,7 @@ export function InkoopscanForm() {
       <TextField name="organisatie" label="Organisatie of schoolbestuur" autoComplete="organization" />
       <TextField name="email" label="E-mail" type="email" required autoComplete="email" />
       <TextField name="telefoon" label="Telefoon (optioneel)" type="tel" autoComplete="tel" />
+      <TextArea name="toelichting" label="Toelichting (optioneel)" rows={3} />
       <Privacy />
     </Form>
   )
@@ -57,6 +58,7 @@ export function WhitepaperForm({ slug }: { slug: string }) {
     <Form type="whitepaper" submitLabel="Whitepaper ontvangen">
       <input type="hidden" name="whitepaper" value={slug} />
       <TextField name="naam" label="Naam" required autoComplete="name" />
+      <TextField name="organisatie" label="Organisatie of schoolbestuur (optioneel)" autoComplete="organization" />
       <TextField name="email" label="E-mail" type="email" required autoComplete="email" />
       <TextField name="telefoon" label="Telefoon (optioneel)" type="tel" autoComplete="tel" />
       <Privacy />
@@ -90,7 +92,7 @@ export function SollicitatieForm({ vacancy }: { vacancy?: string }) {
         accept=".pdf,.docx,.png,.jpg,.jpeg"
         hint={FILE_RULES.hint}
       />
-      <Privacy je />
+      <Privacy />
     </Form>
   )
 }

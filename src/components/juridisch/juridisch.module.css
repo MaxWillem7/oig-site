@@ -1,0 +1,311 @@
+.band {
+  background: var(--grijs);
+  padding-block: 40px 48px;
+}
+
+@media (min-width: 1000px) {
+  .band {
+    padding-block: 48px 56px;
+  }
+}
+
+.bandTekst {
+  --gap: 20px;
+}
+
+.bandTekst h1 {
+  font-size: clamp(34px, 5.4vw, 60px);
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.datum {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-zacht);
+}
+
+.body {
+  padding-block: 48px var(--sectie);
+}
+
+@media (min-width: 1000px) {
+  .body {
+    padding-top: 72px;
+  }
+}
+
+.kolommen {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.tekst {
+  max-width: 760px;
+  min-width: 0;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--tekst-lead);
+}
+
+.tekst h2,
+.tekst h3 {
+  color: var(--tekst);
+  scroll-margin-top: 100px;
+}
+
+.tekst > :first-child,
+.tekst > :first-child > :first-child {
+  margin-top: 0;
+}
+
+.tekst ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tekst ul li {
+  position: relative;
+  padding-left: 21px;
+}
+
+.tekst ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+  background: var(--oranje-icoon);
+}
+
+.tekst code {
+  font-size: 0.9em;
+  background: var(--grijs);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.zij {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.zijBlok {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zijBlok + .zijBlok {
+  border-top: 1px solid var(--lijn);
+  padding-top: 24px;
+}
+
+.inhoud {
+  border-left: 2px solid var(--lijn);
+}
+
+.inhoud a {
+  display: block;
+  margin-left: -2px;
+  border-left: 2px solid transparent;
+  padding: 8px 16px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.inhoud a:hover {
+  border-left-color: var(--oranje);
+  color: var(--tekst);
+}
+
+.documenten {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+.documenten a {
+  color: var(--oranje-tekst);
+}
+
+.documenten a:hover {
+  text-decoration: underline;
+}
+
+.documenten [aria-current='page'] {
+  color: var(--tekst);
+  font-weight: 700;
+}
+
+.vragen {
+  background: var(--grijs);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-lead);
+}
+
+.vragen strong {
+  font-size: 16px;
+  color: var(--tekst);
+}
+
+.vragen a {
+  color: var(--tekst);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.vragen a:hover {
+  color: var(--oranje-tekst);
+}
+
+/* Inhoudsopgave: op mobiel ingeklapt boven de tekst, vanaf 1000px in de zijbalk */
+.inhoudMobiel {
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 32px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.inhoudMobiel summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--tekst);
+}
+
+.inhoudMobiel ol {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inhoudMobiel a {
+  color: var(--oranje-tekst);
+  font-weight: 600;
+}
+
+.inhoudZij {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .kolommen {
+    grid-template-columns: 300px minmax(0, 760px);
+    gap: 80px;
+  }
+
+  .zij {
+    position: sticky;
+    top: 110px;
+  }
+
+  .inhoudMobiel {
+    display: none;
+  }
+
+  .inhoudZij {
+    display: flex;
+  }
+
+  .inhoudZij + .zijBlok {
+    border-top: 1px solid var(--lijn);
+    padding-top: 24px;
+  }
+}
+
+@media (max-width: 999px) {
+  .zij {
+    order: 2;
+  }
+
+  .zij > .zijBlok:nth-child(2) {
+    border-top: 0;
+    padding-top: 0;
+  }
+}
+
+.melding {
+  background: var(--creme);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--tekst-lead);
+}
+
+@media (min-width: 700px) {
+  .melding {
+    padding: 32px;
+  }
+}
+
+.melding h2 {
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.28;
+  color: var(--tekst);
+}
+
+.melding a {
+  color: var(--tekst);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.melding a:hover {
+  color: var(--oranje-tekst);
+}
+
+.knopRij {
+  margin-block: 8px;
+}
+
+/* knop "Cookievoorkeuren" in lopende tekst */
+.voorkeuren {
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Overzicht */
+.kaartTitel {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+.kaart {
+  height: 100%;
+}
+
+.kaart p {
+  color: var(--tekst-zacht);
+  font-size: 16px;
+  line-height: 25px;
+  flex: 1;
+}
+
+.tabel {
+  min-width: 600px;
+}
+
+.tel {
+  white-space: nowrap;
+}

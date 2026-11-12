@@ -1,0 +1,264 @@
+/* Lange woorden in de H1 passen ook op 360px */
+.titel {
+  font-size: min(1em, 9.2vw);
+}
+
+/* Hero: cover op een crème vlak */
+.coverVlak {
+  display: grid;
+  place-items: center;
+  background: var(--creme);
+  border-radius: var(--radius-groot);
+  padding: clamp(28px, 6vw, 60px) 24px;
+}
+
+.cover {
+  width: min(320px, 68%);
+  height: auto;
+  border: 1px solid var(--lijn-creme);
+  border-radius: var(--radius);
+  background: var(--wit);
+}
+
+/* Sectiekop met een korte toelichting rechts */
+.kop {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.kopTekst {
+  max-width: 60ch;
+}
+
+@media (min-width: 1000px) {
+  .kop {
+    grid-template-columns: minmax(0, 720px) minmax(0, 400px);
+    justify-content: space-between;
+    align-items: end;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+}
+
+.kaart {
+  gap: 18px;
+  padding: clamp(24px, 3vw, 32px);
+}
+
+/* Samenvatting en voor wie */
+.inhoud {
+  display: grid;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (min-width: 1000px) {
+  .inhoud {
+    grid-template-columns: minmax(0, 640fr) minmax(0, 500fr);
+    gap: clamp(48px, 7vw, 100px);
+  }
+}
+
+.alinea {
+  color: var(--tekst-lead);
+  max-width: 68ch;
+}
+
+.foto {
+  margin-top: 8px;
+  border-radius: 16px;
+}
+
+.zijkant {
+  display: grid;
+  gap: 20px;
+}
+
+.vlak {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--grijs);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3.4vw, 36px);
+}
+
+.vlak :global(.checks) {
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--tekst-lead);
+}
+
+.hoofdstukken {
+  counter-reset: hoofdstuk;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--tekst-lead);
+}
+
+.hoofdstukken li {
+  counter-increment: hoofdstuk;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.hoofdstukken li::before {
+  content: counter(hoofdstuk);
+  font-weight: 700;
+  color: var(--oranje-tekst);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Aanvraagformulier op blauw */
+.aanvraag {
+  scroll-margin-top: 80px;
+}
+
+.direct {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in srgb, var(--op-blauw) 30%, transparent);
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.aanvraag .direct .directKop {
+  color: var(--wit);
+  font-weight: 600;
+}
+
+.direct a {
+  color: var(--wit);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.direct a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.formKaart {
+  background: var(--wit);
+  color: var(--tekst);
+  border-radius: var(--radius);
+  padding: clamp(22px, 4vw, 40px);
+}
+
+/* de blauwe sectie kleurt alinea's licht; in de witte kaart moet tekst donker blijven */
+.aanvraag .formKaart p {
+  color: var(--tekst);
+}
+
+/* Citaat met kerncijfers */
+.ervaring {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (min-width: 1000px) {
+  .ervaring {
+    grid-template-columns: minmax(0, 820fr) minmax(0, 340fr);
+    gap: 80px;
+  }
+}
+
+.citaat {
+  --gap: 28px;
+}
+
+.citaat blockquote p {
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.afzender {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  height: 56px;
+  padding: 8px 14px;
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+  border-radius: 8px;
+}
+
+.logo img {
+  width: auto;
+  height: 38px;
+  max-width: 170px;
+  object-fit: contain;
+}
+
+.naam {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--tekst-zacht);
+}
+
+.naam strong {
+  font-size: 17px;
+  color: var(--tekst);
+}
+
+.cijfers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--lijn-creme);
+}
+
+.cijfers div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.cijfers dd {
+  font-size: clamp(24px, 5.4vw, 40px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.cijfers dt {
+  font-size: clamp(13px, 3.6vw, 15px);
+  line-height: 1.35;
+  color: var(--tekst-zacht);
+  hyphens: auto;
+}
+
+@media (min-width: 1000px) {
+  .cijfers {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .cijfers div + div {
+    padding-top: 20px;
+    border-top: 1px solid var(--lijn-creme);
+  }
+}

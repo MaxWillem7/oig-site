@@ -16,9 +16,11 @@
     "test": "playwright test",
     "test:e2e": "playwright test",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed/index.ts",
-    "vercel-build": "cross-env NODE_OPTIONS=--no-deprecation payload migrate && npm run build"
+    "vercel-build": "cross-env NODE_OPTIONS=--no-deprecation payload migrate && npm run seed:first && npm run build",
+    "seed:first": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed/first-run.ts"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
     "@payloadcms/db-postgres": "3.93.0",
     "@payloadcms/next": "3.93.0",
     "@payloadcms/richtext-lexical": "3.93.0",
@@ -35,7 +37,8 @@
     "react": "19.2.9",
     "react-dom": "19.2.9",
     "server-only": "^0.0.1",
-    "sharp": "0.35.4"
+    "sharp": "0.35.4",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",

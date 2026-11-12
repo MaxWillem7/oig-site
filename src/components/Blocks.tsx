@@ -37,6 +37,7 @@ export function PageHero({
   title,
   lead,
   children,
+  below,
   aside,
   tone = 'wit',
 }: {
@@ -45,6 +46,8 @@ export function PageHero({
   title: ReactNode
   lead?: ReactNode
   children?: ReactNode
+  /** Inhoud onder de knoppen, bijv. kerncijfers */
+  below?: ReactNode
   aside?: ReactNode
   tone?: 'wit' | 'creme'
 }) {
@@ -58,6 +61,7 @@ export function PageHero({
             <h1 className="h1">{title}</h1>
             {lead && <p className="lead maat">{lead}</p>}
             {children && <div className="btn-rij">{children}</div>}
+            {below}
           </div>
           {aside && <div>{aside}</div>}
         </div>

@@ -62,6 +62,7 @@ export const FORMS: Record<FormType, FormSpec> = {
       organisatie: { label: 'Organisatie of schoolbestuur' },
       email: { label: 'E-mail', kind: 'email', required: true },
       telefoon: { label: 'Telefoon', kind: 'tel' },
+      toelichting: { label: 'Toelichting', kind: 'textarea', max: 3000 },
       akkoord: privacy,
     },
   },
@@ -73,6 +74,7 @@ export const FORMS: Record<FormType, FormSpec> = {
     fields: {
       whitepaper: { label: 'Whitepaper', required: true },
       naam: { label: 'Naam', required: true },
+      organisatie: { label: 'Organisatie of schoolbestuur' },
       email: { label: 'E-mail', kind: 'email', required: true },
       telefoon: { label: 'Telefoon', kind: 'tel' },
       akkoord: privacy,

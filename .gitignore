@@ -54,3 +54,8 @@ node_modules/
 /test-results
 /playwright-report
 .vercel
+
+# lokale uploads van het CMS (op Vercel staan ze in Blob)
+/cv-bestanden
+/documenten
+/test-results

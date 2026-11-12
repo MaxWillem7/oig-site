@@ -1,0 +1,74 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.kop {
+  display: grid;
+  gap: 20px;
+}
+
+.kopTekst {
+  --gap: 18px;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 28px;
+  max-width: 52ch;
+}
+
+.stappen {
+  display: grid;
+  gap: 28px 20px;
+  grid-template-columns: 1fr;
+}
+
+.stap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in srgb, var(--op-blauw) 35%, transparent);
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.nr {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--op-blauw-accent);
+}
+
+.stapTitel {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--wit);
+}
+
+@media (min-width: 640px) {
+  .stappen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .wrap {
+    gap: 48px;
+  }
+
+  .kop {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 60px;
+    align-items: end;
+  }
+}
+
+@media (min-width: 1080px) {
+  .stappen {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

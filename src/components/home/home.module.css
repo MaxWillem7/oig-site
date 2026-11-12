@@ -1,0 +1,728 @@
+/* Homepage. Maten uit het Paper-ontwerp (1440), vloeiend gemaakt. */
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding-top: 40px;
+}
+
+.heroGrid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+.heroText {
+  --gap: 26px;
+}
+
+.heroTitle {
+  max-width: 11em;
+}
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin: 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--lijn);
+}
+
+.trust > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trust dd {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.trust dt {
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--tekst-zacht);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  height: 100%;
+  min-height: 132px;
+  padding: 18px;
+  border-radius: var(--radius-groot);
+  border: 2px solid transparent;
+  color: var(--tekst);
+  transition: border-color 0.15s;
+}
+
+.tile:hover {
+  border-color: var(--oranje);
+}
+
+.tile svg {
+  width: 32px;
+  height: 32px;
+}
+
+.tileText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tileTitle {
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.tileSub {
+  display: none;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-zacht);
+}
+
+.tileGroen {
+  background: var(--groen);
+  color: var(--wit);
+}
+
+.tileGroen .tileSub {
+  color: var(--groen-licht);
+}
+
+.tileCreme {
+  background: var(--creme);
+}
+
+.tileCreme svg {
+  color: var(--oranje-icoon);
+}
+
+.tileBlauwLicht {
+  background: var(--blauw-licht);
+}
+
+.tileBlauwLicht svg {
+  color: var(--blauw);
+}
+
+.tileBlauw {
+  background: var(--blauw);
+  color: var(--wit);
+}
+
+.tileBlauw .tileSub {
+  color: var(--op-blauw);
+}
+
+@media (min-width: 560px) {
+  .tiles {
+    gap: 18px;
+  }
+
+  .tile {
+    min-height: 190px;
+    padding: 26px;
+  }
+
+  .tile svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tileTitle {
+    font-size: 22px;
+  }
+
+  .tileSub {
+    display: block;
+  }
+}
+
+@media (min-width: 1000px) {
+  .hero {
+    padding-top: 72px;
+  }
+
+  .heroGrid {
+    grid-template-columns: minmax(0, 1.07fr) minmax(0, 1fr);
+    gap: clamp(40px, 5.5vw, 80px);
+  }
+
+  .tile {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+  }
+
+  .trust {
+    padding-top: 26px;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1239px) {
+  .tile {
+    padding: 20px;
+  }
+
+  .tile svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tileTitle {
+    font-size: 20px;
+  }
+
+  .tileSub {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+@media (min-width: 1240px) {
+  .tile {
+    padding: 30px;
+  }
+
+  .tile svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .tileTitle {
+    font-size: 24px;
+  }
+}
+
+/* ---------- Sectiekop met tekst of link rechts ---------- */
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.headText {
+  --gap: 18px;
+  max-width: 700px;
+}
+
+.headAside {
+  max-width: 440px;
+}
+
+@media (min-width: 1000px) {
+  .head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+
+  .headAside {
+    flex-shrink: 0;
+    padding-bottom: 4px;
+  }
+}
+
+/* ---------- Diensten ---------- */
+
+.service {
+  gap: 18px;
+  padding: 32px;
+}
+
+.serviceText {
+  font-size: 17px;
+  line-height: 27px;
+}
+
+.serviceLink {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* Mobiel: compacte rijen met titel en pijl, zoals in het mobiele ontwerp. De hele rij is klikbaar. */
+@media (max-width: 699px) {
+  .services {
+    gap: 10px;
+  }
+
+  .service {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+
+  .service :global(.h3) {
+    font-size: 18px;
+  }
+
+  .serviceIcon,
+  .serviceText {
+    display: none;
+  }
+
+  .serviceLink {
+    margin: 0;
+    padding: 0;
+  }
+
+  .serviceLink span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .serviceLink::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+}
+
+/* ---------- Het collectief ---------- */
+
+.collectiveText {
+  --gap: 20px;
+}
+
+.collectiveText p:not(:global(.kicker)) {
+  font-size: 18px;
+  line-height: 29px;
+}
+
+.stats {
+  --rand-stat: #5a51a0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-block: 24px;
+}
+
+.stats > div:nth-child(-n + 2) {
+  padding-top: 0;
+  border-bottom: 1px solid var(--rand-stat);
+}
+
+.stats > div:nth-child(n + 3) {
+  padding-bottom: 0;
+}
+
+.stats > div:nth-child(even) {
+  padding-left: clamp(16px, 2.4vw, 32px);
+  border-left: 1px solid var(--rand-stat);
+}
+
+.stats > div:nth-child(odd) {
+  padding-right: 12px;
+}
+
+.stats dd {
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--wit);
+}
+
+.stats dd.statAccent {
+  color: var(--op-blauw-accent);
+}
+
+.stats dt {
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--op-blauw);
+}
+
+@media (min-width: 1000px) {
+  .stats > div {
+    padding-block: 32px;
+  }
+}
+
+/* ---------- Werkwijze ---------- */
+
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: 2px solid var(--tekst);
+}
+
+.steps li {
+  display: flex;
+  gap: 16px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--lijn);
+}
+
+.stepNr {
+  flex-shrink: 0;
+  width: 26px;
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--oranje-tekst);
+}
+
+.stepTitle {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.stepText {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-zacht);
+}
+
+@media (min-width: 640px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .steps {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    column-gap: 0;
+  }
+
+  .steps li {
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px 18px 0 0;
+    border-bottom: 0;
+  }
+
+  .steps li:last-child {
+    padding-right: 0;
+  }
+
+  .stepNr {
+    line-height: 18px;
+  }
+
+  .stepText {
+    margin-top: 10px;
+  }
+}
+
+/* ---------- Ervaringen ---------- */
+
+.quotesHead {
+  --gap: 18px;
+  margin-bottom: 36px;
+}
+
+.quotes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 36px;
+}
+
+.mainQuote {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.mainQuote blockquote p {
+  font-size: clamp(21px, 2.3vw, 30px);
+  line-height: 1.42;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.mainQuote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.quoteLogo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 120px;
+  height: 64px;
+  padding: 8px 12px;
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+  border-radius: 8px;
+}
+
+.quoteLogo img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.quoteBy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.quoteBy strong {
+  font-size: 17px;
+  line-height: 22px;
+  color: var(--tekst);
+}
+
+.sideQuotes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.sideQuote {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 24px;
+  background: var(--wit);
+  border-radius: var(--radius);
+}
+
+.sideQuote blockquote p {
+  font-size: 17px;
+  line-height: 27px;
+}
+
+.sideQuote figcaption {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--tekst-zacht);
+}
+
+@media (min-width: 1000px) {
+  .quotes {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 64px;
+  }
+
+  .sideQuote {
+    padding: 28px;
+  }
+}
+
+/* ---------- Direct voordeel ---------- */
+
+.perk {
+  display: flex;
+  gap: 20px;
+  padding: 28px;
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+}
+
+.perkBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.perkBody h3 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.perkBody p {
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--tekst-zacht);
+}
+
+.perkBody :global(.textlink) {
+  margin-top: auto;
+}
+
+@media (max-width: 420px) {
+  .perk {
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px;
+  }
+}
+
+/* ---------- Team en vacatures ---------- */
+
+.teamSection {
+  padding-top: 0;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.teamCard,
+.jobsCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 24px;
+  border-radius: var(--radius-groot);
+}
+
+.teamCard {
+  background: var(--grijs);
+}
+
+.jobsCard {
+  background: var(--groen);
+  color: var(--wit);
+}
+
+.jobsCard p {
+  color: var(--groen-licht);
+}
+
+.jobsCard .jobsKicker {
+  color: var(--wit);
+}
+
+.jobsCard .jobsKicker::after {
+  background: var(--groen-licht);
+}
+
+.cardText {
+  --gap: 14px;
+}
+
+.cardTitle {
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.cardText p:not(:global(.kicker)) {
+  font-size: 17px;
+  line-height: 27px;
+  max-width: 56ch;
+}
+
+.faces {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.face {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--foto);
+}
+
+.faceAvatar {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+}
+
+.teamLink {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 2px solid var(--oranje);
+  border-radius: var(--radius);
+  color: var(--oranje-tekst);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.15s;
+}
+
+.teamLink:hover {
+  background: var(--creme);
+}
+
+.teamLink svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.jobsBtn {
+  align-self: flex-start;
+}
+
+@media (max-width: 520px) {
+  .jobsBtn {
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 640px) {
+  .teamCard,
+  .jobsCard {
+    padding: 40px;
+  }
+
+  .faces {
+    grid-template-columns: repeat(4, minmax(0, 120px)) minmax(120px, 150px);
+    gap: 12px;
+  }
+
+  .teamLink {
+    grid-column: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .teamGrid {
+    grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+  }
+}

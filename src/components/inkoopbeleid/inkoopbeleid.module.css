@@ -1,0 +1,256 @@
+/* Hero: twee foto's, de tweede smaller en naar rechts */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.fotoGroot {
+  grid-column: 1 / -1;
+}
+
+.fotoKlein {
+  grid-column: 3 / -1;
+}
+
+.tekst {
+  --gap: 20px;
+  font-size: 18px;
+  line-height: 29px;
+}
+
+.tekst > p {
+  color: var(--tekst-zacht);
+}
+
+.tekst :global(.checks) {
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.tekst :global(.checks) svg {
+  margin-top: 2px;
+}
+
+.doen {
+  gap: 18px;
+  padding: 24px;
+}
+
+.doenTekst {
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--tekst-zacht);
+}
+
+.doenTitel {
+  font-size: clamp(24px, 2.8vw, 30px);
+  line-height: 1.26;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.onderdelen li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 14px;
+  border-top: 1px solid var(--lijn-creme);
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.onderdelen li:last-child {
+  padding-bottom: 0;
+}
+
+.tegel {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.tegel svg {
+  width: 22px;
+  height: 22px;
+}
+
+.onderdelen a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.onderdelen a:hover {
+  color: var(--oranje-tekst);
+}
+
+.resultaat {
+  --gap: 20px;
+}
+
+.resultaat > p {
+  font-size: 18px;
+  line-height: 29px;
+  color: var(--tekst-zacht);
+}
+
+.citaat {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--creme);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 8px;
+}
+
+.citaat blockquote {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.citaat figcaption {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--tekst-zacht);
+}
+
+.grafiekKop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.grafiekKop h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tekst);
+}
+
+.rij {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  grid-template-areas:
+    'naam pct'
+    'baan baan';
+  gap: 6px 12px;
+  align-items: center;
+  padding-block: 8px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.naam {
+  grid-area: naam;
+}
+
+.baan {
+  grid-area: baan;
+  display: block;
+  height: 14px;
+  border-radius: 7px;
+  background: var(--grijs);
+  overflow: hidden;
+}
+
+.balk {
+  display: block;
+  height: 100%;
+  border-radius: 7px;
+  background: var(--oranje);
+}
+
+.pct {
+  grid-area: pct;
+  font-weight: 700;
+  text-align: right;
+}
+
+.scan {
+  --gap: 24px;
+}
+
+.scan > p {
+  font-size: 18px;
+  line-height: 29px;
+  color: var(--tekst-zacht);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+.contact li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.contact a:hover {
+  color: var(--oranje-tekst);
+}
+
+.contact a,
+.contact span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.formKaart {
+  background: var(--grijs);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.formTitel {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+@media (min-width: 560px) {
+  .rij {
+    grid-template-columns: minmax(0, 230px) minmax(0, 1fr) 44px;
+    grid-template-areas: 'naam baan pct';
+    gap: 16px;
+    padding-block: 7px;
+  }
+}
+
+@media (min-width: 700px) {
+  .doen {
+    padding: 40px;
+  }
+
+  .citaat {
+    padding: 28px;
+  }
+
+  .formKaart {
+    padding: 36px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .collage {
+    gap: 18px;
+  }
+
+  .verhouding {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+}

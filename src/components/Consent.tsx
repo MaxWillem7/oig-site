@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import s from './Consent.module.css'
 
 type Choice = { analytics: boolean; marketing: boolean }
@@ -17,12 +17,12 @@ declare global {
 
 function gtag(...args: unknown[]) {
   window.dataLayer = window.dataLayer || []
-  // gtag verwacht het arguments-object, geen array
-  // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-unused-vars
-  ;(function (..._a: unknown[]) {
+  // Tag Manager verwacht het arguments-object, geen array
+  const push = function () {
     // eslint-disable-next-line prefer-rest-params
     window.dataLayer.push(arguments)
-  })(...args)
+  } as (...a: unknown[]) => void
+  push(...args)
 }
 
 const consentState = (c: Choice) => ({
@@ -33,7 +33,7 @@ const consentState = (c: Choice) => ({
 })
 
 let gtmLoaded = false
-/** Tag Manager wordt pas geladen als de bezoeker statistieken toestaat. */
+/** Tag Manager wordt pas geladen als de bezoeker statistieken toestaat (marketing alleen is niet genoeg). */
 function loadGtm() {
   if (gtmLoaded || !GTM_ID) return
   gtmLoaded = true
@@ -47,12 +47,35 @@ function loadGtm() {
 
 function apply(c: Choice) {
   gtag('consent', 'update', consentState(c))
-  if (c.analytics || c.marketing) loadGtm()
+  // Alleen bij toestemming voor statistieken: in de container zitten GA4 en Clarity
+  if (c.analytics) loadGtm()
 }
 
-const read = (): Choice | null => {
+const CHANGED = 'oig-cookies-changed'
+const NONE: Choice = { analytics: false, marketing: false }
+/** Vangnet als de browser geen opslag toestaat: de keuze geldt dan alleen voor dit bezoek. */
+let memory: string | null = null
+
+const snapshot = () => {
+  if (memory !== null) return memory
   try {
-    const raw = localStorage.getItem(KEY)
+    return localStorage.getItem(KEY) ?? ''
+  } catch {
+    return ''
+  }
+}
+
+const subscribe = (onChange: () => void) => {
+  window.addEventListener(CHANGED, onChange)
+  window.addEventListener('storage', onChange)
+  return () => {
+    window.removeEventListener(CHANGED, onChange)
+    window.removeEventListener('storage', onChange)
+  }
+}
+
+const parse = (raw: string): Choice | null => {
+  try {
     return raw ? (JSON.parse(raw) as Choice) : null
   } catch {
     return null
@@ -69,40 +92,46 @@ export function CookieSettingsButton({ className }: { className?: string }) {
 }
 
 export function Consent() {
-  const [open, setOpen] = useState(false)
+  // 'server' tijdens het opbouwen op de server en de eerste weergave: dan tonen we niets
+  const raw = useSyncExternalStore(subscribe, snapshot, () => 'server')
+  const saved = raw === 'server' ? null : parse(raw)
+  const [reopened, setReopened] = useState(false)
   const [details, setDetails] = useState(false)
-  const [choice, setChoice] = useState<Choice>({ analytics: false, marketing: false })
+  const [choice, setChoice] = useState<Choice>(NONE)
+  const open = raw !== 'server' && (saved === null || reopened)
 
   useEffect(() => {
     gtag('consent', 'default', {
-      ...consentState({ analytics: false, marketing: false }),
+      ...consentState(NONE),
       functionality_storage: 'granted',
       security_storage: 'granted',
       wait_for_update: 500,
     })
-    const saved = read()
-    if (saved) {
-      setChoice(saved)
-      apply(saved)
-    } else setOpen(true)
     const reopen = () => {
+      setChoice(parse(snapshot()) ?? NONE)
       setDetails(true)
-      setOpen(true)
+      setReopened(true)
     }
     window.addEventListener(EVENT, reopen)
     return () => window.removeEventListener(EVENT, reopen)
   }, [])
 
+  // Een bewaarde keuze toepassen (ook als die in een ander tabblad is gewijzigd)
+  useEffect(() => {
+    const current = parse(raw === 'server' ? '' : raw)
+    if (current) apply(current)
+  }, [raw])
+
   const save = (c: Choice) => {
+    const value = JSON.stringify(c)
     try {
-      localStorage.setItem(KEY, JSON.stringify(c))
+      localStorage.setItem(KEY, value)
     } catch {
-      // zonder opslag geldt de keuze alleen voor dit bezoek
+      memory = value
     }
-    setChoice(c)
-    apply(c)
-    setOpen(false)
+    setReopened(false)
     setDetails(false)
+    window.dispatchEvent(new Event(CHANGED))
   }
 
   if (!open) return null

@@ -1,0 +1,133 @@
+/* Bedankt en 404 */
+.bedankt {
+  padding-block: clamp(64px, 9vw, 120px) clamp(56px, 7vw, 88px);
+}
+
+.bedanktInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+
+.vink {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background: var(--groen-licht);
+  color: var(--groen);
+}
+
+.vink svg {
+  width: 40px;
+  height: 40px;
+}
+
+.bedanktInner p {
+  max-width: 640px;
+}
+
+.bedanktInner a.tel {
+  color: var(--tekst);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.knoppen {
+  justify-content: center;
+}
+
+.verderKop {
+  font-size: clamp(24px, 2.4vw, 28px);
+  line-height: 1.22;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.kaart {
+  height: 100%;
+}
+
+.kaart h3 {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+.kaart p {
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--tekst-zacht);
+  flex: 1;
+}
+
+/* 404 */
+.fout {
+  padding-block: clamp(56px, 8vw, 112px) var(--sectie);
+}
+
+.foutInner {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+@media (min-width: 1000px) {
+  .foutInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+    gap: 80px;
+  }
+}
+
+.foutTekst {
+  --gap: 28px;
+  max-width: 680px;
+}
+
+.veel {
+  background: var(--grijs);
+  border-radius: var(--radius-groot);
+  padding: 24px 20px 8px;
+}
+
+@media (min-width: 700px) {
+  .veel {
+    padding: 32px 32px 14px;
+  }
+}
+
+.veel h2 {
+  padding-bottom: 16px;
+}
+
+.veel a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 18px;
+  border-top: 1px solid var(--lijn);
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.veel a:hover {
+  color: var(--oranje-tekst);
+}
+
+.veel svg {
+  width: 18px;
+  height: 18px;
+  color: var(--oranje-tekst);
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+
+.veel a:hover svg {
+  transform: translateX(3px);
+}

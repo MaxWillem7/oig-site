@@ -1,0 +1,523 @@
+/* Gedeelde opmaak van /diensten/, /dienst/aanbesteden/ en /dienst/subsidiedesk/. */
+
+/* Sectiekop: label en H2 links, korte inleiding rechts onderaan. */
+.kopRij {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.kop {
+  --gap: 18px;
+}
+
+.kopLead {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--tekst-zacht);
+  max-width: 52ch;
+}
+
+@media (min-width: 1000px) {
+  .kopRij {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+}
+
+/* Twee kolommen met links de tekst en rechts een raster van kaarten. */
+.tekstEnRaster {
+  display: grid;
+  gap: 36px;
+  align-items: start;
+}
+
+@media (min-width: 1000px) {
+  .tekstEnRaster {
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+    gap: 80px;
+  }
+}
+
+.tekstKolom {
+  --gap: 20px;
+}
+
+.tekstKolom p {
+  color: var(--tekst-zacht);
+}
+
+.voorWie {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.voorWie h3 {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--tekst);
+}
+
+.voorWie p {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.raster2 {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .raster2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Kaarten */
+.kaart {
+  gap: 18px;
+  padding: 28px;
+  height: 100%;
+}
+
+@media (min-width: 1200px) {
+  .kaart {
+    padding: 32px;
+  }
+}
+
+.kaart p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--tekst-zacht);
+}
+
+.kaartTitel {
+  font-size: clamp(20px, 1.6vw, 22px);
+  line-height: 1.3;
+  font-weight: 700;
+  hyphens: auto;
+}
+
+/* Kleinere kaart in een raster van twee naast de tekst */
+.kaartCompact {
+  gap: 14px;
+  padding: 26px;
+}
+
+.kaartLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* Liggende kaart: icoon links, tekst rechts */
+.kaartLiggend {
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+}
+
+.kaartLiggend > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .kaartLiggend {
+    flex-direction: row;
+    gap: 28px;
+    padding: 32px;
+  }
+}
+
+/* Tegel met alleen icoon en titel */
+.tegel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--grijs);
+}
+
+.tegel h3 {
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+/* Balk met een kernpunt: titel links, uitleg rechts */
+.balken {
+  display: grid;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (min-width: 900px) {
+  .balken {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.balk {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 28px;
+  border-radius: var(--radius);
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+}
+
+.balk h3 {
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.balk p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tekst-zacht);
+}
+
+.balkGroen {
+  background: var(--groen);
+  border-color: var(--groen);
+  color: var(--wit);
+}
+
+.balkGroen p {
+  color: var(--groen-licht);
+}
+
+@media (min-width: 600px) {
+  .balk {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .balk h3 {
+    width: 180px;
+  }
+}
+
+/* Stappen */
+.stappen {
+  display: grid;
+  gap: 0;
+  counter-reset: stap;
+}
+
+.stap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-block: 22px;
+  border-top: 2px solid var(--lijn);
+}
+
+.stap:first-child {
+  border-top-color: var(--oranje);
+}
+
+.stapNr {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--oranje-tekst);
+}
+
+.stap h3 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.stap p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tekst-zacht);
+}
+
+.stappenBlauw .stap {
+  border-top-color: var(--blauw-lijn);
+}
+
+.stappenBlauw .stap:first-child {
+  border-top-color: var(--op-blauw-accent);
+}
+
+.stappenBlauw .stapNr {
+  color: var(--op-blauw-accent);
+}
+
+.stappenBlauw .stap p {
+  color: var(--op-blauw);
+}
+
+@media (max-width: 699px) {
+  .stap {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    column-gap: 12px;
+    row-gap: 6px;
+    border-top-width: 1px;
+  }
+
+  .stapNr {
+    grid-row: 1 / span 2;
+    padding-top: 3px;
+  }
+
+  .stap p {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 700px) {
+  .stappen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .stappen {
+    grid-template-columns: repeat(var(--kolommen, 4), minmax(0, 1fr));
+  }
+
+  .stap {
+    padding-bottom: 0;
+  }
+}
+
+/* Grijze verwijsbalk naar een andere pagina */
+.verwijs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 40px;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--grijs);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.verwijsBlauw {
+  background: var(--blauw-vlak);
+}
+
+.verwijs :global(.textlink) {
+  flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+  .verwijs {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 28px 32px;
+  }
+}
+
+/* Hero van /diensten/: twee foto's naast elkaar, onderaan uitgelijnd */
+.fotoDuo {
+  display: grid;
+  grid-template-columns: 1.72fr 1fr;
+  gap: 18px;
+  align-items: end;
+}
+
+/* Citaat op crème (overzicht) */
+.citaatSectie {
+  display: grid;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (min-width: 1000px) {
+  .citaatSectie {
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 64px;
+  }
+}
+
+.citaatIntro {
+  --gap: 14px;
+  align-items: flex-start;
+}
+
+.citaatIntro h2 {
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--tekst-zacht);
+}
+
+.citaat {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.citaat blockquote p {
+  font-size: clamp(21px, 2.4vw, 30px);
+  line-height: 1.42;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.bron {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bronLogo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 120px;
+  height: 56px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+}
+
+.bronLogo img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.bron strong {
+  display: block;
+  font-size: 17px;
+  line-height: 22px;
+}
+
+.bron span {
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+/* Blauwe sectie "Uit de praktijk" */
+.blauw {
+  --blauw-vlak: color-mix(in srgb, var(--wit) 6%, var(--blauw));
+  --blauw-lijn: color-mix(in srgb, var(--wit) 16%, var(--blauw));
+}
+
+.praktijk {
+  display: grid;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (min-width: 1000px) {
+  .praktijk {
+    grid-template-columns: minmax(0, 0.93fr) minmax(0, 1fr);
+    gap: 80px;
+  }
+}
+
+.praktijkTekst {
+  --gap: 24px;
+}
+
+.voorbeelden {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.voorbeeld {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: var(--blauw-vlak);
+}
+
+.voorbeeld h3 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--wit);
+  margin-bottom: 6px;
+}
+
+.voorbeeld p {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.citaten {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.citaten figure {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.citaten figure + figure {
+  padding-top: 24px;
+  border-top: 1px solid var(--blauw-lijn);
+  gap: 12px;
+}
+
+.citaten blockquote p {
+  color: var(--wit);
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.43;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.citaten figure + figure blockquote p {
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.citaten figcaption {
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--op-blauw);
+}
+
+.citaten figcaption strong {
+  display: block;
+  font-size: 17px;
+  line-height: 22px;
+  color: var(--wit);
+  margin-bottom: 2px;
+}

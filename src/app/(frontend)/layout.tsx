@@ -37,7 +37,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {preview && (
           <p className="preview-balk">
             Voorvertoning: u ziet ook concepten die nog niet gepubliceerd zijn.{' '}
-            <a href="/api/preview?stop=1">Voorvertoning sluiten</a>
+            {/* Geen next/link: dit is een API-route die de voorvertoning uitzet en doorstuurt */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/api/preview/?stop=1">Voorvertoning sluiten</a>
           </p>
         )}
         <Header portalUrl={settings.contact.portalUrl} />

@@ -1,0 +1,377 @@
+/* Fietsplan in het onderwijs (/fietsplan-onderwijs/). Maten uit het Paper-ontwerp (1440), vloeiend gemaakt. */
+
+/* ---------- Hero: groen paneel met fietsicoon ---------- */
+
+.paneel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: clamp(280px, 36vw, 460px);
+  padding: clamp(24px, 3vw, 40px);
+  border-radius: var(--radius-groot);
+  background: var(--groen-licht);
+}
+
+.paneelIcoon {
+  display: grid;
+  place-items: center;
+  width: clamp(88px, 9vw, 120px);
+  height: clamp(88px, 9vw, 120px);
+  border-radius: 16px;
+  background: var(--groen);
+  color: var(--wit);
+}
+
+.paneelIcoon svg {
+  width: 60%;
+  height: 60%;
+}
+
+.paneelOnder {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.cover {
+  flex-shrink: 0;
+  width: clamp(96px, 11vw, 150px);
+  height: auto;
+  border: 1px solid var(--lijn);
+  border-radius: 8px;
+  background: var(--wit);
+}
+
+.paneelTekst {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.paneelLabel {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--groen);
+}
+
+.paneelTitel {
+  font-size: clamp(19px, 1.8vw, 22px);
+  line-height: 1.28;
+  font-weight: 700;
+}
+
+/* ---------- Kop met inleiding ernaast ---------- */
+
+.kop {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.kop > div {
+  --gap: 18px;
+}
+
+@media (min-width: 1000px) {
+  .kop {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 60px;
+    align-items: end;
+  }
+}
+
+/* ---------- Kaarten ---------- */
+
+.stap,
+.praktisch {
+  gap: 12px;
+  padding: 30px;
+}
+
+.stapNr {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--oranje-tekst);
+}
+
+.stap h3,
+.voordeel h3,
+.praktisch h3 {
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.stap p,
+.voordeel p,
+.praktisch p {
+  color: var(--tekst-zacht);
+}
+
+.voordeel {
+  gap: 16px;
+  padding: 32px;
+}
+
+.extern {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  color: var(--oranje-tekst);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.extern:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.extern svg {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.scope {
+  margin-bottom: 32px;
+}
+
+/* ---------- Tabellen ---------- */
+
+.tabel {
+  min-width: 600px;
+}
+
+.tabel td {
+  color: var(--tekst-zacht);
+}
+
+.schuif {
+  position: sticky;
+  left: 0;
+  padding: 10px 20px;
+  border-top: 1px solid var(--lijn);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+@media (min-width: 700px) {
+  .schuif {
+    display: none;
+  }
+}
+
+.onderTabel {
+  margin-top: 24px;
+}
+
+/* ---------- Kosten en fiscus ---------- */
+
+.fiscaal {
+  display: grid;
+  gap: 32px 60px;
+  margin-bottom: 44px;
+}
+
+@media (min-width: 860px) {
+  .fiscaal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fiscaalItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 2px solid var(--oranje);
+}
+
+.fiscaalItem h3 {
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.fiscaalItem p {
+  color: var(--tekst-zacht);
+}
+
+/* ---------- Rekenvoorbeeld ---------- */
+
+.punten {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 1.1em;
+  list-style: disc;
+  color: var(--tekst-zacht);
+}
+
+.punten li::marker {
+  color: var(--oranje-icoon);
+}
+
+.uitkomst {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: var(--radius);
+  background: var(--creme);
+  border: 1px solid var(--lijn-creme);
+}
+
+.kostenRij {
+  display: grid;
+  gap: 28px;
+}
+
+@media (min-width: 560px) {
+  .kostenRij {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+.kosten {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.kosten caption {
+  padding-bottom: 8px;
+  text-align: left;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oranje-tekst);
+}
+
+.kosten th,
+.kosten td {
+  padding: 7px 0;
+  text-align: left;
+  font-weight: 400;
+  vertical-align: top;
+}
+
+.kosten td {
+  padding-left: 12px;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.kosten tfoot th,
+.kosten tfoot td {
+  border-top: 1px solid var(--tekst);
+  font-weight: 700;
+}
+
+.voordeelRegel {
+  padding-top: 20px;
+  border-top: 1px solid var(--lijn-creme);
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.35;
+}
+
+.voordeelRegel strong {
+  color: var(--groen);
+}
+
+/* ---------- Zo start u ---------- */
+
+.start {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.start li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border: 1px solid var(--lijn-creme);
+  border-radius: var(--radius);
+  background: var(--wit);
+}
+
+.start li > span {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--creme);
+  color: var(--oranje-tekst);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ---------- Whitepaper (blauw) ---------- */
+
+.whitepaper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.whitepaperCover {
+  flex-shrink: 0;
+  width: 180px;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.whitepaperTekst {
+  --gap: 20px;
+}
+
+.whitepaperActie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--op-blauw);
+}
+
+@media (min-width: 800px) {
+  .whitepaper {
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .whitepaperCover {
+    width: 260px;
+  }
+}
+
+@media (max-width: 520px) {
+  .stap,
+  .praktisch,
+  .voordeel {
+    padding: 22px;
+  }
+
+  .whitepaperActie :global(.btn) {
+    width: 100%;
+  }
+}

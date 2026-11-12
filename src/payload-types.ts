@@ -78,6 +78,8 @@ export interface Config {
     inzendingen: Inzendingen;
     'cv-bestanden': CvBestanden;
     users: User;
+    'oauth-clients': OauthClient;
+    'oauth-tokens': OauthToken;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -96,6 +98,8 @@ export interface Config {
     inzendingen: InzendingenSelect<false> | InzendingenSelect<true>;
     'cv-bestanden': CvBestandenSelect<false> | CvBestandenSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'oauth-clients': OauthClientsSelect<false> | OauthClientsSelect<true>;
+    'oauth-tokens': OauthTokensSelect<false> | OauthTokensSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -511,6 +515,53 @@ export interface User {
   collection: 'users';
 }
 /**
+ * Apps (zoals Claude) die toegang hebben gevraagd tot het CMS. Verwijderen trekt alle toegang van die app in.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oauth-clients".
+ */
+export interface OauthClient {
+  id: number;
+  clientId: string;
+  clientName?: string | null;
+  redirectUris:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  lastUsedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Wie via Claude toegang heeft tot het CMS. Toegang intrekken: filter op de gebruiker, selecteer alle regels en verwijder ze.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oauth-tokens".
+ */
+export interface OauthToken {
+  id: number;
+  type: 'code' | 'access' | 'refresh';
+  tokenHash: string;
+  user?: (number | null) | User;
+  client?: (number | null) | OauthClient;
+  family: string;
+  resource?: string | null;
+  scope?: string | null;
+  expiresAt: string;
+  usedAt?: string | null;
+  codeChallenge?: string | null;
+  redirectUri?: string | null;
+  writeCount?: number | null;
+  writeWindowStart?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -577,6 +628,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'oauth-clients';
+        value: number | OauthClient;
+      } | null)
+    | ({
+        relationTo: 'oauth-tokens';
+        value: number | OauthToken;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -914,6 +973,39 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oauth-clients_select".
+ */
+export interface OauthClientsSelect<T extends boolean = true> {
+  clientId?: T;
+  clientName?: T;
+  redirectUris?: T;
+  lastUsedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oauth-tokens_select".
+ */
+export interface OauthTokensSelect<T extends boolean = true> {
+  type?: T;
+  tokenHash?: T;
+  user?: T;
+  client?: T;
+  family?: T;
+  resource?: T;
+  scope?: T;
+  expiresAt?: T;
+  usedAt?: T;
+  codeChallenge?: T;
+  redirectUri?: T;
+  writeCount?: T;
+  writeWindowStart?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

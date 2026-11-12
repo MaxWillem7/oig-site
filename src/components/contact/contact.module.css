@@ -1,0 +1,180 @@
+.intro {
+  --gap: 24px;
+}
+
+/* Drie kanalen onder elkaar: icoon, klein label, grote waarde */
+.kanalen {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--lijn);
+}
+
+.kanalen li {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--lijn);
+}
+
+.kanaalTekst {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.kanaalLabel {
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.kanaalWaarde {
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.3;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+a.kanaalWaarde:hover {
+  color: var(--oranje-tekst);
+}
+
+.kanaalMail {
+  color: var(--oranje-tekst);
+  font-weight: 600;
+}
+
+.kanaalMail:hover {
+  text-decoration: underline;
+}
+
+.route {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--oranje-tekst);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.route:hover {
+  text-decoration: underline;
+}
+
+.route svg {
+  width: 15px;
+  height: 15px;
+}
+
+.kvk {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-zacht);
+}
+
+/* Mobiel: bellen en mailen als knoppen op volle breedte, adres eronder */
+.mobiel {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobiel .btn {
+  width: 100%;
+}
+
+.mobielAdres {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+  font-weight: 600;
+}
+
+@media (max-width: 699px) {
+  .kanalen {
+    display: none;
+  }
+
+  .mobiel {
+    display: flex;
+  }
+}
+
+.formulier {
+  background: var(--grijs);
+  border-radius: var(--radius-groot);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 700px) {
+  .formulier {
+    padding: 40px;
+  }
+}
+
+.formulierKop {
+  font-size: clamp(24px, 2.4vw, 28px);
+  line-height: 1.22;
+  font-weight: 700;
+}
+
+.formulierKop + p {
+  margin-top: 6px;
+  color: var(--tekst-zacht);
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.team h2 {
+  font-size: clamp(25px, 2.8vw, 32px);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.team p {
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--tekst-lead);
+  max-width: 60ch;
+}
+
+@media (min-width: 900px) {
+  .team {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .team .btn {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .team .btn {
+    width: 100%;
+  }
+}
+
+.adres {
+  font-size: 18px;
+  line-height: 29px;
+  color: var(--tekst-lead);
+  font-style: normal;
+}
+
+.witteKnop {
+  background: var(--wit);
+}

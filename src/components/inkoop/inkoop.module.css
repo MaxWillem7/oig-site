@@ -1,0 +1,342 @@
+/* Opmaak voor Ondersteuning bij inkoop en Inkoopsegmenten */
+
+/* Kerncijfers onder de knoppen in de hero */
+.cijfers {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  margin-top: 10px;
+}
+
+.cijfers div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cijfers dt {
+  order: 2;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.cijfers dd {
+  order: 1;
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+/* Sectiekop met de inleiding rechts ernaast (desktop) */
+.kopRij {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.kopRij > div {
+  margin-bottom: 0;
+}
+
+.kopRij > p {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--tekst-zacht);
+  max-width: 60ch;
+}
+
+@media (min-width: 1000px) {
+  .kopRij {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 60px;
+    align-items: end;
+  }
+}
+
+/* Kaarten */
+.kaart {
+  gap: 16px;
+  padding: 28px;
+  border: 0;
+}
+
+.kaartRand {
+  gap: 14px;
+}
+
+.kaart p,
+.kaartRand p {
+  color: var(--tekst-zacht);
+}
+
+.kaart h3,
+.kaartRand h3 {
+  font-size: clamp(20px, 2vw, 22px);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.onder {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+@media (min-width: 1200px) {
+  .kaart {
+    padding: 32px;
+  }
+}
+
+/* Segmenten: kolom met tekst links, tegels rechts */
+.segSplit {
+  display: grid;
+  gap: 36px;
+}
+
+@media (min-width: 1000px) {
+  .segSplit {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 60px;
+    align-items: start;
+  }
+}
+
+.tegels {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .tegels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .tegels {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.tegels a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 100%;
+  min-height: 54px;
+  padding: 14px 18px;
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+  border-radius: var(--radius);
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 600;
+  transition: border-color 0.15s;
+}
+
+.tegels a:hover {
+  border-color: var(--oranje);
+}
+
+.tegels svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--oranje-tekst);
+}
+
+/* Citaat naast de verwijzing naar de werkwijze */
+.bewijs {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (min-width: 1000px) {
+  .bewijs {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 64px;
+  }
+}
+
+.citaat {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.citaat blockquote {
+  font-size: clamp(21px, 2.5vw, 30px);
+  line-height: 1.42;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+
+.citaat figcaption {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  flex-shrink: 0;
+  width: 112px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.naam {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.naam strong {
+  font-size: 17px;
+  line-height: 22px;
+  color: var(--tekst);
+}
+
+.werkwijze {
+  background: var(--grijs);
+  border: 0;
+  gap: 16px;
+  padding: 28px;
+}
+
+.werkwijze p {
+  color: var(--tekst-zacht);
+}
+
+@media (min-width: 1200px) {
+  .werkwijze {
+    padding: 32px;
+  }
+}
+
+/* Segmentkaarten op de pagina Inkoopsegmenten */
+.segKaart {
+  gap: 10px;
+  border: 0;
+  scroll-margin-top: 110px;
+}
+
+.segKaart h3 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.segKaart p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tekst-zacht);
+}
+
+.anker {
+  scroll-margin-top: 90px;
+}
+
+.noot {
+  margin-top: 28px;
+  color: var(--tekst-zacht);
+}
+
+/* Besparingstabel */
+.besparing th,
+.besparing td {
+  vertical-align: middle;
+}
+
+.besparing tbody th {
+  width: 34%;
+}
+
+.waarde {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pct {
+  flex-shrink: 0;
+  width: 46px;
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.balk {
+  flex: 1;
+  min-width: 0;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--grijs);
+  overflow: hidden;
+}
+
+.balk span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--oranje);
+}
+
+@media (max-width: 599px) {
+  .besparing th,
+  .besparing td {
+    padding-inline: 14px;
+  }
+
+  .besparing tbody th {
+    width: 48%;
+  }
+
+  .waarde {
+    gap: 8px;
+  }
+}
+
+/* Blauw blok schoolmeubilair */
+.blauwTekst {
+  --gap: 22px;
+}
+
+.voordelen {
+  background: rgb(255 255 255 / 0.08);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.voordelen h3 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.voordelen li {
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--wit);
+}
+
+.voordelen li svg {
+  color: var(--op-blauw-accent);
+}
+
+@media (min-width: 1200px) {
+  .voordelen {
+    padding: 36px;
+  }
+}

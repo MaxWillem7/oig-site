@@ -11,6 +11,8 @@ import { Applications } from './collections/Applications'
 import { Documents } from './collections/Documents'
 import { Faqs } from './collections/Faqs'
 import { Media } from './collections/Media'
+import { OAuthClients } from './collections/OAuthClients'
+import { OAuthTokens } from './collections/OAuthTokens'
 import { Pages } from './collections/Pages'
 import { PremiumTables } from './collections/PremiumTables'
 import { Submissions } from './collections/Submissions'
@@ -31,7 +33,7 @@ export default buildConfig({
     importMap: { baseDir: path.resolve(dirname) },
   },
   i18n: { supportedLanguages: { nl }, fallbackLanguage: 'nl' },
-  collections: [Team, Vacancies, PremiumTables, Faqs, Whitepapers, Pages, Media, Documents, Submissions, Applications, Users],
+  collections: [Team, Vacancies, PremiumTables, Faqs, Whitepapers, Pages, Media, Documents, Submissions, Applications, Users, OAuthClients, OAuthTokens],
   globals,
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

@@ -207,7 +207,7 @@ select {
 /* ---------- Tekst ---------- */
 
 .h1 {
-  font-size: clamp(38px, 6.2vw, 66px);
+  font-size: clamp(33px, 9.2vw, 66px);
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.02em;

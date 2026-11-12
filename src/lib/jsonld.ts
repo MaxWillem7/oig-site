@@ -62,10 +62,11 @@ export const faqPage = (faqs: { question: string; answer: string }[]) => ({
   })),
 })
 
-export const service = (s: { name: string; description: string; path: string; audience?: string }) => ({
+export const service = (s: { name: string; description: string; path: string; audience?: string; serviceType?: string }) => ({
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: s.name,
+  ...(s.serviceType ? { serviceType: s.serviceType } : {}),
   description: s.description,
   url: `${BASE}${s.path}`,
   provider: { '@id': ORG_ID },

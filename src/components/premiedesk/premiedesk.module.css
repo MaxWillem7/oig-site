@@ -1,0 +1,161 @@
+.uitleg {
+  --gap: 20px;
+  font-size: 18px;
+  line-height: 29px;
+}
+
+.uitleg p {
+  color: var(--tekst-zacht);
+}
+
+.begrippen {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.begrip {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 14px;
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.afk {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.afkGroen {
+  color: var(--groen);
+}
+
+.afkBlauw {
+  color: var(--blauw);
+}
+
+.afkOranje {
+  color: var(--oranje-tekst);
+}
+
+.begripTitel {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  hyphens: auto;
+}
+
+.begrip p {
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--tekst-zacht);
+}
+
+.kop {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.kopTekst {
+  --gap: 18px;
+}
+
+.voorWie {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--tekst-zacht);
+  max-width: 52ch;
+}
+
+.oplossing {
+  gap: 18px;
+  padding: 24px;
+}
+
+.oplossing p {
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--tekst-zacht);
+}
+
+.oplossingTitel {
+  font-size: clamp(24px, 2.6vw, 28px);
+  line-height: 1.22;
+  font-weight: 700;
+}
+
+.oplossing :global(.checks) {
+  gap: 10px;
+  font-size: 17px;
+  line-height: 24px;
+  margin-top: 4px;
+}
+
+.oplossing :global(.checks) svg {
+  margin-top: 1px;
+}
+
+.citaat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, var(--op-blauw) 35%, transparent);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.citaat blockquote {
+  font-size: clamp(18px, 1.7vw, 20px);
+  line-height: 1.5;
+  color: var(--wit);
+  max-width: 80ch;
+}
+
+.citaat blockquote p {
+  color: inherit;
+}
+
+.citaat figcaption {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--op-blauw);
+}
+
+@media (min-width: 700px) {
+  .afk {
+    font-size: 24px;
+  }
+
+  .begrip {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 24px;
+    padding: 28px;
+  }
+
+  .oplossing {
+    padding: 36px;
+  }
+
+  .citaat {
+    padding: 28px 32px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .kop {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+}

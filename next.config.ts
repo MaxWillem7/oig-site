@@ -9,6 +9,8 @@ const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  // De doorverwijzing naar de schuine streep regelt src/proxy.ts, zodat /api/mcp er geen krijgt
+  skipTrailingSlashRedirect: true,
   redirects: async () => redirects,
   images: {
     localPatterns: [{ pathname: '/api/media/file/**' }, { pathname: '/beeld/**' }],

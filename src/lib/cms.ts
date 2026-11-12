@@ -170,6 +170,17 @@ export const getDocument = cache(async (title: string) =>
   }, null),
 )
 
+/**
+ * Maakt een bestandsadres uit het CMS bruikbaar: adressen van de eigen site worden relatief
+ * (next/image staat alleen eigen paden en de Blob-opslag toe) en een schuine streep aan het eind gaat eraf.
+ */
+export const fileUrl = (url?: string | null): string | undefined => {
+  if (!url) return undefined
+  const clean = url.replace(/\/$/, '')
+  const own = clean.match(/^https?:\/\/[^/]+(\/api\/[^/]+\/file\/.+)$/)
+  return own ? own[1] : clean
+}
+
 export type Img = { url: string; alt: string; width: number; height: number; focus?: string }
 
 /** Zet een upload-veld om naar wat next/image nodig heeft. Geeft null als er geen beeld is. */
@@ -177,7 +188,7 @@ export const media = (value: unknown, size?: 'portret' | 'kaart' | 'breed'): Img
   if (!value || typeof value !== 'object') return null
   const m = value as Media
   const sized = size ? m.sizes?.[size] : undefined
-  const url = sized?.url || m.url
+  const url = fileUrl(sized?.url || m.url)
   if (!url) return null
   return {
     url,

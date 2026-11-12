@@ -1,0 +1,500 @@
+/* Overzicht */
+.teller {
+  background: var(--groen-licht);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tellerGetal {
+  font-size: 56px;
+  line-height: 60px;
+  font-weight: 700;
+  color: var(--groen);
+}
+
+.tellerTekst {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.tellerPlaats {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-lead);
+}
+
+.heroZij {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lijstSectie {
+  padding-top: 0;
+}
+
+.lijst {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kaart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  transition: border-color 0.15s;
+}
+
+.kaart:hover {
+  border-color: var(--oranje);
+}
+
+.kaartTekst {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.kaartTitel {
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.22;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* de hele kaart is klikbaar via de link in de titel */
+.kaartTitel a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.kaartTitel a:focus-visible {
+  outline: none;
+}
+
+.kaartTitel a:focus-visible::after {
+  outline: 3px solid var(--blauw);
+  outline-offset: 2px;
+}
+
+.teaser {
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--tekst-zacht);
+  max-width: 72ch;
+}
+
+.kaartKnop {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+@media (min-width: 800px) {
+  .kaart {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    padding: 32px;
+  }
+
+  .kaartTekst {
+    flex: 1;
+  }
+
+  .kaartKnop {
+    align-self: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .kaartKnop {
+    width: 100%;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--grijs);
+  border-radius: 100px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+/* in de crème hero van een vacature: witte chips met icoon */
+.chipsHero {
+  width: 100%;
+  gap: 10px;
+}
+
+.chipsHero li {
+  background: var(--wit);
+  padding: 8px 14px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.chipsHero svg {
+  width: 16px;
+  height: 16px;
+  color: var(--oranje-icoon);
+  flex-shrink: 0;
+}
+
+/* Twee lijsten naast elkaar: wie wij zoeken, wat wij bieden */
+.kolomKop {
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.regels {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--lijn-creme);
+}
+
+.regels li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--lijn-creme);
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.regels svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  color: var(--groen);
+}
+
+.regelsPijl svg {
+  color: var(--oranje-icoon);
+}
+
+/* Detail */
+.titel {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.inhoud {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+@media (min-width: 1000px) {
+  .inhoud {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+    gap: 80px;
+  }
+
+  .kort {
+    position: sticky;
+    top: 110px;
+  }
+}
+
+.tekst {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: 760px;
+}
+
+.opening {
+  font-size: clamp(19px, 1.8vw, 22px);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.blok {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.blok h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.blok p {
+  font-size: 18px;
+  line-height: 29px;
+  color: var(--tekst-lead);
+  white-space: pre-line;
+}
+
+.punten {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.punten li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 18px;
+  line-height: 29px;
+}
+
+.punten svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+  flex-shrink: 0;
+  color: var(--groen);
+}
+
+.puntenPijl svg {
+  color: var(--oranje-icoon);
+}
+
+.punt::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  margin-top: 11px;
+  border-radius: 4px;
+  background: var(--oranje-icoon);
+  flex-shrink: 0;
+}
+
+.bieden {
+  background: var(--creme);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+}
+
+@media (min-width: 700px) {
+  .bieden {
+    padding: 32px;
+  }
+}
+
+.kort {
+  background: var(--grijs);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 700px) {
+  .kort {
+    padding: 32px;
+  }
+}
+
+.kortKop {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+.kortLijst {
+  border-top: 1px solid var(--lijn);
+}
+
+.kortLijst div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--lijn);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.kortLijst dt {
+  color: var(--tekst-zacht);
+}
+
+.kortLijst dd {
+  font-weight: 600;
+  text-align: right;
+}
+
+.kort .btn {
+  width: 100%;
+}
+
+.kortVragen {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-zacht);
+}
+
+.kortVragen a {
+  color: var(--tekst);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.kortVragen a:hover {
+  color: var(--oranje-tekst);
+}
+
+.fotos {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Solliciteren */
+.solliciteer {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  scroll-margin-top: 90px;
+}
+
+@media (min-width: 1000px) {
+  .solliciteer {
+    grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+    gap: 80px;
+  }
+}
+
+.bellen {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.bellen span {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--tekst-zacht);
+}
+
+.bellenTel {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+.bellenTel:hover {
+  color: var(--oranje-tekst);
+}
+
+.bellenMail {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--oranje-tekst);
+  overflow-wrap: anywhere;
+}
+
+.bellenMail:hover {
+  text-decoration: underline;
+}
+
+.formKaart {
+  background: var(--wit);
+  border: 1px solid var(--lijn-creme);
+  border-radius: var(--radius-groot);
+  padding: 24px 20px;
+}
+
+@media (min-width: 700px) {
+  .formKaart {
+    padding: 40px;
+  }
+}
+
+/* Andere vacatures */
+.andereKop {
+  font-size: clamp(24px, 2.4vw, 28px);
+  line-height: 1.22;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.andere {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.andere a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100%;
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.15s;
+}
+
+.andere a:hover {
+  border-color: var(--oranje);
+}
+
+.andere strong {
+  display: block;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.andere span span {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--tekst-zacht);
+}
+
+.andere svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--oranje-tekst);
+}
+
+/* Geen vacatures */
+.leeg {
+  max-width: 68ch;
+}
+
+.witteKnop {
+  background: var(--wit);
+}
