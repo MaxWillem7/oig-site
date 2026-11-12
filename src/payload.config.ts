@@ -25,6 +25,13 @@ import { globals } from './globals'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+// Migraties en de seed (bij de build) gaan over de directe verbinding; de site zelf over de pooler.
+const databaseUrl =
+  process.env.DATABASE_URL ||
+  (process.env.PAYLOAD_DIRECT_DB === '1' ? process.env.POSTGRES_URL_NON_POOLING : undefined) ||
+  process.env.POSTGRES_URL ||
+  ''
+
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || '',
   admin: {
@@ -39,7 +46,7 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   db: postgresAdapter({
-    pool: { connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL || '' },
+    pool: { connectionString: databaseUrl },
     // Lokaal wordt het schema bij de start bijgewerkt; op Vercel lopen migraties bij de build.
     push: process.env.NODE_ENV !== 'production',
     migrationDir: path.resolve(dirname, 'migrations'),
