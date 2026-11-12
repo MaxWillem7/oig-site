@@ -1,4 +1,5 @@
 {
   "framework": "nextjs",
+  "regions": ["fra1"],
   "crons": [{ "path": "/api/cron/opruimen", "schedule": "0 3 * * *" }]
 }

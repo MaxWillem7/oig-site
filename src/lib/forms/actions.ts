@@ -71,8 +71,18 @@ export async function submitForm(_prev: FormState, fd: FormData): Promise<FormSt
 
     const fileIds: number[] = []
     for (const f of upload.files) {
-      const doc = await payload.create({ collection: 'cv-bestanden', data: {}, file: f, overrideAccess: true })
-      fileIds.push(doc.id as number)
+      try {
+        const doc = await payload.create({ collection: 'cv-bestanden', data: {}, file: f, overrideAccess: true })
+        fileIds.push(doc.id as number)
+      } catch (e) {
+        // Het CMS keurt de inhoud van het bestand zelf ook: een beschadigd of vermomd bestand komt hier terecht
+        console.error('Bestand geweigerd', e)
+        return {
+          status: 'error',
+          message: 'Controleer de gemarkeerde velden.',
+          fieldErrors: { [spec.fileField ?? 'bestanden']: 'Dit bestand kunnen we niet lezen. Sla het opnieuw op als pdf en probeer het nog eens.' },
+        }
+      }
     }
 
     const first = spec.nameField ? String(values[spec.nameField] ?? '') : ''
