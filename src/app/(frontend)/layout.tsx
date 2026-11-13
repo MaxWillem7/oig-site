@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { JsonLd } from '@/components/JsonLd'
 import { getSettings, SITE_NAME, SITE_URL } from '@/lib/cms'
+import { FEEDBACKLAAG } from '@/lib/feedbacklaag'
 import { organization, website } from '@/lib/jsonld'
 import '@/styles/globals.css'
 
@@ -30,6 +31,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="nl" className={fontVariables}>
+      <head>
+        {/* Vaste tekst uit onze eigen code, geen invoer van bezoekers */}
+        <script dangerouslySetInnerHTML={{ __html: FEEDBACKLAAG }} />
+      </head>
       <body>
         <a href="#inhoud" className="skip-link">
           Naar de inhoud
