@@ -69,3 +69,11 @@ test('teampagina toont iedereen en zoeken werkt', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Cor van Stralen' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Heleen Gorlee' })).toBeHidden()
 })
+
+test('teampagina toont Stijn Achterveld met foto en de titels van 19 november', async ({ page }) => {
+  await page.goto('/ons-team/')
+  await expect(page.getByRole('img', { name: /Stijn Achterveld/ })).toBeVisible()
+  await expect(page.getByText('Aanbestedingsspecialist', { exact: true })).toBeVisible()
+  await expect(page.getByText('Aanbestedingsdesk', { exact: true }).first()).toBeVisible()
+  await expect(page.getByText(/Inkoopadviseur Aanbestedingsdesk/)).toHaveCount(0)
+})

@@ -5,6 +5,7 @@ import * as migration_20261119_082538_vacature_kop_en_slot from './20261119_0825
 import * as migration_20261119_083000_vacatures_gelijk_aan_live from './20261119_083000_vacatures_gelijk_aan_live';
 import * as migration_20261119_084638_gebruiker_uitnodiging from './20261119_084638_gebruiker_uitnodiging';
 import * as migration_20261119_143523_zorgtegel_home from './20261119_143523_zorgtegel_home';
+import * as migration_20261119_143600_team_titels_foto_stijn from './20261119_143600_team_titels_foto_stijn';
 
 export const migrations = [
   {
@@ -41,5 +42,10 @@ export const migrations = [
     up: migration_20261119_143523_zorgtegel_home.up,
     down: migration_20261119_143523_zorgtegel_home.down,
     name: '20261119_143523_zorgtegel_home',
+  },
+  {
+    up: migration_20261119_143600_team_titels_foto_stijn.up,
+    down: migration_20261119_143600_team_titels_foto_stijn.down,
+    name: '20261119_143600_team_titels_foto_stijn',
   },
 ];

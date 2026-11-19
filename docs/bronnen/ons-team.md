@@ -32,7 +32,6 @@ Het vacatureblok toont zich alleen als er gepubliceerde vacatures in het CMS sta
 
 ## Open voor OIG
 
-- Portretfoto's van Larissa Benning en Mika Valk; een echte portretfoto van Stijn Achterveld.
 - Indeling per groep bevestigen.
 - Direct nummer voor wie nu het algemene nummer heeft.
 - Korte omschrijving per groep, als OIG die wil tonen.

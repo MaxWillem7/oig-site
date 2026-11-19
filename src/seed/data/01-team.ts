@@ -30,12 +30,12 @@ const TEAM: Person[] = [
   { name: 'Thomas Bruschke', role: 'Inkoopadviseur', group: 'inkoopadvies', phone: '06 36 30 59 20', email: mail('t.bruschke'), photo: 'team-thomas-bruschke.jpg' },
 
   // Aanbestedingsdesk
-  { name: 'Larissa Benning', role: 'Senior Inkoopadviseur Aanbestedingsdesk', group: 'aanbestedingsdesk', phone: '06 29 49 29 16', email: mail('l.benning'), photo: 'team-larissa-benning.jpg' },
-  { name: 'Mika Valk', role: 'Junior Inkoopadviseur Aanbestedingsdesk', group: 'aanbestedingsdesk', email: mail('m.valk'), photo: 'team-mika-valk.jpg' },
+  // Titels zoals OIG ze op 19 november 2026 op de live site zette
+  { name: 'Larissa Benning', role: 'Aanbestedingsspecialist', group: 'aanbestedingsdesk', phone: '06 29 49 29 16', email: mail('l.benning'), photo: 'team-larissa-benning.jpg' },
+  { name: 'Mika Valk', role: 'Aanbestedingsdesk', group: 'aanbestedingsdesk', email: mail('m.valk'), photo: 'team-mika-valk.jpg' },
 
   // Contracten en dossiers
-  // Stijn Achterveld: het beeld op de live site (sa.png) is door ChatGPT gemaakt, dus geen foto.
-  { name: 'Stijn Achterveld', role: 'Contractmanager', group: 'contracten', phone: '036 820 10 08', email: mail('s.achterveld') },
+  { name: 'Stijn Achterveld', role: 'Contractmanager', group: 'contracten', phone: '036 820 10 08', email: mail('s.achterveld'), photo: 'team-stijn-achterveld.jpg' },
   { name: 'Bianca Omerzu', role: 'Contractbeheer', group: 'contracten', phone: '036 820 10 05', email: mail('b.omerzu'), photo: 'team-bianca-omerzu.jpg' },
   { name: 'Natasja Sloot', role: 'Dossierspecialist', group: 'contracten', phone: '036 820 10 06', email: mail('n.sloot'), photo: 'team-natasja-sloot.jpg' },
   { name: 'Maayke Veldhuyzen', role: 'Dossierspecialist', group: 'contracten', phone: '036 820 10 03', email: mail('m.veldhuyzen'), photo: 'team-maayke-veldhuyzen.jpg' },

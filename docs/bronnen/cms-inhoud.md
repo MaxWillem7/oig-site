@@ -29,9 +29,9 @@ wordt "Operationeel directeur" (schrijfwijze uit Paper). Telefoon is leeg waar d
 | 4 | Heleen Gorlee | Inkoopadviseur | inkoopadvies | 06 38 03 04 88 | `img_hg-scaled.jpeg` · home |
 | 5 | Noah van Vlastuin | Inkoopadviseur | inkoopadvies | 06 34 05 20 17 | `noah2.jpeg` |
 | 6 | Thomas Bruschke | Inkoopadviseur | inkoopadvies | 06 36 30 59 20 | `thomas-1-scaled.jpg` |
-| 7 | Larissa Benning | Senior Inkoopadviseur Aanbestedingsdesk | aanbestedingsdesk | 06 29 49 29 16 | `lb-scaled.jpg` (sinds 22 oktober 2026 op live) |
-| 8 | Mika Valk | Junior Inkoopadviseur Aanbestedingsdesk | aanbestedingsdesk | leeg (algemeen) | `mv-scaled.jpg` (nieuw op live sinds de inventaris) |
-| 9 | Stijn Achterveld | Contractmanager | contracten | 036 820 10 08 | geen: zie hieronder |
+| 7 | Larissa Benning | Aanbestedingsspecialist (tot 19 nov: Senior Inkoopadviseur Aanbestedingsdesk) | aanbestedingsdesk | 06 29 49 29 16 | `lb-scaled.jpg` (sinds 22 oktober 2026 op live) |
+| 8 | Mika Valk | Aanbestedingsdesk (tot 19 nov: Junior Inkoopadviseur Aanbestedingsdesk) | aanbestedingsdesk | leeg (algemeen) | `mv-scaled.jpg` (nieuw op live sinds de inventaris) |
+| 9 | Stijn Achterveld | Contractmanager | contracten | 036 820 10 08 | `sa.png` (zie hieronder) |
 | 10 | Bianca Omerzu | Contractbeheer | contracten | 036 820 10 05 | `bianca2-scaled.jpeg` |
 | 11 | Natasja Sloot | Dossierspecialist | contracten | 036 820 10 06 | `natasja-scaled.jpg` |
 | 12 | Maayke Veldhuyzen | Dossierspecialist | contracten | 036 820 10 03 | `img_mv-scaled.jpeg` |
@@ -56,11 +56,11 @@ Verschillen met de inventaris en met Paper:
 - **Larissa Benning en Mika Valk** hadden in de inventaris een blanco avatar. De live site toont nu bij hun naam een
   echt portret (`lb-scaled.jpg`, `mv-scaled.jpg`, zelfde keukenachtergrond als de andere recente portretten). Die zijn
   gebruikt.
-- **Stijn Achterveld**: de live site toont nu `sa.png` (geüpload op 4 november 2026). Dat bestand bevat
-  C2PA-herkomstgegevens van OpenAI/ChatGPT en is dus hetzelfde gegenereerde beeld als
-  `chatgpt-image-14-sep-2026-...png` uit de inventaris, onder een andere naam. Niet gebruikt. In de fotoshoot van 2024
-  en in `Voorkeursfotos` staat geen bestand met zijn naam; hij staat pas sinds september 2026 op de site. Geen foto,
-  de site toont initialen.
+- **Stijn Achterveld**: de live site toont `sa.png` (geüpload op 4 november 2026). Het bestand bevat
+  C2PA-herkomstgegevens van OpenAI/ChatGPT, daarom stond hij eerst zonder foto. OIG (Dave en Arjan) bevestigde op
+  19 november 2026 dat het zijn echte foto is; sindsdien gebruikt, bijgesneden tot 900x1200.
+- **Functietitels 19 november 2026**: OIG paste op de live site de titels van Larissa Benning
+  ("Aanbestedingsspecialist") en Mika Valk ("Aanbestedingsdesk") aan. Letterlijk overgenomen.
 - De map `Voorkeursfotos` (klantmap) bevat portretten uit 2024 van elf huidige teamleden. De live site gebruikt voor
   hen dezelfde shoot of een nieuwer portret; de live versie is aangehouden omdat OIG die zelf heeft gekozen.
 
@@ -211,7 +211,7 @@ De enige treffers zijn het KvK-nummer van Drukwerkdeal (Enschede) op hun facture
 ## Open voor OIG
 
 1. **KvK-nummer** aanleveren (Instellingen > Contact). Zolang het leeg is, toont de footer geen KvK-regel.
-2. **Portret van Stijn Achterveld**: het huidige beeld is gegenereerd. Graag een echte foto.
+2. ~~Portret van Stijn Achterveld~~: OIG bevestigde op 19 november 2026 dat `sa.png` zijn echte foto is.
 3. **Portret van Yvette Berghorst** (nieuw sinds 4 november, nog zonder foto).
 4. **Ben Stam** staat niet meer op de live site: klopt het dat hij weg is?
 5. **Indeling per groep bevestigen**, met name Yvette Berghorst bij Kantoor en Stijn Achterveld bij Contracten.
