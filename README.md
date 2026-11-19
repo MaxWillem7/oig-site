@@ -17,7 +17,8 @@ npm run seed              # startinhoud (overschrijft wijzigingen uit het CMS, a
 
 - `docs/BOUWEN.md` en `docs/STIJL.md`: regels voor inhoud, opbouw en huisstijl.
 - `docs/bronnen/`: per pagina waar elke tekst vandaan komt en wat OIG nog moet bevestigen.
-- `docs/CLAUDE-KOPPELING.md`: de koppeling waarmee OIG de site vanuit Claude bijwerkt.
+- `docs/CLAUDE-KOPPELING.md`: de koppeling waarmee OIG de site vanuit Claude bijwerkt. Deel A staat ook in het CMS op
+  `/admin/claude-koppeling`.
 - `src/lib/pages.ts`: alle vaste pagina's met titel en omschrijving. `redirects.ts`: oude adressen.
 - `src/collections/`: wat OIG in het CMS beheert (team, vacatures, premies, vragen, whitepapers).
 
@@ -41,5 +42,5 @@ CMS-tests (inloggen, teamlid toevoegen en verwijderen, vacature, premietabel, fo
 draaien na elkaar, niet tegelijk:
 
 ```
-CMS_EMAIL=... CMS_PASSWORD=... npx playwright test tests/cms.spec.ts tests/cms-inhoud.spec.ts --project=desktop --workers=1
+CMS_EMAIL=... CMS_PASSWORD=... npx playwright test tests/cms.spec.ts tests/cms-inhoud.spec.ts tests/claude-koppeling.spec.ts --project=desktop --workers=1
 ```

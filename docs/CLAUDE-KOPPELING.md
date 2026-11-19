@@ -6,6 +6,11 @@ concept. Op de site komt hij pas als u Claude vraagt om te publiceren.
 
 Dit document heeft twee delen: (a) voor medewerkers van de Onderwijs Inkoop Groep, (b) voor beheer.
 
+Deel A staat ook in het CMS, voor iedereen die is ingelogd: `/admin/claude-koppeling` (zijmenu "Hulp", en een
+verwijzing in het welkomstblok). Daar staat het echte adres van de koppeling met een kopieerknop. De tekst komt uit
+`src/lib/mcp/handleiding.ts`; de test `tests/claude-koppeling.spec.ts` controleert dat deel A hieronder precies
+gelijk is. Pas dus beide tegelijk aan.
+
 ---
 
 ## Deel A. Voor de Onderwijs Inkoop Groep
@@ -115,6 +120,8 @@ Code:
 - `src/lib/mcp/tools.ts`: de tools (namen, beschrijvingen, invoerschema's). `server.ts`: MCP-server en instructies.
   `store.ts`: opslag van apps, codes en tokens. `config.ts`: adressen, geldigheidsduur en limieten.
   `login-page.ts`: het inlogscherm.
+- `src/components/admin/ClaudeKoppeling.tsx` (pagina in het CMS), `ClaudeNavLink.tsx` (link in het zijmenu),
+  `src/lib/mcp/handleiding.ts` (tekst van deel A).
 - `src/collections/OAuthClients.ts` en `OAuthTokens.ts`: twee collecties, in het CMS zichtbaar voor beheerders onder
   Beheer ("Claude-koppeling: apps" en "Claude-koppeling: toegang"). Niemand kan ze via de API vullen of wijzigen.
 

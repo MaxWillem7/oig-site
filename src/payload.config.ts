@@ -78,6 +78,15 @@ export default buildConfig({
     components: {
       graphics: { Logo: '/components/admin/Brand#Logo', Icon: '/components/admin/Brand#Icon' },
       beforeDashboard: ['/components/admin/Welcome#Welcome'],
+      // Handleiding van de Claude-koppeling voor iedereen die kan inloggen (link in het zijmenu onder "Hulp")
+      afterNavLinks: ['/components/admin/ClaudeNavLink#ClaudeNavLink'],
+      views: {
+        claudeKoppeling: {
+          Component: '/components/admin/ClaudeKoppeling#ClaudeKoppeling',
+          path: '/claude-koppeling',
+          meta: { title: 'Claude-koppeling' },
+        },
+      },
     },
     importMap: { baseDir: path.resolve(dirname) },
   },
