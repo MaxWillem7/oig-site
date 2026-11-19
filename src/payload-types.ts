@@ -545,7 +545,7 @@ export interface CvBestanden {
   focalY?: number | null;
 }
 /**
- * Redacteuren wijzigen en publiceren inhoud. Beheerders beheren ook gebruikers en instellingen.
+ * Redacteuren wijzigen en publiceren inhoud. Beheerders beheren ook gebruikers en instellingen. Een nieuwe gebruiker krijgt een uitnodiging per e-mail en kiest zelf een wachtwoord.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
@@ -554,6 +554,8 @@ export interface User {
   id: number;
   naam?: string | null;
   role: 'redacteur' | 'beheerder';
+  uitnodigingStatus?: string | null;
+  uitnodigingVerloopt?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1044,6 +1046,8 @@ export interface CvBestandenSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   naam?: T;
   role?: T;
+  uitnodigingStatus?: T;
+  uitnodigingVerloopt?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

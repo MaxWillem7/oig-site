@@ -18,7 +18,8 @@ gelijk is. Pas dus beide tegelijk aan.
 ### De koppeling toevoegen (eenmalig, per persoon)
 
 U hebt een account van het CMS nodig (hetzelfde e-mailadres en wachtwoord als op `/admin`) en een Claude-abonnement
-waarmee u eigen koppelingen ("custom connectors") mag toevoegen.
+waarmee u eigen koppelingen ("custom connectors") mag toevoegen. Nog geen account? Een beheerder nodigt u uit; u
+krijgt dan een e-mail met een link om zelf uw wachtwoord te kiezen.
 
 1. Open Claude (claude.ai in de browser, of de app Claude Desktop).
 2. Ga naar **Instellingen** en kies **Connectors** (in het Nederlands: Koppelingen).
@@ -144,6 +145,16 @@ De site moet op `https` draaien. Bij een wijziging van het domein moeten gebruik
 
 Bij de eerste uitrol moeten de tabellen `oauth_clients` en `oauth_tokens` in de database komen. Lokaal gebeurt dat
 vanzelf; op Vercel via een migratie (`npx payload migrate:create`, daarna draait `payload migrate` bij de build).
+
+### Accounts
+
+- **Iemand toegang geven:** log in als beheerder, kies **Gebruikers** en **Nieuw aanmaken**. Vul alleen naam,
+  e-mailadres en rol in; een wachtwoord kiest u niet. Na opslaan krijgt de persoon een uitnodiging per e-mail met een
+  link om zelf een wachtwoord te kiezen (7 dagen geldig, één keer te gebruiken). Daarna is hij direct ingelogd.
+- De link staat ook bij de gebruiker in het CMS, met een kopieerknop. Zolang er geen `RESEND_API_KEY` is (zoals op de
+  preview), gaat er geen mail uit en meldt het CMS dat; stuur de link dan zelf door.
+- **Verlopen of kwijt?** Open de gebruiker en kies **Uitnodiging opnieuw sturen** (alleen beheerders). De oude link
+  vervalt dan.
 
 ### Toegang intrekken
 

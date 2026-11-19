@@ -90,7 +90,12 @@ export default buildConfig({
     },
     importMap: { baseDir: path.resolve(dirname) },
   },
-  i18n: { supportedLanguages: { nl }, fallbackLanguage: 'nl' },
+  i18n: {
+    supportedLanguages: { nl },
+    fallbackLanguage: 'nl',
+    // Ook de uitnodigingslink van een nieuwe gebruiker komt op dit scherm uit
+    translations: { nl: { authentication: { resetPassword: 'Kies uw wachtwoord' } } },
+  },
   collections: [Team, Vacancies, PremiumTables, Faqs, Whitepapers, Pages, Media, Documents, Submissions, Applications, Users, OAuthClients, OAuthTokens],
   globals,
   editor: lexicalEditor(),

@@ -180,7 +180,10 @@ export async function ClaudeKoppeling({ initPageResult, params, searchParams }: 
               <strong>Wat u nodig hebt</strong>
             </p>
             <ul>
-              <li>Uw account van dit CMS (hetzelfde e-mailadres en wachtwoord waarmee u hier inlogt).</li>
+              <li>
+                Uw account van dit CMS (hetzelfde e-mailadres en wachtwoord waarmee u hier inlogt). Een collega een
+                account geven? Een beheerder nodigt hem uit onder Gebruikers; hij kiest zelf zijn wachtwoord.
+              </li>
               <li>Een Claude-abonnement waarmee u eigen koppelingen (&quot;custom connectors&quot;) mag toevoegen.</li>
               <li>
                 Het adres van de koppeling: <KopieerAdres adres={adres} />

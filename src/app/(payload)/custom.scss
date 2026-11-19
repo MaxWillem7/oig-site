@@ -538,3 +538,37 @@ h4 {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* ---------- Gebruikers: uitnodiging ---------- */
+
+.oig-uitnodiging {
+  margin: 0 0 24px;
+  padding: 18px 22px;
+  background: var(--oig-creme);
+  border: 1px solid #f0e4d2;
+  border-radius: var(--style-radius-m);
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+}
+
+.oig-uitnodiging p {
+  margin: 0;
+}
+
+.oig-uitnodiging__kop {
+  color: var(--oig-oranje-tekst);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.oig-uitnodiging__waarschuwing {
+  color: #8a2a12;
+  font-weight: 600;
+}
+
+.oig-uitnodiging__knoppen .btn {
+  margin: 4px 0 0;
+}

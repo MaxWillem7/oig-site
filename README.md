@@ -38,9 +38,15 @@ Nodig als omgevingsvariabelen: `DATABASE_URL` (of `POSTGRES_URL`), `BLOB_READ_WR
 (eerste beheerder), later `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_GTM_ID` en bij livegang `SITE_INDEXABLE=true`.
 Na een wijziging in `src/collections` of `src/globals`: `npm run payload -- migrate:create <naam>`.
 
-CMS-tests (inloggen, teamlid toevoegen en verwijderen, vacature, premietabel, foto) vragen een account en
-draaien na elkaar, niet tegelijk:
+Accounts: een beheerder maakt een gebruiker aan met alleen naam, e-mailadres en rol. De gebruiker krijgt een
+uitnodiging (via Resend, 7 dagen geldig) en kiest zelf een wachtwoord; zonder `RESEND_API_KEY` toont het CMS de link
+om zelf door te sturen. Alleen de eerste beheerder (`SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD`) krijgt een wachtwoord
+uit de omgeving. Zie `docs/CLAUDE-KOPPELING.md`, "Accounts".
+
+CMS-tests (inloggen, teamlid toevoegen en verwijderen, vacature, premietabel, foto, uitnodigen) vragen een account
+en draaien na elkaar, niet tegelijk. De uitnodigingstest maakt en verwijdert een gebruiker op example.com; alleen
+lokaal of op de preview draaien:
 
 ```
-CMS_EMAIL=... CMS_PASSWORD=... npx playwright test tests/cms.spec.ts tests/cms-inhoud.spec.ts tests/claude-koppeling.spec.ts --project=desktop --workers=1
+CMS_EMAIL=... CMS_PASSWORD=... CMS_ADMIN_EMAIL=... CMS_ADMIN_PASSWORD=... npx playwright test tests/cms.spec.ts tests/cms-inhoud.spec.ts tests/claude-koppeling.spec.ts tests/cms-uitnodiging.spec.ts --project=desktop --workers=1
 ```
