@@ -41,7 +41,7 @@ export type SiteSettings = {
     linkedin?: string
     portalUrl: string
   }
-  insurance: { year: number; notice: string }
+  insurance: { year: number; notice: string; homeTile: boolean; homeTileFrom: string; homeTileUntil: string }
   recipients: Record<string, string | null | undefined>
 }
 
@@ -59,6 +59,9 @@ const FALLBACK: SiteSettings = {
     year: 2027,
     notice:
       'De premies voor 2027 volgen zodra de verzekeraars ze bekend hebben gemaakt. Zodra ze er zijn, staan ze op deze pagina.',
+    homeTile: true,
+    homeTileFrom: '2026-11-15T12:00:00.000Z',
+    homeTileUntil: '2027-01-15T12:00:00.000Z',
   },
   recipients: {},
 }

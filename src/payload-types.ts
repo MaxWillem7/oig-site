@@ -1171,6 +1171,18 @@ export interface Instellingen {
      */
     year?: number | null;
     notice?: string | null;
+    /**
+     * In de overstapperiode staat bovenaan de homepagina de tegel Zorgverzekering, in plaats van Subsidiedesk.
+     */
+    homeTile?: boolean | null;
+    /**
+     * Alleen dag en maand tellen, dus het geldt elk jaar.
+     */
+    homeTileFrom?: string | null;
+    /**
+     * Mag na de jaarwisseling vallen, bijvoorbeeld 15 januari.
+     */
+    homeTileUntil?: string | null;
   };
   recipients?: {
     /**
@@ -1252,6 +1264,9 @@ export interface InstellingenSelect<T extends boolean = true> {
     | {
         year?: T;
         notice?: T;
+        homeTile?: T;
+        homeTileFrom?: T;
+        homeTileUntil?: T;
       };
   recipients?:
     | T

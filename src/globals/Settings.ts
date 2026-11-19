@@ -88,6 +88,44 @@ export const Settings: GlobalConfig = {
                   defaultValue:
                     'De premies voor 2027 volgen zodra de verzekeraars ze bekend hebben gemaakt. Zodra ze er zijn, staan ze op deze pagina.',
                 },
+                {
+                  name: 'homeTile',
+                  label: 'Zorgverzekering op de homepagina',
+                  type: 'checkbox',
+                  defaultValue: true,
+                  admin: {
+                    description:
+                      'In de overstapperiode staat bovenaan de homepagina de tegel Zorgverzekering, in plaats van Subsidiedesk.',
+                  },
+                },
+                {
+                  type: 'row',
+                  admin: { condition: (_, sibling) => Boolean(sibling?.homeTile) },
+                  fields: [
+                    {
+                      name: 'homeTileFrom',
+                      label: 'Tonen vanaf',
+                      type: 'date',
+                      defaultValue: '2026-11-15T12:00:00.000Z',
+                      admin: {
+                        width: '50%',
+                        date: { pickerAppearance: 'dayOnly', displayFormat: 'd MMMM' },
+                        description: 'Alleen dag en maand tellen, dus het geldt elk jaar.',
+                      },
+                    },
+                    {
+                      name: 'homeTileUntil',
+                      label: 'Tonen tot en met',
+                      type: 'date',
+                      defaultValue: '2027-01-15T12:00:00.000Z',
+                      admin: {
+                        width: '50%',
+                        date: { pickerAppearance: 'dayOnly', displayFormat: 'd MMMM' },
+                        description: 'Mag na de jaarwisseling vallen, bijvoorbeeld 15 januari.',
+                      },
+                    },
+                  ],
+                },
               ],
             },
           ],

@@ -14,7 +14,8 @@ import type { ReactNode } from 'react'
 import { Avatar, CtaBand } from '@/components/Blocks'
 import { Arrow, External } from '@/components/Icons'
 import { getSettings, getTeam, getVacancies, media } from '@/lib/cms'
-import { HERO_TILES, MAIN_QUOTE, SERVICES, SIDE_QUOTES, STEPS } from './content'
+import { inSeason } from '@/lib/seizoen'
+import { HERO_TILES, INSURANCE_TILE, MAIN_QUOTE, SERVICES, SIDE_QUOTES, STEPS } from './content'
 import s from './home.module.css'
 
 const ICONS = {
@@ -62,6 +63,16 @@ export async function Home() {
     getVacancies(),
   ])
 
+  // De pagina wordt elke vijf minuten opnieuw opgebouwd (revalidate in page.tsx), dus de tegel wisselt vanzelf op
+  // de eerste en de dag na de laatste dag van de periode.
+  const zorgseizoen =
+    insurance.homeTile && inSeason(new Date(), insurance.homeTileFrom, insurance.homeTileUntil)
+  const tiles = HERO_TILES.map((t) =>
+    zorgseizoen && t.key === 'subsidiedesk'
+      ? { ...INSURANCE_TILE, text: `${figures.insuranceDiscount.replace(/^t/, 'T')} korting voor uw personeel` }
+      : t,
+  )
+
   const picked = team.filter((m) => m.onHome)
   const faces = (picked.length > 0 ? picked : team).slice(0, 4)
 
@@ -105,7 +116,7 @@ export async function Home() {
           </div>
 
           <ul className={s.tiles}>
-            {HERO_TILES.map((t) => {
+            {tiles.map((t) => {
               const Icon = ICONS[t.key]
               return (
                 <li key={t.key}>

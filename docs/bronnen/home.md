@@ -12,6 +12,7 @@ Inventaris = `2026-10-16-dd-oig-site-inventaris.md` (regelnummers). Ontwerp = Pa
 | Hero, knoppen | "Plan een kennismaking", "Bekijk onze diensten" | BOUWEN.md regel 6, ontwerp | n.v.t. |
 | Hero, cijfers | schoolbesturen, scholen, ervaring | `figures.boards`, `figures.schools`, `figures.years`; labels inventaris r. 348-355 | cijfers uit CMS |
 | Hero, tegels | "Aanbesteden / Rechtmatig en zonder zorgen" enz. | Ondertitels gelijk aan `src/components/navigation.ts` (DIENSTEN); "Slim inkopen" uit ontwerp en paginaverslag | ingekort |
+| Hero, seizoenstegel | "Zorgverzekering / Tot 16% korting voor uw personeel" in plaats van Subsidiedesk, van 15 november tot en met 15 januari | Wens OIG (Dave en Arjan) 19 november 2026: in de overstapperiode, "tot de tweede of derde week van januari". Korting uit `figures.insuranceDiscount`, periode en aan/uit in Instellingen > Zorgverzekering | n.v.t. |
 | Diensten, kop | "Alles wat uw bestuur inkoopt, onder één dak" / "Van inkoopscan tot contractbeheer. U kiest zelf welke diensten u inzet." | Ontwerp; "geheel naar uw behoefte" inventaris r. 1427 | herschreven |
 | Diensten, Aanbesteden | "Wij begeleiden uw Europese of meervoudig onderhandse aanbesteding..." | Inventaris r. 1256, 1264, 1275 (inschrijvingen beoordelen, uit handen nemen), r. 329 (voldoet aan regelgeving) | herschreven |
 | Diensten, Ondersteuning bij inkoop | "Een inkoopscan laat zien hoe u ervoor staat..." | Inventaris r. 337 (van analyse tot implementatie, kosten besparen), r. 1412, werkwijze stap 2 ("weet u precies hoe u ervoor staat") | herschreven |

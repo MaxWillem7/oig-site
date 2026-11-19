@@ -31,6 +31,19 @@ export const HERO_TILES = [
   },
 ] as const
 
+/**
+ * Seizoenstegel: in de overstapperiode van de zorgverzekering (instelbaar in het CMS, Instellingen >
+ * Zorgverzekering) neemt deze de plek van Subsidiedesk in. Wens OIG 19 november 2026. De tekst komt uit
+ * "Korting zorgverzekering" in de kerncijfers; dit is de standaard.
+ */
+export const INSURANCE_TILE = {
+  key: 'verzekeringen',
+  title: 'Zorgverzekering',
+  text: 'Tot 16% korting voor uw personeel',
+  href: '/dienst/verzekeringen/',
+  tone: 'blauw',
+} as const
+
 export const SERVICES = [
   {
     key: 'aanbesteden',
