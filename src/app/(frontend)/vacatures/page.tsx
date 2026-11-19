@@ -9,19 +9,12 @@ import s from '@/components/vacatures/vacatures.module.css'
 export const revalidate = 300
 export const generateMetadata = () => pageMetadata('/vacatures/')
 
-/** Wat op de live site bij elke vacature terugkomt (zie docs/bronnen/vacatures.md). */
+/** Letterlijk van het live overzicht /vacatures/ (19 november 2026), kop "De Onderwijs Inkoop Groep zoekt mensen die:". */
 const ZOEKEN = [
-  'uitgesproken teamspelers zijn',
-  'een analytische inslag hebben en goed kunnen rekenen',
-  'mbo+ of hbo werk- en denkniveau hebben, afhankelijk van de functie',
-  'in een straal van 40 kilometer rond Zeewolde wonen',
-]
-
-const BIEDEN = [
-  'een enthousiast team van betrokken collega’s',
-  'een groeiende organisatie met impact op het Nederlandse onderwijs',
-  'digitaal gereedschap om je werk slim te doen',
-  'een team waarin fouten mogen, zolang we ervan leren',
+  'Uitgesproken teamspelers zijn',
+  'Een analytische inslag hebben en goed kunnen rekenen',
+  'Een hbo-opleiding hebben afgerond',
+  'In een straal van 40 kilometer rond Zeewolde wonen',
 ]
 
 export default async function VacaturesPage() {
@@ -118,26 +111,14 @@ export default async function VacaturesPage() {
       )}
 
       <section className="section section--creme">
-        <div className="container split">
-          <div className="stack">
+        <div className="container">
+          <div className={`stack ${s.zoeken}`}>
             <p className="kicker">Wie wij zoeken</p>
-            <h2 className={s.kolomKop}>Wij zoeken mensen die</h2>
+            <h2 className={s.kolomKop}>De Onderwijs Inkoop Groep zoekt mensen die</h2>
             <ul className={s.regels}>
               {ZOEKEN.map((t) => (
                 <li key={t}>
                   <Check />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="stack">
-            <p className="kicker">Wat wij bieden</p>
-            <h2 className={s.kolomKop}>Bij elke functie</h2>
-            <ul className={`${s.regels} ${s.regelsPijl}`}>
-              {BIEDEN.map((t) => (
-                <li key={t}>
-                  <Arrow />
                   {t}
                 </li>
               ))}

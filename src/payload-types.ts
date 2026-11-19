@@ -251,40 +251,72 @@ export interface Vacature {
   intro?: string | null;
   about?: string | null;
   seeking?: {
+    /**
+     * Leeg laten voor de standaardkop "De Onderwijs Inkoop Groep zoekt mensen die".
+     */
+    title?: string | null;
     intro?: string | null;
+    /**
+     * Begin een punt met ## voor een tussenkop (bijv. "## Samenwerking"). Zet woorden tussen ** voor vet (bijv. "**Opleiding:** ...").
+     */
     items?:
       | {
           text: string;
           id?: string | null;
         }[]
       | null;
+    outro?: string | null;
   };
   profile?: {
+    /**
+     * Leeg laten voor de standaardkop "Wie ben jij?".
+     */
+    title?: string | null;
     intro?: string | null;
+    /**
+     * Begin een punt met ## voor een tussenkop (bijv. "## Samenwerking"). Zet woorden tussen ** voor vet (bijv. "**Opleiding:** ...").
+     */
     items?:
       | {
           text: string;
           id?: string | null;
         }[]
       | null;
+    outro?: string | null;
   };
   tasks?: {
+    /**
+     * Leeg laten voor de standaardkop "Wat ga je doen?".
+     */
+    title?: string | null;
     intro?: string | null;
+    /**
+     * Begin een punt met ## voor een tussenkop (bijv. "## Samenwerking"). Zet woorden tussen ** voor vet (bijv. "**Opleiding:** ...").
+     */
     items?:
       | {
           text: string;
           id?: string | null;
         }[]
       | null;
+    outro?: string | null;
   };
   offer?: {
+    /**
+     * Leeg laten voor de standaardkop "Wat wij bieden".
+     */
+    title?: string | null;
     intro?: string | null;
+    /**
+     * Begin een punt met ## voor een tussenkop (bijv. "## Samenwerking"). Zet woorden tussen ** voor vet (bijv. "**Opleiding:** ...").
+     */
     items?:
       | {
           text: string;
           id?: string | null;
         }[]
       | null;
+    outro?: string | null;
   };
   /**
    * Optioneel. Eigen blokken onder "Wat wij bieden", bijv. "Zo leer je het vak" of "Waarom deze functie?".
@@ -293,6 +325,9 @@ export interface Vacature {
     | {
         title: string;
         intro?: string | null;
+        /**
+         * Begin een punt met ## voor een tussenkop (bijv. "## Samenwerking"). Zet woorden tussen ** voor vet (bijv. "**Opleiding:** ...").
+         */
         items?:
           | {
               text: string;
@@ -737,6 +772,7 @@ export interface VacaturesSelect<T extends boolean = true> {
   seeking?:
     | T
     | {
+        title?: T;
         intro?: T;
         items?:
           | T
@@ -744,10 +780,12 @@ export interface VacaturesSelect<T extends boolean = true> {
               text?: T;
               id?: T;
             };
+        outro?: T;
       };
   profile?:
     | T
     | {
+        title?: T;
         intro?: T;
         items?:
           | T
@@ -755,10 +793,12 @@ export interface VacaturesSelect<T extends boolean = true> {
               text?: T;
               id?: T;
             };
+        outro?: T;
       };
   tasks?:
     | T
     | {
+        title?: T;
         intro?: T;
         items?:
           | T
@@ -766,10 +806,12 @@ export interface VacaturesSelect<T extends boolean = true> {
               text?: T;
               id?: T;
             };
+        outro?: T;
       };
   offer?:
     | T
     | {
+        title?: T;
         intro?: T;
         items?:
           | T
@@ -777,6 +819,7 @@ export interface VacaturesSelect<T extends boolean = true> {
               text?: T;
               id?: T;
             };
+        outro?: T;
       };
   blocks?:
     | T

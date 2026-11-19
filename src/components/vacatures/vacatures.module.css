@@ -498,3 +498,20 @@
 .witteKnop {
   background: var(--wit);
 }
+
+/* Lijst met tussenkop in een vacatureblok (bijv. "Dossierregie") */
+.lijstDeel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.blok p.tussenkop {
+  color: var(--tekst);
+  font-size: 18px;
+}
+
+/* Overzicht: "zoekt mensen die" als één kolom (live heeft geen blok "Wat wij bieden") */
+.zoeken {
+  max-width: 720px;
+}

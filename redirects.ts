@@ -46,6 +46,9 @@ export const redirects: Redirect[] = [
     `${UPLOADS}/:bestand(.*(?:premie|zorg|wijzigingsformulier).*\\.pdf)`,
   ]),
 
+  // Vacature die op de oude site niet meer bestaat (404 sinds november 2026)
+  ...to('/vacatures/', ['/vacatures/inkoopadviseur-relatiebeheerder/']),
+
   // Vacature die op de oude site onder een dubbel adres staat (WordPress zette er "-2" achter, 13 november 2026)
   ...to('/vacatures/medewerker-aanbestedingsdesk/', ['/vacatures/medewerker-aanbestedingsdesk-2/']),
 

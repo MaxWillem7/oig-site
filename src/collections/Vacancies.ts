@@ -2,20 +2,34 @@ import type { CollectionConfig, Field } from 'payload'
 import { slugField } from '../fields/slug'
 import { editable } from './shared'
 
+/** Uitleg bij elke puntenlijst: tussenkoppen en vet. */
+const PUNTEN_UITLEG =
+  'Begin een punt met ## voor een tussenkop (bijv. "## Samenwerking"). Zet woorden tussen ** voor vet (bijv. "**Opleiding:** ...").'
+
 const bullets = (name: string, label: string, description?: string): Field => ({
   name,
   label,
   type: 'group',
   fields: [
+    {
+      name: 'title',
+      label: 'Eigen kop (optioneel)',
+      type: 'text',
+      admin: { description: `Leeg laten voor de standaardkop "${label}".` },
+    },
     { name: 'intro', label: 'Inleiding (optioneel)', type: 'textarea' },
     {
       name: 'items',
       label: 'Punten',
       labels: { singular: 'Punt', plural: 'Punten' },
       type: 'array',
-      admin: { components: { RowLabel: '/components/admin/RowLabel#RowLabel' } },
+      admin: {
+        components: { RowLabel: '/components/admin/RowLabel#RowLabel' },
+        description: PUNTEN_UITLEG,
+      },
       fields: [{ name: 'text', label: 'Tekst', type: 'text', required: true }],
     },
+    { name: 'outro', label: 'Tekst onder de punten (optioneel)', type: 'textarea' },
   ],
   admin: description ? { description } : undefined,
 })
@@ -79,7 +93,7 @@ export const Vacancies: CollectionConfig = {
           label: 'Punten',
           labels: { singular: 'Punt', plural: 'Punten' },
           type: 'array',
-          admin: { components: { RowLabel: '/components/admin/RowLabel#RowLabel' } },
+          admin: { components: { RowLabel: '/components/admin/RowLabel#RowLabel' }, description: PUNTEN_UITLEG },
           fields: [{ name: 'text', label: 'Tekst', type: 'text', required: true }],
         },
         { name: 'outro', label: 'Tekst onder de punten', type: 'textarea' },

@@ -71,6 +71,8 @@ const MOVED: [string, string][] = [
   ['/wp-content/uploads/wijzigingsformulier-oig-2027.pdf', '/dienst/verzekeringen/'],
   // Nieuwe vacature: op de oude site met "-2" achter het adres
   ['/vacatures/medewerker-aanbestedingsdesk-2/', '/vacatures/medewerker-aanbestedingsdesk/'],
+  // Vacature die van de oude site is gehaald
+  ['/vacatures/inkoopadviseur-relatiebeheerder/', '/vacatures/'],
   // Vangnet premie-PDF's van eerdere jaren (exacte namen onbekend: patroon van 2026, hoofdletters, jaarmap)
   ['/wp-content/uploads/premie-overzicht-collectieve-zorgverzekering-oig-2025.pdf', '/dienst/verzekeringen/'],
   ['/wp-content/uploads/premie-overzicht-collectieve-zorgverzekering-oig-2024.pdf', '/dienst/verzekeringen/'],
@@ -121,7 +123,6 @@ const KEPT = [
   '/over-ons/',
   '/ons-team/',
   '/vacatures/',
-  '/vacatures/inkoopadviseur-relatiebeheerder/',
   '/vacatures/junior-inkoopadviseur-aanbestedingsdesk/',
   '/vacatures/medior-inkoopadviseur-aanbestedingsdesk/',
   '/vacatures/specialist-inkoopdossier/',

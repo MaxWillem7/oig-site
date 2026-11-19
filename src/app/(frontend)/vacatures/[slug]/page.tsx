@@ -13,10 +13,20 @@ import s from '@/components/vacatures/vacatures.module.css'
 export const revalidate = 300
 
 type Props = { params: Promise<{ slug: string }> }
-type Groep = { intro?: string | null; items?: { text: string; id?: string | null }[] | null } | null | undefined
+type Groep =
+  | {
+      title?: string | null
+      intro?: string | null
+      items?: { text: string; id?: string | null }[] | null
+      outro?: string | null
+    }
+  | null
+  | undefined
 
 const punten = (g: Groep) => (g?.items ?? []).filter((i) => i.text?.trim())
-const gevuld = (g: Groep) => Boolean(g?.intro?.trim()) || punten(g).length > 0
+const gevuld = (g: Groep) => Boolean(g?.intro?.trim() || g?.outro?.trim()) || punten(g).length > 0
+/** Platte tekst van een punt: zonder ## (tussenkop) en ** (vet). */
+const plat = (t: string) => t.replace(/^##\s*/, '').replace(/\*\*/g, '')
 const euro = (n: number) => `€ ${n.toLocaleString('nl-NL')}`
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -26,38 +36,64 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildMetadata(`/vacatures/${v.slug}/`, { title: `Vacature ${v.title} | OIG`, description: v.teaser })
 }
 
+/** Tekst met **vet** erin. */
+function Vet({ text }: { text: string }) {
+  const delen = text.split(/\*\*(.+?)\*\*/g)
+  return <>{delen.map((d, i) => (i % 2 === 1 ? <strong key={i}>{d}</strong> : d))}</>
+}
+
+/**
+ * Een blok met kop, inleiding, punten en slottekst. Een punt dat met ## begint is een tussenkop: de punten
+ * erna komen in een eigen lijst (zoals "Dossierregie" en "Samenwerking" op de oude site).
+ */
 function Blok({
   title,
   groep,
-  outro,
   icoon,
   className,
 }: {
   title: string
   groep: Groep
-  /** Tekst onder de punten (alleen bij extra blokken). */
-  outro?: string | null
   icoon: 'punt' | 'vink' | 'pijl'
   className?: string
 }) {
-  if (!gevuld(groep) && !outro?.trim()) return null
-  const items = punten(groep)
+  if (!gevuld(groep)) return null
+  const lijsten: { kop?: string; items: { text: string; id?: string | null }[] }[] = []
+  for (const i of punten(groep)) {
+    const kop = i.text.match(/^##\s*(.+)$/)
+    if (kop) lijsten.push({ kop: kop[1].trim(), items: [] })
+    else {
+      if (lijsten.length === 0) lijsten.push({ items: [] })
+      lijsten[lijsten.length - 1].items.push(i)
+    }
+  }
   return (
     <section className={`${s.blok} ${className ?? ''}`}>
-      <h2>{title}</h2>
+      <h2>{groep?.title?.trim() || title}</h2>
       {groep?.intro?.trim() && <p>{groep.intro}</p>}
-      {items.length > 0 && (
-        <ul className={`${s.punten} ${icoon === 'pijl' ? s.puntenPijl : ''}`}>
-          {items.map((i, idx) => (
-            <li key={i.id ?? idx} className={icoon === 'punt' ? s.punt : undefined}>
-              {icoon === 'vink' && <Check />}
-              {icoon === 'pijl' && <Arrow />}
-              <span>{i.text}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-      {outro?.trim() && <p>{outro}</p>}
+      {lijsten.map((l, lidx) => (
+        <div key={lidx} className={s.lijstDeel}>
+          {l.kop && (
+            <p className={s.tussenkop}>
+              <strong>{l.kop}</strong>
+            </p>
+          )}
+          {l.items.length > 0 && (
+            <ul className={`${s.punten} ${icoon === 'pijl' ? s.puntenPijl : ''}`}>
+              {l.items.map((i, idx) => (
+                <li key={i.id ?? idx} className={icoon === 'punt' ? s.punt : undefined}>
+                  {icoon === 'vink' && <Check />}
+                  {icoon === 'pijl' && <Arrow />}
+                  <span>
+                    <Vet text={i.text} />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+      {groep?.outro?.trim() && <p>{groep.outro}</p>}
     </section>
   )
 }
@@ -82,8 +118,12 @@ export default async function VacaturePage({ params }: Props) {
   // Platte tekst voor Google for Jobs: openingstekst plus alle punten
   const omschrijving = [
     v.intro,
-    ...[v.tasks, v.profile, v.seeking, v.offer].flatMap((g: Groep) => [g?.intro, ...punten(g).map((i) => `- ${i.text}`)]),
-    ...(v.blocks ?? []).flatMap((b) => [b.title, b.intro, ...punten(b).map((i) => `- ${i.text}`), b.outro]),
+    ...[v.tasks, v.profile, v.seeking, v.offer, ...(v.blocks ?? [])].flatMap((g: Groep) => [
+      g?.title,
+      g?.intro,
+      ...punten(g).map((i) => (/^##/.test(i.text) ? plat(i.text) : `- ${plat(i.text)}`)),
+      g?.outro,
+    ]),
     v.about,
   ]
     .map((t) => t?.trim())
@@ -151,7 +191,7 @@ export default async function VacaturePage({ params }: Props) {
             {(v.blocks ?? [])
               .filter((b) => b.title?.trim())
               .map((b, idx) => (
-                <Blok key={b.id ?? idx} title={b.title} groep={b} outro={b.outro} icoon="punt" />
+                <Blok key={b.id ?? idx} title={b.title} groep={{ ...b, title: null }} icoon="punt" />
               ))}
             {v.about?.trim() && (
               <section className={s.blok}>

@@ -29,37 +29,41 @@ Inventaris = `2026-10-16-dd-oig-site-inventaris.md` (regelnummers). Ontwerp = Pa
 | Solliciteer | "Liever eerst bellen?" met telefoon en e-mail | Ontwerp; gegevens uit instellingen | functioneel |
 | Andere vacatures | Titel, uren, plaats | CMS | uit CMS |
 
-## Wijzigingen 19 november 2026 (verzoeken OIG van 12 en 13 november)
+## Gelijk aan de live site (19 november 2026)
 
-Bron: mails van Thomas Bruschke (12 november 16:22 en 13 november 12:10) en de live site op 19 november 2026
-(`/vacatures/` en de vier vacaturepagina's, opgehaald met curl). Online gezet via de datamigratie
-`src/migrations/20261119_080000_inhoud_zorg_vacatures_privacy.ts`, ook in de seed.
+**Besluit Max (19 november 2026): de live WordPress-site is de enige bron voor vacatures.** Alle tekst per vacature
+staat letterlijk zoals op live (titel, openingstekst, uren, niveau, alle blokken, punten met hun leestekens, salaris,
+slottekst), ook waar live een tik- of taalfout heeft. Bron: curl op de vier live pagina's en `/vacatures/` op
+19 november 2026. Data: `src/seed/data/02-vacatures.ts`; online gezet met de datamigratie
+`src/migrations/20261119_083000_vacatures_gelijk_aan_live.ts`. Een script legde elke tekstregel van live naast de
+preview: alles staat erop.
 
-| Wijziging | Bron | Vorm |
+Opmaak die bij deze site blijft (geen inhoud):
+- Vaste koppen per blok in een vaste volgorde (Wat ga je doen, Wie ben jij, zoekt mensen die, Wat wij bieden);
+  live heeft per vacature een andere volgorde. Live zet een dubbele punt achter "zoekt mensen die:"; hier niet.
+- De slottekst ("Kom ons versterken" op live) is een extra blok: kop "Kom ons versterken" (junior, medior),
+  "Extra informatie" (specialist) of "Herken je jezelf hierin?" (medewerker). Het sierlabel "Kom ons versterken"
+  boven die laatste twee koppen staat er niet.
+- Medior: de alinea over de OIG staat live onder de kop "zoekt mensen die" en staat hier als inleiding van dat blok.
+- Specialist: tussenkoppen "Dossierregie" en "Samenwerking" (in het CMS: punt dat met ## begint); kop "De
+  Onderwijs Inkoop Groep zoekt collega's die" (veld "Eigen kop").
+- Medewerker: vette woorden in "Zo leer je het vak" (in het CMS tussen **).
+
+Nieuw in het CMS hiervoor: per blok een "Eigen kop" en "Tekst onder de punten" (migratie
+`20261119_082538_vacature_kop_en_slot`), en de extra blokken (`20261119_075857_vacature_blokken`).
+
+| Vacature | Adres | Wat er veranderde op 19 november (tweede ronde) |
 |---|---|---|
-| Titel "Junior inkoper" (was Junior Inkoopadviseur Aanbestedingsdesk), adres blijft `/vacatures/junior-inkoopadviseur-aanbestedingsdesk/` | Mail 12 nov; live H1 en overzicht | letterlijk |
-| Titel "Medior inkoper" (was Medior Inkoopadviseur Aanbestedingsdesk), adres blijft | idem | letterlijk |
-| Junior en medior: punt "werken met AI: je leert hoe je AI verantwoord ..." als laatste punt onder "Wat ga je doen?" | Live pagina's (OIG vroeg het onder "Zo leer je het vak"; die kop hebben deze twee vacatures niet, Max zette het op live onder "Wat ga je doen?") | letterlijk |
-| Nieuwe vacature "Medewerker Aanbestedingsdesk", `/vacatures/medewerker-aanbestedingsdesk/` (oude site: `-2` erachter, doorverwezen) | Docx "Medewerker Aanbestedingsdesk vacature" (klantmap Zorgverzekering 2027), met de correctie van 13 nov: "medior inkoopadviseur" wordt op beide plekken "medior inkoper" | letterlijk; puntkomma's aan het eind van de punten weggelaten zoals bij de andere vacatures |
-| Nieuwe vacature: blok "De Onderwijs Inkoop Groep zoekt mensen die" | Live pagina (zelfde vier punten als de andere vacatures) | letterlijk |
-| Nieuwe vacature: "Zo leer je het vak", "Waarom deze functie?", "Herken je jezelf hierin?" | Docx; staan in het nieuwe CMS-veld "Extra blokken" (onder "Wat wij bieden") | letterlijk |
-| Nieuwe vacature: losse zin "Ervaring met inkoop ... geen vereiste." | Docx (onder de lijst van "Wie ben jij?"); hier als laatste punt van die lijst | letterlijk |
-| Nieuwe vacature: uren 24-32 uur, MBO+ / HBO, Zeewolde, geplaatst 13 november 2026 | Live pagina en WordPress-publicatiedatum | letterlijk |
-| Nieuwe vacature: foto's 085, 099, 097 | Al in het CMS (zelfde reeks als de andere aanbestedingsdeskvacatures); live gebruikt bij alle vacatures dezelfde foto's | keuze DD |
+| Junior inkoper | `/vacatures/junior-inkoopadviseur-aanbestedingsdesk/` | "inkoop vak", "Je bent bereidheid ... werken." en "na afronding van een traject." zoals live; zin "Afhankelijk van jouw ervaring..." nu ná de lijst; slotblok "Kom ons versterken" erbij |
+| Medior inkoper | `/vacatures/medior-inkoopadviseur-aanbestedingsdesk/` | Openingstekst één alinea zoals live; puntkomma's en punten achter de punten zoals live; OIG-alinea onder "zoekt mensen die"; slotblok met "Stuur dan je motivatie en CV naar Justin Novák." |
+| Medewerker Aanbestedingsdesk | `/vacatures/medewerker-aanbestedingsdesk/` (live `-2`, doorverwezen) | Puntkomma's zoals live; slotzin "Ervaring met inkoop..." onder de lijst; "Solliciteer via de knop" (was "Solliciteer dan via"); **"doorgroeien naar medior inkoopadviseur"** in "Zo leer je het vak" zoals live (OIG vroeg op 13 november om "medior inkoper"; in "Wat wij bieden" staat live wel "medior inkoper") |
+| Commercieel medewerker binnendienst | `/vacatures/specialist-inkoopdossier/` | "24–32 uur" zoals live; kop "zoekt collega's die"; tussenkoppen Dossierregie en Samenwerking; "Afspraken & kwaliteit" als punt zoals live; slotblok "Extra informatie" |
+| Inkoopadviseur / Accountmanager | was `/vacatures/inkoopadviseur-relatiebeheerder/` | Live 404: in het CMS terug naar concept (niet verwijderd); het oude adres verwijst naar `/vacatures/`; uit de seed |
 
-### Verschillen met live die niet zijn overgenomen (voor OIG)
-
-- **Inkoopadviseur / Accountmanager** (`/vacatures/inkoopadviseur-relatiebeheerder/`) staat niet meer op de live site
-  (404, niet in het overzicht). Op de nieuwe site staat hij nog; offline halen door hem in het CMS op concept te zetten.
-- In de tekst van de junior- en mediorvacature staat op live nog "Junior Inkoopadviseur" en "Medior Inkoopadviseur"
-  ("zoeken we een ...", "Als ... ondersteun en adviseer je"); zo overgenomen.
-- Junior: op live staat "Afhankelijk van jouw ervaring pak je steeds meer zelfstandig op..." ná de lijst; hier
-  ervoor (het blok heeft één inleiding).
-- Live overzicht: "zoekt mensen die" zegt "Een hbo-opleiding hebben afgerond" en "Uitgesproken teamspelers zijn";
-  het overzicht hier zegt "mbo+ of hbo werk- en denkniveau, afhankelijk van de functie" (eerder besluit, ongewijzigd).
-- Specialist inkoopdossier: live kop "zoekt collega's die" (hier "mensen die"), live "24–32 uur" met lang streepje en
-  een slotblok "Extra informatie" met "Stuur je cv ... naar info@onderwijsinkoopgroep.nl"; niet overgenomen.
-- Medior: slotzin live "Stuur dan je motivatie en CV naar Justin Novák" niet overgenomen (sollicitatieformulier).
+Overzicht `/vacatures/`: kop "De Onderwijs Inkoop Groep zoekt mensen die" met de vier punten letterlijk van live
+("Uitgesproken teamspelers zijn", "Een hbo-opleiding hebben afgerond", ...). Het blok "Wat wij bieden / Bij elke
+functie" is weg: dat staat niet op het live overzicht. De openingstekst bovenaan is nog de eerdere ingekorte versie
+(zonder "no cure, no pay" en "kinderopvangorganisaties", zie hieronder); niet gevraagd in deze ronde.
 
 ## Weggelaten ten opzichte van het ontwerp of de live site
 
@@ -73,9 +77,9 @@ Bron: mails van Thomas Bruschke (12 november 16:22 en 13 november 12:10) en de l
 
 ## Open voor OIG
 
-- Inkoopadviseur / Accountmanager is van de live site gehaald: hier ook offline halen?
 - Publicatie- en sluitingsdatum per vacature.
 - Opleidingsniveau Junior (mbo+ of hbo).
-- Definitieve naam "Specialist Inkoopdossier" of "Commercieel medewerker binnendienst".
 - Pensioen: "100% pensioenbijdrage" of "premievrij pensioen"? Teamgrootte.
 - Contactpersoon per vacature voor "Liever eerst bellen?" (nu het algemene nummer).
+
+- "Zo leer je het vak" bij Medewerker Aanbestedingsdesk zegt live (en dus hier) "medior inkoopadviseur"; OIG vroeg om "medior inkoper". Op live aanpassen, dan volgt de preview.

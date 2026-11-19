@@ -77,7 +77,7 @@ pagina: alles komt letterlijk terug, op de punten hieronder na. `datePosted` = v
 
 | Slug | Titel (H1 live) | Uren · opleiding | Salaris | Geplaatst | Foto's (fotoshoot) |
 |---|---|---|---|---|---|
-| `inkoopadviseur-relatiebeheerder` | Inkoopadviseur / Accountmanager | 32-40 uur · HBO | 3.484 tot 4.728 | 2025-07-10 | 085, 078, 107 |
+| `inkoopadviseur-relatiebeheerder` | Inkoopadviseur / Accountmanager (sinds 19 nov concept: live 404) | 32-40 uur · HBO | 3.484 tot 4.728 | 2025-07-10 | 085, 078, 107 |
 | `junior-inkoopadviseur-aanbestedingsdesk` | Junior inkoper (tot 19 nov: Junior Inkoopadviseur Aanbestedingsdesk) | 24-32 uur · MBO+ / HBO | geen range genoemd | 2026-09-24 | 085, 098, 097 |
 | `medior-inkoopadviseur-aanbestedingsdesk` | Medior inkoper (tot 19 nov: Medior Inkoopadviseur Aanbestedingsdesk) | 24-32 uur · HBO | geen range genoemd | 2024-11-08 | 089, 099, 081 |
 | `medewerker-aanbestedingsdesk` | Medewerker Aanbestedingsdesk (nieuw 19 nov, zie vacatures.md) | 24-32 uur · MBO+ / HBO | geen range genoemd | 2026-11-13 | 085, 099, 097 |
