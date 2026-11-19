@@ -114,97 +114,155 @@ export function InsurerComparison() {
   )
 }
 
+/** Korte kop van een tabel binnen de groep van de verzekeraar: "CZ basisverzekering 2027" wordt "Basisverzekering". */
+const tableLabel = (t: Premy) => {
+  const kort = t.title
+    .replace(t.insurer, '')
+    .replace(String(t.year), '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return kort ? kort.charAt(0).toUpperCase() + kort.slice(1) : t.title
+}
+
+const anchorId = (insurer: string) =>
+  `premies-${insurer
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')}`
+
+/** Eén premietabel: echte tabel vanaf 700px, daaronder kaarten per pakket zodat er geen kolommen buiten beeld vallen. */
+function PremiumTable({ t }: { t: Premy }) {
+  const columns = t.columns ?? []
+  const label = tableLabel(t)
+  const rows = (t.rows ?? []).map((r) => {
+    const cells = r.cells ?? []
+    const count = Math.max(columns.length, cells.length)
+    return {
+      id: r.id,
+      label: r.label,
+      values: Array.from({ length: count }, (_, i) => cells[i]?.value ?? ''),
+    }
+  })
+  const breed = columns.length > 2
+  return (
+    <div className={`${s.premie} ${breed ? s.premieVol : ''}`}>
+      <div className={`tabel-wrap ${s.premieBreed}`}>
+        <table className={`tabel ${s.premieTabel}`}>
+          <caption>
+            <span className="sr-only">{t.insurer}: </span>
+            {label}
+          </caption>
+          {columns.length > 0 && (
+            <thead>
+              <tr>
+                <th scope="col">Pakket</th>
+                {columns.map((c, idx) => (
+                  <th key={c.id ?? idx} scope="col">
+                    {c.label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+          )}
+          <tbody>
+            {rows.map((r, ridx) => (
+              <tr key={r.id ?? ridx}>
+                <th scope="row">{r.label}</th>
+                {r.values.map((v, cidx) => (
+                  <td key={cidx}>{v}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className={s.premieSmal}>
+        <h4 className={s.premieTitel}>{label}</h4>
+        <ul className={s.premieKaarten}>
+          {rows.map((r, ridx) => (
+            <li key={r.id ?? ridx}>
+              <p className={s.premiePakket}>{r.label}</p>
+              <dl className={s.kaartRijen}>
+                {r.values.map((v, cidx) =>
+                  v ? (
+                    <div key={cidx}>
+                      <dt>{columns[cidx]?.label ?? ''}</dt>
+                      <dd className={s.nummer}>{v}</dd>
+                    </div>
+                  ) : null,
+                )}
+              </dl>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {t.note && <p className={`klein zacht ${s.premieNoot}`}>{t.note}</p>}
+    </div>
+  )
+}
+
 /**
- * Premietabellen uit het CMS, elk als echte tabel. Onder 700px staat dezelfde inhoud als kaarten per pakket,
- * zodat er geen kolommen buiten beeld vallen.
+ * Premietabellen uit het CMS, gegroepeerd per verzekeraar (in de volgorde uit het CMS), met bovenaan
+ * snelkoppelingen naar elke verzekeraar.
  */
 export function PremiumTables({ tables }: { tables: Premy[] }) {
+  const groups: { insurer: string; tables: Premy[] }[] = []
+  for (const t of tables) {
+    const last = groups[groups.length - 1]
+    if (last && last.insurer === t.insurer) last.tables.push(t)
+    else groups.push({ insurer: t.insurer, tables: [t] })
+  }
   return (
     <div className={s.premies}>
-      {tables.map((t) => {
-        const columns = t.columns ?? []
-        const rows = (t.rows ?? []).map((r) => {
-          const cells = r.cells ?? []
-          const count = Math.max(columns.length, cells.length)
-          return {
-            id: r.id,
-            label: r.label,
-            values: Array.from({ length: count }, (_, i) => cells[i]?.value ?? ''),
-          }
-        })
-        return (
-          <div key={t.id} className={s.premie}>
-            <div className={`tabel-wrap ${s.premieBreed}`}>
-              <table className={`tabel ${s.premieTabel}`}>
-                <caption>{t.title}</caption>
-                {columns.length > 0 && (
-                  <thead>
-                    <tr>
-                      <th scope="col">Pakket</th>
-                      {columns.map((c, idx) => (
-                        <th key={c.id ?? idx} scope="col">
-                          {c.label}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                )}
-                <tbody>
-                  {rows.map((r, ridx) => (
-                    <tr key={r.id ?? ridx}>
-                      <th scope="row">{r.label}</th>
-                      {r.values.map((v, cidx) => (
-                        <td key={cidx}>{v}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className={s.premieSmal}>
-              <h3 className={s.premieTitel}>{t.title}</h3>
-              <ul className={s.premieKaarten}>
-                {rows.map((r, ridx) => (
-                  <li key={r.id ?? ridx}>
-                    <p className={s.premiePakket}>{r.label}</p>
-                    <dl className={s.kaartRijen}>
-                      {r.values.map((v, cidx) =>
-                        v ? (
-                          <div key={cidx}>
-                            <dt>{columns[cidx]?.label ?? ''}</dt>
-                            <dd className={s.nummer}>{v}</dd>
-                          </div>
-                        ) : null,
-                      )}
-                    </dl>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {t.note && <p className={`klein zacht ${s.premieNoot}`}>{t.note}</p>}
+      {groups.length > 1 && (
+        <nav className={s.premieNav} aria-label="Premies per verzekeraar">
+          <p className="label">Ga naar</p>
+          <ul>
+            {groups.map((g) => (
+              <li key={g.insurer}>
+                <a href={`#${anchorId(g.insurer)}`}>{g.insurer}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+      {groups.map((g) => (
+        <section key={g.insurer} id={anchorId(g.insurer)} className={s.premieGroep} aria-labelledby={`${anchorId(g.insurer)}-kop`}>
+          <h3 id={`${anchorId(g.insurer)}-kop`} className={`h3 ${s.premieVerzekeraar}`}>
+            {g.insurer}
+          </h3>
+          <div className={s.premieRaster}>
+            {g.tables.map((t) => (
+              <PremiumTable key={t.id} t={t} />
+            ))}
           </div>
-        )
-      })}
+        </section>
+      ))}
     </div>
   )
 }
 
 type Party = {
   name: string
+  /** Vorige naam, klein onder de naam (bijv. "voorheen Fidus"). */
+  formerly?: string
   insurers: string
   phone: string
   email: string
   site: { href: string; label: string }
 }
 
-/** Contactkaart van Fidus of Jabes met klikbare telefoon, e-mail en website. */
+/** Contactkaart van Zicht Adviseurs of Jabes met klikbare telefoon, e-mail en website. */
 export function ContactCard({ party, children }: { party: Party; children?: ReactNode }) {
   return (
     <div className={`card ${s.contact}`}>
       <p className="label">{party.insurers}</p>
       <h3 className="h3">{party.name}</h3>
+      {party.formerly && <p className={`klein zacht ${s.voorheen}`}>{party.formerly}</p>}
       <ul className={s.contactLijst}>
         <li>
           <Phone aria-hidden strokeWidth={1.8} />

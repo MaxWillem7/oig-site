@@ -29,15 +29,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function Blok({
   title,
   groep,
+  outro,
   icoon,
   className,
 }: {
   title: string
   groep: Groep
+  /** Tekst onder de punten (alleen bij extra blokken). */
+  outro?: string | null
   icoon: 'punt' | 'vink' | 'pijl'
   className?: string
 }) {
-  if (!gevuld(groep)) return null
+  if (!gevuld(groep) && !outro?.trim()) return null
   const items = punten(groep)
   return (
     <section className={`${s.blok} ${className ?? ''}`}>
@@ -54,6 +57,7 @@ function Blok({
           ))}
         </ul>
       )}
+      {outro?.trim() && <p>{outro}</p>}
     </section>
   )
 }
@@ -79,6 +83,7 @@ export default async function VacaturePage({ params }: Props) {
   const omschrijving = [
     v.intro,
     ...[v.tasks, v.profile, v.seeking, v.offer].flatMap((g: Groep) => [g?.intro, ...punten(g).map((i) => `- ${i.text}`)]),
+    ...(v.blocks ?? []).flatMap((b) => [b.title, b.intro, ...punten(b).map((i) => `- ${i.text}`), b.outro]),
     v.about,
   ]
     .map((t) => t?.trim())
@@ -143,6 +148,11 @@ export default async function VacaturePage({ params }: Props) {
             <Blok title="Wie ben jij?" groep={v.profile} icoon="vink" />
             <Blok title="De Onderwijs Inkoop Groep zoekt mensen die" groep={v.seeking} icoon="vink" />
             <Blok title="Wat wij bieden" groep={v.offer} icoon="pijl" className={s.bieden} />
+            {(v.blocks ?? [])
+              .filter((b) => b.title?.trim())
+              .map((b, idx) => (
+                <Blok key={b.id ?? idx} title={b.title} groep={b} outro={b.outro} icoon="punt" />
+              ))}
             {v.about?.trim() && (
               <section className={s.blok}>
                 <h2>Over de Onderwijs Inkoop Groep</h2>

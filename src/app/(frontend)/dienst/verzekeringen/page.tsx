@@ -2,7 +2,7 @@ import { ArrowDown } from 'lucide-react'
 import { CtaBand, FaqSection, PageHero, Photo, SectionHeading } from '@/components/Blocks'
 import { JsonLd } from '@/components/JsonLd'
 import { cmsUrl } from '@/components/zorg/cmsUrl'
-import { DOCS, FIDUS, JABES, STEPS } from '@/components/zorg/content'
+import { DOCS, JABES, STEPS, ZICHT } from '@/components/zorg/content'
 import {
   ContactCard,
   DocLink,
@@ -24,18 +24,15 @@ export default async function VerzekeringenPage() {
     getSettings(),
     getPremiumTables(),
     getDocument(DOCS.form),
-    getDocument(DOCS.overview2026),
-    getDocument(DOCS.dcz2026),
+    getDocument(DOCS.overview),
+    getDocument(DOCS.dcz),
   ])
   const year = insurance.year
   const hasTables = tables.length > 0
   const formUrl = cmsUrl(formDoc?.url)
-  const downloads2026 = [
-    {
-      href: cmsUrl(overviewDoc?.url),
-      label: 'Premieoverzicht collectieve zorgverzekering 2026 (pdf)',
-    },
-    { href: cmsUrl(dczDoc?.url), label: 'Premietabel De Christelijke Zorgverzekeraar 2026 (pdf)' },
+  const downloads = [
+    { href: cmsUrl(overviewDoc?.url), label: `${DOCS.overview} (pdf)` },
+    { href: cmsUrl(dczDoc?.url), label: `${DOCS.dcz} (pdf)` },
   ].filter((d): d is { href: string; label: string } => Boolean(d.href))
 
   return (
@@ -135,11 +132,11 @@ export default async function VerzekeringenPage() {
               Bent u al verzekerd bij VGZ of Menzis? Dan voegt u het collectiviteitsnummer zelf toe
               door in te loggen bij uw verzekeraar; dat is daar de enige manier. Bij CZ, ONVZ en
               Nationale Nederlanden kunt u ook het wijzigingsformulier invullen en mailen naar
-              Fidus. Bij De Christelijke Zorgverzekeraar mailt u uw relatienummer naar Jabes
-              verzekeringen.
+              Zicht Adviseurs. Bij De Christelijke Zorgverzekeraar mailt u uw relatienummer naar
+              Jabes verzekeringen.
             </p>
             {formUrl && (
-              <DocLink href={formUrl}>Download het wijzigingsformulier 2026 (pdf)</DocLink>
+              <DocLink href={formUrl}>Download het {DOCS.form.toLowerCase()} (pdf)</DocLink>
             )}
           </div>
         </div>
@@ -152,27 +149,33 @@ export default async function VerzekeringenPage() {
             title={`Premieoverzicht ${year}`}
             lead={
               hasTables
-                ? `De premies voor ${year} per verzekeraar, direct op deze pagina.`
+                ? `De maandpremies voor ${year} per verzekeraar, per verzekerde van 18 jaar en ouder. De kortingen op de aanvullende en tandartsverzekeringen zijn al verwerkt.`
                 : undefined
             }
           />
           {hasTables ? (
-            <PremiumTables tables={tables} />
+            <>
+              <PremiumTables tables={tables} />
+              <p className={`klein zacht maat ${s.premieVoorbehoud}`}>
+                Aan deze informatie kunnen geen rechten worden ontleend. Voor de definitieve premies
+                verwijzen wij naar de websites van de verzekeraars.
+              </p>
+            </>
           ) : (
             <div className={s.geenPremies}>
               <Notice title={`De premies voor ${year} volgen`}>{insurance.notice}</Notice>
-              {downloads2026.length > 0 && (
-                <div className={s.downloads}>
-                  <h3>Tot die tijd: de premies van 2026</h3>
-                  <ul>
-                    {downloads2026.map((d) => (
-                      <li key={d.href}>
-                        <DocLink href={d.href}>{d.label}</DocLink>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            </div>
+          )}
+          {downloads.length > 0 && (
+            <div className={s.downloads}>
+              <h3>Download de premieoverzichten</h3>
+              <ul>
+                {downloads.map((d) => (
+                  <li key={d.href}>
+                    <DocLink href={d.href}>{d.label}</DocLink>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
@@ -182,17 +185,17 @@ export default async function VerzekeringenPage() {
         <div className="container">
           <SectionHeading
             kicker="Uw polis"
-            title="Fidus en Jabes helpen u verder"
-            lead="Vragen over het collectief en uw polis worden afgehandeld door Fidus. Voor De Christelijke Zorgverzekeraar is dat Jabes verzekeringen."
+            title="Zicht Adviseurs en Jabes helpen u verder"
+            lead="Vragen over het collectief en uw polis worden afgehandeld door Zicht Adviseurs. Voor De Christelijke Zorgverzekeraar is dat Jabes verzekeringen."
           />
           <div className="grid-2">
-            <ContactCard party={FIDUS}>
+            <ContactCard party={ZICHT}>
               <p>
                 Liever het wijzigingsformulier gebruiken? Mail het volledig ingevuld naar{' '}
-                <a className="link" href={`mailto:${FIDUS.email}`}>
-                  {FIDUS.email}
+                <a className="link" href={`mailto:${ZICHT.email}`}>
+                  {ZICHT.email}
                 </a>
-                . Fidus zorgt ervoor dat de korting op uw polis wordt doorgevoerd. Bij VGZ en Menzis
+                . Zicht Adviseurs zorgt ervoor dat de korting op uw polis wordt doorgevoerd. Bij VGZ en Menzis
                 kan dit alleen door zelf in te loggen.
               </p>
             </ContactCard>
@@ -222,7 +225,7 @@ export default async function VerzekeringenPage() {
                 {' '}
                 Het wijzigingsformulier vindt u hier:{' '}
                 <a className="link" href={formUrl}>
-                  Wijzigingsformulier 2026 (pdf)
+                  {DOCS.form} (pdf)
                 </a>
                 .
               </>

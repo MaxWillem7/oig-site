@@ -1,16 +1,17 @@
 /**
  * Vaste inhoud van /dienst/verzekeringen/. Bron per regel: docs/bronnen/verzekeringen.md.
- * Kortingen, collectiviteitsnummers en contactgegevens komen letterlijk uit de inventaris van de live pagina.
+ * Kortingen, collectiviteitsnummers, aanmeldlinks en de gegevens van Zicht Adviseurs komen uit het premieoverzicht 2027
+ * en het wijzigingsformulier 2027 (aangeleverd 18 november 2026); Jabes uit de inventaris van de live pagina.
  */
 
 export type Insurer = {
   name: string
-  /** Maximale korting op de aanvullende verzekering, zoals op de live pagina ("max. 16% korting"). */
+  /** Maximale korting op de aanvullende verzekering, zoals in het premieoverzicht 2027 ("Max. 16%"). */
   discount: string
   number: string
-  /** Aanmeldlink. Alleen gevuld als de link op 12 november 2026 is gecontroleerd en bij de verzekeraar uitkomt. */
+  /** Aanmeldlink. Alleen gevuld als de link is gecontroleerd (12 en 19 november 2026) en bij de verzekeraar uitkomt. */
   link: { href: string; label: string } | null
-  via: 'Fidus' | 'Jabes verzekeringen'
+  via: 'Zicht Adviseurs' | 'Jabes verzekeringen'
 }
 
 /** Gesorteerd op korting, zoals in het ontwerp. */
@@ -21,14 +22,14 @@ export const INSURERS: Insurer[] = [
     number: '3886964',
     // Live link had Mailchimp-parameters uit 2016 (ct, mc_cid, mc_eid); die zijn weggehaald.
     link: { href: 'https://aanmelden.cz.nl/collectiviteit/3886964', label: 'Aanmelden bij CZ' },
-    via: 'Fidus',
+    via: 'Zicht Adviseurs',
   },
   {
     name: 'VGZ',
     discount: 'tot 15%',
     number: '87711967',
     link: { href: 'https://www.vgz.nl/87711967', label: 'Aanmelden bij VGZ' },
-    via: 'Fidus',
+    via: 'Zicht Adviseurs',
   },
   {
     name: 'De Christelijke Zorgverzekeraar',
@@ -43,19 +44,13 @@ export const INSURERS: Insurer[] = [
   {
     name: 'ONVZ',
     discount: 'tot 10%',
-    number: '9461',
-    // https://www.onvz.nl/collectiviteiten?coll-nummer=9461 gaf op 12 november 2026 een 503 (onderhoud bij ONVZ).
-    // Niet te controleren, dus geen link. Na controle hier invullen.
-    link: null,
-    via: 'Fidus',
-  },
-  {
-    name: 'Nationale Nederlanden',
-    discount: 'tot 10%',
-    number: 'ditiszorg2240',
-    // Live link was een Outlook Safe Links-adres met een e-mailadres erin; dit is de echte bestemming.
-    link: { href: 'https://www.ditiszorg.nl/fidus', label: 'Aanmelden via ditiszorg.nl' },
-    via: 'Fidus',
+    number: '87737812',
+    // Link uit het premieoverzicht 2027; op 19 november 2026 gecontroleerd: 200, pagina noemt de Onderwijs Inkoop Groep.
+    link: {
+      href: 'https://www.onvz.nl/zorgverzekering/collectief?coll-nummer=87737812',
+      label: 'Aanmelden bij ONVZ',
+    },
+    via: 'Zicht Adviseurs',
   },
   {
     name: 'Menzis',
@@ -66,7 +61,16 @@ export const INSURERS: Insurer[] = [
       href: 'https://www.menzis.nl/premie-berekenen-en-aanvragen?collectiefId=57805',
       label: 'Aanmelden bij Menzis',
     },
-    via: 'Fidus',
+    via: 'Zicht Adviseurs',
+  },
+  {
+    name: 'Nationale Nederlanden',
+    discount: 'tot 5%',
+    number: 'ditiszorg2240',
+    // Premieoverzicht 2027: "Max. 5%" (de oude pagina zei 10%). De link in de pdf is een Outlook Safe Links-adres
+    // met een e-mailadres erin; dit is de echte bestemming, zoals ook als tekst in de pdf staat.
+    link: { href: 'https://www.ditiszorg.nl/fidus', label: 'Aanmelden via ditiszorg.nl' },
+    via: 'Zicht Adviseurs',
   },
 ]
 
@@ -81,16 +85,18 @@ export const STEPS = [
   },
   {
     title: 'Korting op uw polis',
-    text: 'De korting wordt op uw polis doorgevoerd. Vragen handelt Fidus af, voor De Christelijke Zorgverzekeraar is dat Jabes verzekeringen.',
+    text: 'De korting wordt op uw polis doorgevoerd. Vragen handelt Zicht Adviseurs (voorheen Fidus) af, voor De Christelijke Zorgverzekeraar is dat Jabes verzekeringen.',
   },
 ]
 
-export const FIDUS = {
-  name: 'Fidus',
+/** Zicht Adviseurs, tot 1 oktober 2026 Fidus. Gegevens uit het premieoverzicht en wijzigingsformulier 2027. */
+export const ZICHT = {
+  name: 'Zicht Adviseurs',
+  formerly: 'voorheen Fidus',
   insurers: 'CZ, VGZ, ONVZ, Nationale Nederlanden en Menzis',
-  phone: '085 860 00 00',
-  email: 'zorg.debilt@fidus.nl',
-  site: { href: 'https://www.fidus.nl/', label: 'www.fidus.nl' },
+  phone: '020 30 20 091',
+  email: 'zorg.debilt@zichtadviseurs.nl',
+  site: { href: 'https://www.zichtadviseurs.nl/', label: 'www.zichtadviseurs.nl' },
 }
 
 export const JABES = {
@@ -103,7 +109,7 @@ export const JABES = {
 
 /** Titels van de documenten in het CMS (collectie Documenten). */
 export const DOCS = {
-  form: 'Wijzigingsformulier 2026',
-  overview2026: 'Premieoverzicht collectieve zorgverzekering 2026',
-  dcz2026: 'Premietabel De Christelijke Zorgverzekeraar 2026',
+  form: 'Wijzigingsformulier 2027',
+  overview: 'Premieoverzicht collectieve zorgverzekering 2027',
+  dcz: 'Premietabel De Christelijke Zorgverzekeraar 2027',
 }

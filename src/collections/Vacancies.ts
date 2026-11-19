@@ -62,6 +62,30 @@ export const Vacancies: CollectionConfig = {
     bullets('tasks', 'Wat ga je doen?'),
     bullets('offer', 'Wat wij bieden'),
     {
+      name: 'blocks',
+      label: 'Extra blokken',
+      labels: { singular: 'Blok', plural: 'Blokken' },
+      type: 'array',
+      admin: {
+        components: { RowLabel: '/components/admin/RowLabel#RowLabel' },
+        description:
+          'Optioneel. Eigen blokken onder "Wat wij bieden", bijv. "Zo leer je het vak" of "Waarom deze functie?".',
+      },
+      fields: [
+        { name: 'title', label: 'Kop', type: 'text', required: true },
+        { name: 'intro', label: 'Tekst boven de punten', type: 'textarea' },
+        {
+          name: 'items',
+          label: 'Punten',
+          labels: { singular: 'Punt', plural: 'Punten' },
+          type: 'array',
+          admin: { components: { RowLabel: '/components/admin/RowLabel#RowLabel' } },
+          fields: [{ name: 'text', label: 'Tekst', type: 'text', required: true }],
+        },
+        { name: 'outro', label: 'Tekst onder de punten', type: 'textarea' },
+      ],
+    },
+    {
       name: 'salary',
       label: 'Salaris voor Google for Jobs',
       type: 'group',

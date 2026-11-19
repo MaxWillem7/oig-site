@@ -8,6 +8,8 @@
  *   ze ook), bestanden (`.pdf`, `.php`, `.xml`) zonder. Dan gaat het oude adres in één stap (308) naar het nieuwe.
  * - De eerste regel die past wint: specifieke regels staan boven de vangnetten.
  * - Een bestemming is altijd een pagina uit `src/lib/pages.ts` (of `/sitemap.xml`), nooit een andere redirect.
+ *   Enige uitzondering: /vacatures/medewerker-aanbestedingsdesk/ (vacature uit het CMS; gaat die offline, haal
+ *   dan ook de regel hieronder weg).
  * - Redirects gaan vóór pagina's en bestanden in `public/`. Zet hier dus nooit een adres dat op de nieuwe site
  *   bestaat.
  */
@@ -43,6 +45,9 @@ export const redirects: Redirect[] = [
     `${UPLOADS}/wijzigingsformulier-oig-2026.pdf`,
     `${UPLOADS}/:bestand(.*(?:premie|zorg|wijzigingsformulier).*\\.pdf)`,
   ]),
+
+  // Vacature die op de oude site onder een dubbel adres staat (WordPress zette er "-2" achter, 13 november 2026)
+  ...to('/vacatures/medewerker-aanbestedingsdesk/', ['/vacatures/medewerker-aanbestedingsdesk-2/']),
 
   // Losse pagina's per teamlid en per referentie (WordPress maakte ze aan, niemand linkte ernaar)
   ...to('/ons-team/', ['/team/:pad*']),

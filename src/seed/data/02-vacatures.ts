@@ -1,11 +1,14 @@
 import type { SeedContext } from '../context'
 
 /**
- * Vier vacatures, tekst van de live site (12 november 2026), in je-vorm. Slugs gelijk aan de
- * huidige adressen. Alleen aantoonbare typfouten zijn verbeterd; zie docs/bronnen/cms-inhoud.md.
+ * Vacatures, tekst van de live site (12 november 2026, bijgewerkt 19 november 2026 met de wijzigingen die
+ * OIG op 12 en 13 november vroeg), in je-vorm. Slugs gelijk aan de huidige adressen, behalve de nieuwe
+ * vacature (live: medewerker-aanbestedingsdesk-2, doorverwezen in redirects.ts). Alleen aantoonbare
+ * typfouten zijn verbeterd; zie docs/bronnen/cms-inhoud.md en docs/bronnen/vacatures.md.
  * datePosted = publicatiedatum van de pagina in WordPress (/wp-json/wp/v2/pages?slug=...).
  */
 type Bullets = { intro?: string; items: string[] }
+type Extra = { title: string; intro?: string; items?: string[]; outro?: string }
 
 type Vacancy = {
   slug: string
@@ -19,12 +22,14 @@ type Vacancy = {
   profile: Bullets
   tasks: Bullets
   offer: Bullets
+  /** Extra blokken onder "Wat wij bieden", bijv. "Zo leer je het vak". */
+  blocks?: Extra[]
   salary?: { min: number; max: number }
   photos: string[]
   datePosted: string
 }
 
-const VACANCIES: Vacancy[] = [
+export const VACANCIES: Vacancy[] = [
   {
     slug: 'inkoopadviseur-relatiebeheerder',
     title: 'Inkoopadviseur / Accountmanager',
@@ -86,7 +91,8 @@ const VACANCIES: Vacancy[] = [
   },
   {
     slug: 'junior-inkoopadviseur-aanbestedingsdesk',
-    title: 'Junior Inkoopadviseur Aanbestedingsdesk',
+    // Functietitel gewijzigd op verzoek van OIG (mail Thomas Bruschke, 12 november 2026)
+    title: 'Junior inkoper',
     teaser:
       'Aanbesteden, van uitvraag tot gunning, jij houdt overzicht waar anderen het kwijtraken. Hou je van structuur, scherpe deadlines en het gevoel dat een dossier klopt, dan vind je hier je plek.',
     hours: '24-32 uur',
@@ -122,6 +128,8 @@ const VACANCIES: Vacancy[] = [
         'het bewaken van wet- en regelgeving rondom inkoop en aanbesteden',
         'het signaleren van kansen om processen slimmer en beter in te richten',
         'het beheren en borgen van contracten na afronding van een traject',
+        // Toegevoegd op live op 13 november 2026 (verzoek OIG 12 november)
+        'werken met AI: je leert hoe je AI verantwoord en effectief inzet in inkoop- en aanbestedingstrajecten. Ook als je hier nog weinig ervaring mee hebt, helpen we je op weg.',
       ],
     },
     offer: {
@@ -142,7 +150,8 @@ const VACANCIES: Vacancy[] = [
   },
   {
     slug: 'medior-inkoopadviseur-aanbestedingsdesk',
-    title: 'Medior Inkoopadviseur Aanbestedingsdesk',
+    // Functietitel gewijzigd op verzoek van OIG (mail Thomas Bruschke, 12 november 2026)
+    title: 'Medior inkoper',
     teaser:
       'Heb jij reeds ervaring als inkoper binnen de publieke sector en ben jij op zoek naar een nieuwe uitdaging binnen een groeiend bedrijf? Dan hebben wij een prachtige positie voor jou.',
     hours: '24-32 uur',
@@ -183,6 +192,8 @@ const VACANCIES: Vacancy[] = [
         'het bewaken van wet- en regelgeving rondom inkoop en aanbesteden',
         'het signaleren van kansen om processen slimmer en beter in te richten',
         'het beheren en borgen van contracten na afronding van een traject',
+        // Toegevoegd op live op 13 november 2026 (verzoek OIG 12 november)
+        'werken met AI: je leert hoe je AI verantwoord en effectief inzet in inkoop- en aanbestedingstrajecten. Ook als je hier nog weinig ervaring mee hebt, helpen we je op weg.',
       ],
     },
     offer: {
@@ -205,6 +216,95 @@ const VACANCIES: Vacancy[] = [
     },
     photos: ['vacature-oig-089.jpg', 'vacature-oig-099.jpg', 'vacature-oig-081.jpg'],
     datePosted: '2024-11-08',
+  },
+  {
+    // Nieuw (mail Thomas Bruschke, 12 november 2026, met docx "Medewerker Aanbestedingsdesk vacature").
+    // Correctie van OIG (13 november): "doorgroeien naar medior inkoopadviseur" wordt op beide plekken "medior inkoper".
+    slug: 'medewerker-aanbestedingsdesk',
+    title: 'Medewerker Aanbestedingsdesk',
+    teaser:
+      'Ben jij op je werk degene die alles op de rails houdt? Je bewaakt planningen, zorgt dat documenten kloppen en weet precies wie je moet bellen als iets vastloopt. Dan zoeken we jou.',
+    hours: '24-32 uur',
+    education: 'MBO+ / HBO',
+    intro:
+      'Ben jij op je werk degene die alles op de rails houdt? Je bewaakt planningen, zorgt dat documenten kloppen en weet precies wie je moet bellen als iets vastloopt. Dan zoeken we jou.\n\nBij Onderwijs Inkoopgroep helpen we scholen en schoolbesturen om slim, eerlijk en duurzaam in te kopen. Voor onze Aanbestedingsdesk zoeken we iemand met een operationele of administratieve achtergrond die zich wil ontwikkelen in het inkoopvak. Ervaring met inkoop of aanbesteden is niet nodig: het vak leer je bij ons.',
+    seeking: {
+      items: [
+        'Uitgesproken teamplayers zijn',
+        'Een analytische inslag hebben en goed kunnen rekenen',
+        'HBO werk- en denkniveau',
+        'In een straal van 40 kilometer rond Zeewolde wonen',
+      ],
+    },
+    profile: {
+      intro:
+        'Je werkt nu bijvoorbeeld als administratief medewerker, office- of projectcoördinator, planner, contractbeheerder of in een andere ondersteunende functie. Je houdt overzicht, werkt nauwkeurig en zorgt dat afspraken worden nagekomen. Nu ben je toe aan een volgende stap: inhoudelijker werk in een vak waarin je kunt groeien.\n\nDaarnaast breng je het volgende mee:',
+      items: [
+        'hbo-werk- en denkniveau, opgedaan via je opleiding of in de praktijk',
+        'ervaring in een administratieve, operationele of projectondersteunende functie',
+        'je werkt gestructureerd en nauwkeurig en bewaakt deadlines',
+        'je schrijft helder en schakelt makkelijk tussen verschillende mensen en belangen',
+        'je vindt het leuk om je te verdiepen in regels en procedures',
+        'je hebt ervaring met AI-tools zoals ChatGPT of Copilot, of je wilt je hier graag in ontwikkelen. AI wordt een vast onderdeel van je werk',
+        'je werkt graag op ons kantoor in Zeewolde',
+        // In de docx een losse zin onder de lijst; het blok "Wie ben jij?" kent geen slottekst
+        'Ervaring met inkoop, kennis van aanbestedingswetgeving of affiniteit met onderwijs is mooi meegenomen, maar zeker geen vereiste',
+      ],
+    },
+    tasks: {
+      intro:
+        'Op de Aanbestedingsdesk zorg je samen met je collega’s dat aanbestedingstrajecten voor onderwijsorganisaties soepel, zorgvuldig en volgens de regels verlopen. Je begint ondersteunend en neemt stap voor stap meer zelf op je.\n\nConcreet houd je je onder andere bezig met:',
+      items: [
+        'het plannen en bewaken van aanbestedingstrajecten, van de start tot de gunning',
+        'het opstellen, controleren en compleet maken van aanbestedingsdocumenten',
+        'het contact met scholen, schoolbesturen en leveranciers tijdens een traject',
+        'het beheren en borgen van contracten nadat een traject is afgerond',
+        'het signaleren van kansen om processen slimmer en beter in te richten',
+        'het slim inzetten van AI-tools, bijvoorbeeld bij het opstellen, controleren en analyseren van aanbestedingsdocumenten',
+        'het begeleiden van enkelvoudige en meervoudig onderhandse aanbestedingen en, als je verder bent, ook Europese aanbestedingen',
+        'het adviseren van opdrachtgevers over inkoopvragen, naarmate je meer kennis opbouwt',
+      ],
+    },
+    offer: {
+      items: [
+        'Marktconform salaris afhankelijk van kennis en ervaring',
+        'een functie voor 24 tot 32 uur per week',
+        '100% pensioenbijdrage en een bonusregeling',
+        'een opleidingstraject en doorgroeimogelijkheden naar medior inkoper',
+        'een betrokken team van 18 collega’s dat kennis deelt en successen samen viert',
+        'uitstekend digitaal gereedschap, waaronder AI-tools, om je werk slim en efficiënt te doen',
+        'veel ruimte voor eigen verantwoordelijkheid, ideeën en inbreng',
+        'een ambitieuze, groeiende organisatie met zichtbare impact op het Nederlandse onderwijs',
+      ],
+    },
+    blocks: [
+      {
+        title: 'Zo leer je het vak',
+        intro: 'Je hoeft niet vanaf dag één alles te kunnen. We bouwen het samen met je op:',
+        items: [
+          'Meedraaien vanaf de start: je werkt mee in lopende trajecten, samen met ervaren inkoopadviseurs. Zo zie je hoe een aanbesteding in de praktijk verloopt en draag je meteen bij met wat je al goed kunt.',
+          'Begeleiding door ervaren collega’s: je staat er niet alleen voor. Collega’s kijken met je mee, beantwoorden je vragen en geven je feedback.',
+          'Stap voor stap zelfstandiger: na de ondersteunende taken begeleid je zelf onderhandse aanbestedingen. Met meer ervaring volgen Europese aanbestedingen en adviesvragen.',
+          'Opleiding: je krijgt de mogelijkheid om de post-hbo-opleiding Inkoop & Aanbesteden van Conducto te volgen. Daar leer je de theorie en de wetgeving achter het werk.',
+          'Werken met AI: je leert hoe je AI verantwoord en effectief inzet in inkoop- en aanbestedingstrajecten. Ook als je hier nog weinig ervaring mee hebt, helpen we je op weg.',
+          'Doorgroeien: als je je ontwikkelt, kun je doorgroeien naar medior inkoper.',
+        ],
+        outro: 'In ons team mag je fouten maken, zolang we ervan leren. En vragen stellen hoort er gewoon bij.',
+      },
+      {
+        title: 'Waarom deze functie?',
+        intro:
+          'Omdat je hier je talent voor organiseren en structureren omzet in een vak met toekomst. Je leert inkoop en aanbesteden van de grond af, werkt slim met moderne tools zoals AI, draagt bij aan projecten met maatschappelijke waarde en doet dat in een team dat betrokken, professioneel en nuchter is.',
+      },
+      {
+        title: 'Herken je jezelf hierin?',
+        intro:
+          'Solliciteer dan via de knop ‘Solliciteer direct’ en stuur je cv en een korte motivatie mee. Twijfel je of je ervaring past? Bel ons gerust op 036 820 1000, dan bespreken we het samen.',
+      },
+    ],
+    // Zelfde foto's als de andere vacatures van de aanbestedingsdesk; staan al in het CMS
+    photos: ['vacature-oig-085.jpg', 'vacature-oig-099.jpg', 'vacature-oig-097.jpg'],
+    datePosted: '2026-11-13',
   },
   {
     slug: 'specialist-inkoopdossier',
@@ -270,28 +370,35 @@ const VACANCIES: Vacancy[] = [
 
 const bullets = (b: Bullets) => ({ intro: b.intro ?? null, items: b.items.map((text) => ({ text })) })
 
+/** De velden van de collectie Vacatures voor één vacature uit deze lijst (zonder foto's en volgorde). */
+export const vacancyDoc = (v: Vacancy) => ({
+  title: v.title,
+  teaser: v.teaser,
+  hours: v.hours,
+  education: v.education,
+  location: 'Zeewolde',
+  intro: v.intro,
+  about: v.about ?? null,
+  seeking: bullets(v.seeking),
+  profile: bullets(v.profile),
+  tasks: bullets(v.tasks),
+  offer: bullets(v.offer),
+  blocks: (v.blocks ?? []).map((b) => ({
+    title: b.title,
+    intro: b.intro ?? null,
+    items: (b.items ?? []).map((text) => ({ text })),
+    outro: b.outro ?? null,
+  })),
+  salary: { min: v.salary?.min ?? null, max: v.salary?.max ?? null },
+  datePosted: `${v.datePosted}T12:00:00.000Z`,
+})
+
 export default async function seedVacancies(ctx: SeedContext) {
   let order = 0
   for (const v of VACANCIES) {
     order += 10
     const photos: number[] = []
     for (const file of v.photos) photos.push(await ctx.img(file))
-    await ctx.upsert('vacatures', v.slug, {
-      title: v.title,
-      teaser: v.teaser,
-      hours: v.hours,
-      education: v.education,
-      location: 'Zeewolde',
-      intro: v.intro,
-      about: v.about ?? null,
-      seeking: bullets(v.seeking),
-      profile: bullets(v.profile),
-      tasks: bullets(v.tasks),
-      offer: bullets(v.offer),
-      salary: { min: v.salary?.min ?? null, max: v.salary?.max ?? null },
-      photos,
-      datePosted: `${v.datePosted}T12:00:00.000Z`,
-      order,
-    })
+    await ctx.upsert('vacatures', v.slug, { ...vacancyDoc(v), photos, order })
   }
 }

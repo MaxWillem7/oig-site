@@ -247,6 +247,8 @@ const vacatureKort = (d: Doc, live: boolean) => ({
   status: statusTekst(d, live),
 })
 
+type ExtraBlok = { title?: string; intro?: string | null; items?: { text?: string }[] | null; outro?: string | null }
+
 const vacatureVol = (d: Doc, live: boolean) => {
   const salaris = (d.salary ?? {}) as { min?: number | null; max?: number | null }
   return {
@@ -259,6 +261,13 @@ const vacatureVol = (d: Doc, live: boolean) => {
     wie_ben_jij: blokUit(d.profile),
     wat_ga_je_doen: blokUit(d.tasks),
     wat_wij_bieden: blokUit(d.offer),
+    // Alleen lezen: extra blokken (bijv. "Zo leer je het vak") wijzigt de gebruiker in het CMS
+    extra_blokken: ((d.blocks ?? []) as ExtraBlok[]).map((b) => ({
+      kop: b.title,
+      inleiding: b.intro ?? '',
+      punten: (b.items ?? []).map((i) => i.text ?? ''),
+      slot: b.outro ?? '',
+    })),
     salaris_vanaf: salaris.min,
     salaris_tot: salaris.max,
     geplaatst_op: dag(d.datePosted),

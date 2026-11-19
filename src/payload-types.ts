@@ -287,6 +287,23 @@ export interface Vacature {
       | null;
   };
   /**
+   * Optioneel. Eigen blokken onder "Wat wij bieden", bijv. "Zo leer je het vak" of "Waarom deze functie?".
+   */
+  blocks?:
+    | {
+        title: string;
+        intro?: string | null;
+        items?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        outro?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
    * Optioneel. Bruto per maand bij fulltime.
    */
   salary?: {
@@ -760,6 +777,20 @@ export interface VacaturesSelect<T extends boolean = true> {
               text?: T;
               id?: T;
             };
+      };
+  blocks?:
+    | T
+    | {
+        title?: T;
+        intro?: T;
+        items?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        outro?: T;
+        id?: T;
       };
   salary?:
     | T

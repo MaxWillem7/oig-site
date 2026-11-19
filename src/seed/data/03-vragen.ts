@@ -16,7 +16,7 @@ type Page =
   | 'inkoopbeleid'
   | 'fietsplan-onderwijs'
 
-const FAQS: Record<Page, [question: string, answer: string][]> = {
+export const FAQS: Record<Page, [question: string, answer: string][]> = {
   aanbesteden: [
     [
       'Wat is aanbesteden?',
@@ -131,11 +131,11 @@ const FAQS: Record<Page, [question: string, answer: string][]> = {
   verzekeringen: [
     [
       'Ik ben al verzekerd bij een van de zes verzekeraars. Hoe krijg ik de korting?',
-      'Log bij voorkeur in bij uw verzekeraar en voeg het collectiviteitsnummer toe aan uw polis. Bij VGZ en Menzis is dit de enige manier. Bij CZ, ONVZ en Nationale Nederlanden kunt u ook het wijzigingsformulier invullen en mailen naar zorg.debilt@fidus.nl. Fidus zorgt ervoor dat de korting op uw polis wordt doorgevoerd. Verzekerd bij De Christelijke Zorgverzekeraar? Mail dan uw relatienummer naar info@jabesverzekeringen.nl en vermeld dat u wilt meeliften op het collectief van de Onderwijs Inkoop Groep.',
+      'Log bij voorkeur in bij uw verzekeraar en voeg het collectiviteitsnummer toe aan uw polis. Bij VGZ en Menzis is dit de enige manier. Bij CZ, ONVZ en Nationale Nederlanden kunt u ook het wijzigingsformulier invullen en mailen naar zorg.debilt@zichtadviseurs.nl. Zicht Adviseurs (voorheen Fidus) zorgt ervoor dat de korting op uw polis wordt doorgevoerd. Verzekerd bij De Christelijke Zorgverzekeraar? Mail dan uw relatienummer naar info@jabesverzekeringen.nl en vermeld dat u wilt meeliften op het collectief van de Onderwijs Inkoop Groep.',
     ],
     [
       'Waarom zou ik meedoen?',
-      'U ontvangt korting op uw premie, ook als u al bij een van deze verzekeraars verzekerd bent. De dekking is op veel plekken beter dan wanneer u zelf individueel afsluit. U heeft er geen werk van: Fidus regelt alles. Deelname is vrijblijvend en u bent de OIG geen vergoeding verschuldigd. Nog vragen? Bel Fidus op 085 860 00 00.',
+      'U ontvangt korting op uw premie, ook als u al bij een van deze verzekeraars verzekerd bent. De dekking is op veel plekken beter dan wanneer u zelf individueel afsluit. U heeft er geen werk van: Zicht Adviseurs (voorheen Fidus) regelt alles. Deelname is vrijblijvend en u bent de OIG geen vergoeding verschuldigd. Nog vragen? Bel Zicht Adviseurs op 020 30 20 091.',
     ],
   ],
 

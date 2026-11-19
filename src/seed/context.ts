@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import type { Payload } from 'payload'
+import type { Payload, PayloadRequest } from 'payload'
 
 export type SeedContext = {
   payload: Payload
@@ -14,7 +14,10 @@ export type SeedContext = {
 
 type ManifestItem = { file: string; alt: string; focus?: string; bron?: string }
 
-export function createContext(payload: Payload): SeedContext {
+/**
+ * `req` geeft een datamigratie haar transactie mee, zodat alles in één keer slaagt of niets.
+ */
+export function createContext(payload: Payload, req?: Partial<PayloadRequest>): SeedContext {
   const dir = path.resolve(process.cwd(), 'seed-assets/images')
   const docDir = path.resolve(process.cwd(), 'seed-assets/documents')
   const manifest: ManifestItem[] = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'))
@@ -22,7 +25,7 @@ export function createContext(payload: Payload): SeedContext {
 
   const img = async (file: string) => {
     if (cache.has(file)) return cache.get(file)!
-    const existing = await payload.find({ collection: 'media', where: { filename: { equals: file } }, limit: 1 })
+    const existing = await payload.find({ collection: 'media', where: { filename: { equals: file } }, limit: 1, req })
     let id: number
     if (existing.docs[0]) id = existing.docs[0].id as number
     else {
@@ -32,6 +35,7 @@ export function createContext(payload: Payload): SeedContext {
         collection: 'media',
         data: { alt: meta.alt, focus: meta.focus },
         filePath: path.join(dir, file),
+        req,
       })
       id = doc.id as number
     }
@@ -40,22 +44,22 @@ export function createContext(payload: Payload): SeedContext {
   }
 
   const pdf = async (file: string, title: string) => {
-    const existing = await payload.find({ collection: 'documenten', where: { filename: { equals: file } }, limit: 1 })
+    const existing = await payload.find({ collection: 'documenten', where: { filename: { equals: file } }, limit: 1, req })
     if (existing.docs[0]) return existing.docs[0].id as number
-    const doc = await payload.create({ collection: 'documenten', data: { title }, filePath: path.join(docDir, file) })
+    const doc = await payload.create({ collection: 'documenten', data: { title }, filePath: path.join(docDir, file), req })
     return doc.id as number
   }
 
   const upsert = async (collection: string, key: string, data: Record<string, unknown>, field = 'slug') => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const c = collection as any
-    const found = await payload.find({ collection: c, where: { [field]: { equals: key } }, limit: 1, draft: true })
+    const found = await payload.find({ collection: c, where: { [field]: { equals: key } }, limit: 1, draft: true, req })
     const body = { ...data, [field]: key, _status: 'published' }
     if (found.docs[0]) {
-      const doc = await payload.update({ collection: c, id: found.docs[0].id, data: body })
+      const doc = await payload.update({ collection: c, id: found.docs[0].id, data: body, req })
       return doc.id as number
     }
-    const doc = await payload.create({ collection: c, data: body })
+    const doc = await payload.create({ collection: c, data: body, req })
     return doc.id as number
   }
 

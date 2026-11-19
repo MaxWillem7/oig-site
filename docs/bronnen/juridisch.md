@@ -15,6 +15,7 @@ Inventaris = `2026-10-16-dd-oig-site-inventaris.md` (regelnummers). Ontwerp = Pa
 |---|---|---|
 | H1 "Onze privacyverklaring", intro | Ontwerp, paginaverslag privacy-beleid | letterlijk uit ontwerp |
 | De verklaring zelf, datum "Laatst bijgewerkt" | CMS: global Juridische teksten, velden `privacy` en `privacyUpdated` | uit CMS |
+| Tekst sinds 19 november 2026 (zeven h2-koppen, inhoudsopgave uit de koppen), datum 19 november 2026 | `digital-dudes/docs/plans/2026-11-19-dd-oig-privacyverklaring-voorstel.md`, sectie "Tekst". **Voorstel van Digital Dudes; OIG moet het nog goedkeuren** vóór de livegang. Gezet door de datamigratie van 19 november (alleen omdat het veld leeg was) en in de seed (`src/seed/data/07-juridisch.ts`) | letterlijk; e-mailadres, telefoon, "cookiebeleid" en autoriteitpersoonsgegevens.nl als link |
 | Melding "Onze privacyverklaring wordt bijgewerkt" met telefoon en e-mail | Opdracht; gegevens uit instellingen. Alleen zichtbaar zolang het CMS-veld leeg is; de pagina staat dan op noindex | functioneel |
 
 ## Cookiebeleid (`/juridisch/cookiebeleid/`)
@@ -64,3 +65,11 @@ De voorwaarden staan op de live site niet als tekst (inventaris r. 2667), dus er
 - Welke tags zitten in de Google Tag Manager-container (alleen GA4 en Clarity, of ook advertentiepixels)? Daarna kan het cookiebeleid de diensten en cookies per categorie noemen.
 - Algemene voorwaarden als pdf in het CMS (Documenten, titel exact "Algemene voorwaarden"); de tekst ook op de pagina zetten als OIG die als tekst aanlevert.
 - Reactietermijn op de bedanktpagina, als OIG die wil noemen.
+
+## Open voor OIG (privacyverklaring)
+
+- Akkoord op de voorgestelde tekst (voorstel Digital Dudes, 19 november 2026).
+- Bewaartermijn contact- en whitepaperaanvragen (voorstel: hoogstens twee jaar).
+- Worden aanvragers van een whitepaper nagebeld of nagemaild? Zo ja, dan moet dat erbij.
+- Sollicitanten langer bewaren "alleen met toestemming, hoogstens een jaar": klopt dat?
+- KvK-nummer (niet gevonden).

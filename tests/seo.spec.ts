@@ -66,6 +66,11 @@ const MOVED: [string, string][] = [
   ['/wp-content/uploads/premie-overzicht-collectieve-zorgverzekering-oig-2026.pdf', '/dienst/verzekeringen/'],
   ['/wp-content/uploads/de-christelijke-zorgverzekeraar-2026-premietabel-15.pdf', '/dienst/verzekeringen/'],
   ['/wp-content/uploads/wijzigingsformulier-oig-2026.pdf', '/dienst/verzekeringen/'],
+  // Premie-PDF's van 2027 (zelfde patroon; staan als ze op de oude site komen ook onder deze namen)
+  ['/wp-content/uploads/premie-overzicht-collectieve-zorgverzekering-oig-2027.pdf', '/dienst/verzekeringen/'],
+  ['/wp-content/uploads/wijzigingsformulier-oig-2027.pdf', '/dienst/verzekeringen/'],
+  // Nieuwe vacature: op de oude site met "-2" achter het adres
+  ['/vacatures/medewerker-aanbestedingsdesk-2/', '/vacatures/medewerker-aanbestedingsdesk/'],
   // Vangnet premie-PDF's van eerdere jaren (exacte namen onbekend: patroon van 2026, hoofdletters, jaarmap)
   ['/wp-content/uploads/premie-overzicht-collectieve-zorgverzekering-oig-2025.pdf', '/dienst/verzekeringen/'],
   ['/wp-content/uploads/premie-overzicht-collectieve-zorgverzekering-oig-2024.pdf', '/dienst/verzekeringen/'],
@@ -120,6 +125,7 @@ const KEPT = [
   '/vacatures/junior-inkoopadviseur-aanbestedingsdesk/',
   '/vacatures/medior-inkoopadviseur-aanbestedingsdesk/',
   '/vacatures/specialist-inkoopdossier/',
+  '/vacatures/medewerker-aanbestedingsdesk/',
   '/diensten/',
   '/dienst/aanbesteden/',
   '/dienst/subsidiedesk/',
@@ -167,7 +173,8 @@ test.describe('oud adres dat blijft', () => {
 
 test.describe('redirectlijst', () => {
   test('elke bestemming is een vaste pagina of de sitemap', () => {
-    const known = new Set([...Object.keys(PAGES), '/sitemap.xml'])
+    // Uitzondering: vacature uit het CMS waarvan de oude site een dubbel adres had (de 200 staat in KEPT)
+    const known = new Set([...Object.keys(PAGES), '/sitemap.xml', '/vacatures/medewerker-aanbestedingsdesk/'])
     const unknown = redirects.filter((r) => !known.has(r.destination)).map((r) => `${r.source} -> ${r.destination}`)
     expect(unknown).toEqual([])
   })

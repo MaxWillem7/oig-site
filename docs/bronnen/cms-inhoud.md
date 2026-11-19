@@ -78,8 +78,9 @@ pagina: alles komt letterlijk terug, op de punten hieronder na. `datePosted` = v
 | Slug | Titel (H1 live) | Uren · opleiding | Salaris | Geplaatst | Foto's (fotoshoot) |
 |---|---|---|---|---|---|
 | `inkoopadviseur-relatiebeheerder` | Inkoopadviseur / Accountmanager | 32-40 uur · HBO | 3.484 tot 4.728 | 2025-07-10 | 085, 078, 107 |
-| `junior-inkoopadviseur-aanbestedingsdesk` | Junior Inkoopadviseur Aanbestedingsdesk | 24-32 uur · MBO+ / HBO | geen range genoemd | 2026-09-24 | 085, 098, 097 |
-| `medior-inkoopadviseur-aanbestedingsdesk` | Medior Inkoopadviseur Aanbestedingsdesk | 24-32 uur · HBO | geen range genoemd | 2024-11-08 | 089, 099, 081 |
+| `junior-inkoopadviseur-aanbestedingsdesk` | Junior inkoper (tot 19 nov: Junior Inkoopadviseur Aanbestedingsdesk) | 24-32 uur · MBO+ / HBO | geen range genoemd | 2026-09-24 | 085, 098, 097 |
+| `medior-inkoopadviseur-aanbestedingsdesk` | Medior inkoper (tot 19 nov: Medior Inkoopadviseur Aanbestedingsdesk) | 24-32 uur · HBO | geen range genoemd | 2024-11-08 | 089, 099, 081 |
+| `medewerker-aanbestedingsdesk` | Medewerker Aanbestedingsdesk (nieuw 19 nov, zie vacatures.md) | 24-32 uur · MBO+ / HBO | geen range genoemd | 2026-11-13 | 085, 099, 097 |
 | `specialist-inkoopdossier` | Commercieel medewerker binnendienst | 24-32 uur · MBO+ / HBO | 3.084 tot 4.187 | 2025-07-10 | 124, 109, 083 |
 
 Verbeterde typfouten (verder niets gewijzigd):
@@ -187,12 +188,12 @@ Omslagen: `<onderwerp>-whitepaper-cover.png` van de live site (r.2148-2154). Ze 
 | Titel in het CMS | Bestand (live `/wp-content/uploads/`) | Inventaris |
 |---|---|---|
 | Algemene voorwaarden | `algemene-voorwaarden-oig.pdf` | r.73 |
-| Premieoverzicht collectieve zorgverzekering 2026 | `premie-overzicht-collectieve-zorgverzekering-oig-2026.pdf` | r.70 |
-| Premietabel De Christelijke Zorgverzekeraar 2026 | `de-christelijke-zorgverzekeraar-2026-premietabel-15.pdf` | r.71 |
-| Wijzigingsformulier 2026 | `wijzigingsformulier-oig-2026.pdf` | r.72 |
+| Premieoverzicht collectieve zorgverzekering 2027 | `premie-overzicht-collectieve-zorgverzekering-oig-2027.pdf` | klantmap "Zorgverzekering 2027", 18 nov 2026 |
+| Premietabel De Christelijke Zorgverzekeraar 2027 | `de-christelijke-zorgverzekeraar-2027-premietabel.pdf` | idem |
+| Wijzigingsformulier 2027 | `wijzigingsformulier-oig-2027.pdf` | idem |
 | Whitepaper leasefiets, kopieerapparaat, meubilair, schoonmaak | zie sectie 4 | r.74-77 |
 
-Er zijn geen premietabellen aangemaakt (2027 is nog niet bekend).
+De documenten van 2026 (live r.70-72) zijn op 19 november 2026 vervangen door die van 2027. Premietabellen 2027: `src/seed/data/06-premies.ts`, bron per tabel in `docs/bronnen/verzekeringen.md`.
 
 ## 6. KvK-nummer
 
